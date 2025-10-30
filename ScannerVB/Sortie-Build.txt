@@ -1,0 +1,6 @@
+﻿L'opération de regénération a démarré...
+1>------ Début de la regénération globale : Projet : ScannerVB, Configuration : Debug Any CPU ------
+Restauration effectuée de C:\Analyses_VB\Analyzer\ScannerVB\ScannerVB.vbproj (en 27 ms).
+1>ScannerVB -> C:\Analyses_VB\Analyzer\ScannerVB\bin\Debug\net7.0-windows\ScannerVB.dll
+========== Reconstruire tout : 1 réussi, 0 a échoué, 0 ignoré =========
+========= Regénérer démarré à 17:18 et a pris 01,495 secondes ==========
