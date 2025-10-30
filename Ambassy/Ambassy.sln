@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36616.10 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmbassyBlazor", "AmbassyBlazor\AmbassyBlazor\AmbassyBlazor.csproj", "{3C846349-076C-4F97-A5D6-7F9A8FABB363}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmbassyBlazor.Client", "AmbassyBlazor\AmbassyBlazor.Client\AmbassyBlazor.Client.csproj", "{218EB982-7EAE-4A66-8023-041738472253}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C846349-076C-4F97-A5D6-7F9A8FABB363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C846349-076C-4F97-A5D6-7F9A8FABB363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C846349-076C-4F97-A5D6-7F9A8FABB363}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C846349-076C-4F97-A5D6-7F9A8FABB363}.Release|Any CPU.Build.0 = Release|Any CPU
+		{218EB982-7EAE-4A66-8023-041738472253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{218EB982-7EAE-4A66-8023-041738472253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{218EB982-7EAE-4A66-8023-041738472253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{218EB982-7EAE-4A66-8023-041738472253}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
