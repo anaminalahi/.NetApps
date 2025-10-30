@@ -1,0 +1,6 @@
+@AmbassyServices_HostAddress = http://localhost:5282
+
+GET {{AmbassyServices_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
