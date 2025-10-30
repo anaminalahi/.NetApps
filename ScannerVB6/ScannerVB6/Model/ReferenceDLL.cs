@@ -8,7 +8,7 @@ namespace ScannerVB6.Model
 {
     public class ReferenceDLL
     {
-        public required string NomDeLaReferenceDLL { get; set; }
-        public required string NomDuFichiereDLL { get; set; }
+        public string? NomDeLaReferenceDLL { get; set; }
+        public string? NomDuFichiereDLL { get; set; }
     }
 }

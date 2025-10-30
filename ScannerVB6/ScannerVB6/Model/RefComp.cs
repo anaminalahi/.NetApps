@@ -14,8 +14,8 @@ namespace ScannerVB6.Model
             Ref = 1
         }
 
-        public required string NomApplication { get; set; }
-        public required string NomDuProjet { get; set; }
+        public string? NomApplication { get; set; }
+        public string? NomDuProjet { get; set; }
         public LeType MotClef { get; set; }
         public string? NomDuFichierRefOCxTlb { get; set; }
         public string? libelleRefOCxTlb { get; set; }

@@ -8,11 +8,11 @@ namespace ScannerVB6.Model
 {
     public class FicSource
     {
-        public required string NomIntFicSource { get; set; }
-        public required string NomExtFicSource { get; set; }
-        public required string Emplacement { get; set; }
-        public required string NomApplication { get; set; }
-        public required string NomDuFichierVBP { get; set; }
+        public string? NomIntFicSource { get; set; }
+        public string? NomExtFicSource { get; set; }
+        public string? Emplacement { get; set; }
+        public string? NomApplication { get; set; }
+        public string? NomDuFichierVBP { get; set; }
 
         public TypeSource.TypeFichier TypeFicSource { get; set; }
 

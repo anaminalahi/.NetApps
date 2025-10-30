@@ -2,7 +2,7 @@
 {
     public class ObjectActiveX
     {
-        public required string NomObjectActiveX { get; set; }
+        public string? NomObjectActiveX { get; set; }
 
     }
 }

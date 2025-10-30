@@ -8,6 +8,6 @@ namespace ScannerVB6.Model
 {
     public class UserControle
     {
-        public required string NomUserControle { get; set; }
+        public string? NomUserControle { get; set; }
     }
 }
