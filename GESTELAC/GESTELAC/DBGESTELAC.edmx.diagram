@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c7f1411d796f4bc6aff1572947267200" Name="Diagram1">
+        <EntityTypeShape EntityType="dbgestelacModel.Accessoire" Width="1.75" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbgestelacModel.Accessoire_Propriete" Width="2" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbgestelacModel.Accessoire_Visuel" Width="2" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbgestelacModel.Categorie" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbgestelacModel.Compatibilite" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbgestelacModel.Marque" Width="1.5" PointX="3.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbgestelacModel.Modele" Width="2" PointX="6" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbgestelacModel.Modele_Propriete" Width="2" PointX="9.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbgestelacModel.Statut" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="dbgestelacModel.FK_AccessoireAvoir_Proprietes" ManuallyRouted="false" />
+        <AssociationConnector Association="dbgestelacModel.FK_AccessoireCompatiblite" ManuallyRouted="false" />
+        <AssociationConnector Association="dbgestelacModel.FK_AccessoireEtVisuels" ManuallyRouted="false" />
+        <AssociationConnector Association="dbgestelacModel.FK_CategorieAccessoire" ManuallyRouted="false" />
+        <AssociationConnector Association="dbgestelacModel.FK_StatutAccessoire" ManuallyRouted="false" />
+        <AssociationConnector Association="dbgestelacModel.FK_ModeleCompatiblite" ManuallyRouted="false" />
+        <AssociationConnector Association="dbgestelacModel.FK_MarqueProduitModele" ManuallyRouted="false" />
+        <AssociationConnector Association="dbgestelacModel.FK_ModeleModele_Propriete" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

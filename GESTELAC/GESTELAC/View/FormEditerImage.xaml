@@ -1,0 +1,78 @@
+﻿<Window x:Class="FormEditerImageViewModel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GESTELAC"
+        mc:Ignorable="d"
+        Title="FormEditerImage" Height="380" Width="640" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <local:FormEditerImageViewModel x:Name="myViewModel"></local:FormEditerImageViewModel>
+    </Window.DataContext>
+
+    <Grid x:Name="MainGrid">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
+        
+        
+
+        <Grid x:Name="CRITERES"  Grid.Row="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>                
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <RadioButton Name="Radio01" Grid.Column="0" Grid.Row="0" Content="Url web" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"  IsChecked="{Binding SelectedCarte.COURRIER}" Command="{Binding CMD_FILTRER}"></RadioButton>
+            <RadioButton Name="Radio02" Grid.Column="0" Grid.Row="1" Content="EMail" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4"  IsChecked="{Binding SelectedCarte.EMAIL}" Command="{Binding CMD_FILTRER}"></RadioButton>
+
+            <TextBox x:Name="TxtNomFichier" Text="{Binding Path=NomDuFichierPJ}" Grid.Row="0" Grid.Column="1"  Margin="4" BorderBrush="DarkGray" IsReadOnly="True"></TextBox>
+            <TextBox x:Name="TxtDossier" Text="{Binding szDossier}" Grid.Row="1" Grid.Column="1"  Margin="4" BorderBrush="DarkGray" IsReadOnly="True" Background="AntiqueWhite"></TextBox>
+
+            <Button Name="BtnSelectionnerUrl" Command="{Binding CMD_SELECTIONNER_FICHIER}"  Content="..." Grid.Row="0" Grid.Column="2"  Margin="4" />
+            <Button Name="BtnSelectionnerDossier" Command="{Binding CMD_SELECTIONNER_FICHIER}"  Content="..." Grid.Row="1" Grid.Column="2"  Margin="4" />
+
+        </Grid>
+
+        <Grid x:Name="BoxImage" Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="PhotoAccessoire" Source="{Binding SelectedAccessoire.Visuel}" Grid.Column="1" Margin="2" Stretch="Fill"></Image>
+
+        </Grid>
+
+        <Grid x:Name="BoutonsCommandes" Grid.Row="4"  VerticalAlignment="Stretch" Margin="4">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="BtnEnregistrer" Command="{Binding CMD_ENREGISTRER}"  Content="Enregistrer" Grid.Column="1" Margin="2"></Button>
+            <Button x:Name="BtnAnnuler" Command="{Binding CMD_ANNULER}" Content="Annuler" Grid.Column="3" Margin="2"></Button>
+
+        </Grid>
+
+    </Grid>
+</Window>

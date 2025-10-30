@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbgestelacModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="dbgestelacModelStoreContainer">
+    <EntitySet Name="Accessoires" EntityType="dbgestelacModel.Store.Accessoires" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Accessoires_Proprietes" EntityType="dbgestelacModel.Store.Accessoires_Proprietes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Accessoires_Visuels" EntityType="dbgestelacModel.Store.Accessoires_Visuels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categories" EntityType="dbgestelacModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Compatibilites" EntityType="dbgestelacModel.Store.Compatibilites" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Marques" EntityType="dbgestelacModel.Store.Marques" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Modeles" EntityType="dbgestelacModel.Store.Modeles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Modeles_Proprietes" EntityType="dbgestelacModel.Store.Modeles_Proprietes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Statuts" EntityType="dbgestelacModel.Store.Statuts" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_AccessoireAvoir_Proprietes" Association="dbgestelacModel.Store.FK_AccessoireAvoir_Proprietes">
+      <End Role="Accessoires" EntitySet="Accessoires" />
+      <End Role="Accessoires_Proprietes" EntitySet="Accessoires_Proprietes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccessoireCompatiblite" Association="dbgestelacModel.Store.FK_AccessoireCompatiblite">
+      <End Role="Accessoires" EntitySet="Accessoires" />
+      <End Role="Compatibilites" EntitySet="Compatibilites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccessoireEtVisuels" Association="dbgestelacModel.Store.FK_AccessoireEtVisuels">
+      <End Role="Accessoires" EntitySet="Accessoires" />
+      <End Role="Accessoires_Visuels" EntitySet="Accessoires_Visuels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategorieAccessoire" Association="dbgestelacModel.Store.FK_CategorieAccessoire">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Accessoires" EntitySet="Accessoires" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatutAccessoire" Association="dbgestelacModel.Store.FK_StatutAccessoire">
+      <End Role="Statuts" EntitySet="Statuts" />
+      <End Role="Accessoires" EntitySet="Accessoires" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModeleCompatiblite" Association="dbgestelacModel.Store.FK_ModeleCompatiblite">
+      <End Role="Modeles" EntitySet="Modeles" />
+      <End Role="Compatibilites" EntitySet="Compatibilites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MarqueProduitModele" Association="dbgestelacModel.Store.FK_MarqueProduitModele">
+      <End Role="Marques" EntitySet="Marques" />
+      <End Role="Modeles" EntitySet="Modeles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModeleModele_Propriete" Association="dbgestelacModel.Store.FK_ModeleModele_Propriete">
+      <End Role="Modeles" EntitySet="Modeles" />
+      <End Role="Modeles_Proprietes" EntitySet="Modeles_Proprietes" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Accessoires">
+    <Key>
+      <PropertyRef Name="IdAccessoire" />
+    </Key>
+    <Property Name="IdAccessoire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCategorie" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Sku" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Stock" Type="int" Nullable="true" />
+    <Property Name="PriceDeBase" Type="float" Nullable="true" />
+    <Property Name="PrixDeVente" Type="float" Nullable="true" />
+    <Property Name="PrixPublic" Type="float" Nullable="true" />
+    <Property Name="Libelle_Francais" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="Libelle_Anglais" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Description_Html" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Support" Type="nvarchar" Nullable="true" MaxLength="512" />
+    <Property Name="SupportTechnique" Type="nvarchar" Nullable="true" MaxLength="1024" />
+    <Property Name="IdStatut" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="Ean" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="UrlImage" Type="nvarchar" Nullable="true" MaxLength="512" />
+    <Property Name="DateAjout" Type="datetime" Nullable="true" />
+    <Property Name="DureeDeGarantie" Type="int" Nullable="true" />
+    <Property Name="Toremain" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="NombreDeCompatible" Type="int" Nullable="true" />
+    <Property Name="ImageAccessoire" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Accessoires_Proprietes">
+    <Key>
+      <PropertyRef Name="IdAccessoire_Propriete" />
+    </Key>
+    <Property Name="IdAccessoire_Propriete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sku" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Cle" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Valeur" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Parent" Type="int" Nullable="true" />
+    <Property Name="IdAccessoire" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Accessoires_Visuels">
+    <Key>
+      <PropertyRef Name="IdAccessoire_Visuel" />
+    </Key>
+    <Property Name="IdAccessoire_Visuel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MimeType" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ImageAccessoire" Type="varbinary(max)" Nullable="true" />
+    <Property Name="Sku" Type="nvarchar" Nullable="true" MaxLength="128" />
+    <Property Name="DateAjout" Type="datetime" Nullable="true" />
+    <Property Name="Taille" Type="int" Nullable="true" />
+    <Property Name="IdAccessoire" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="IdCategorie" />
+    </Key>
+    <Property Name="IdCategorie" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Compatibilites">
+    <Key>
+      <PropertyRef Name="IdCompatiblite" />
+    </Key>
+    <Property Name="IdCompatiblite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdModele" Type="int" Nullable="false" />
+    <Property Name="IdAccessoire" Type="int" Nullable="false" />
+    <Property Name="DateDeMiseAjour" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Marques">
+    <Key>
+      <PropertyRef Name="IdMarque" />
+    </Key>
+    <Property Name="IdMarque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomDeLaMarque" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IdGsmArena" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Modeles">
+    <Key>
+      <PropertyRef Name="IdModele" />
+    </Key>
+    <Property Name="IdModele" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomDuModele" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ReferenceTechnique" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="UrlImage" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="GsmArenaUrl" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="IdMarque" Type="int" Nullable="false" />
+    <Property Name="NomDeLaMarque" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Modeles_Proprietes">
+    <Key>
+      <PropertyRef Name="IdModele_Propriete" />
+    </Key>
+    <Property Name="IdModele_Propriete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cle" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="Valeur" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="IdModele" Type="int" Nullable="false" />
+    <Property Name="NomDuModele" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="NomDeLaMarque" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Statuts">
+    <Key>
+      <PropertyRef Name="IdStatut" />
+    </Key>
+    <Property Name="IdStatut" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="Valeur" Type="int" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_AccessoireAvoir_Proprietes">
+    <End Role="Accessoires" Type="dbgestelacModel.Store.Accessoires" Multiplicity="1" />
+    <End Role="Accessoires_Proprietes" Type="dbgestelacModel.Store.Accessoires_Proprietes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accessoires">
+        <PropertyRef Name="IdAccessoire" />
+      </Principal>
+      <Dependent Role="Accessoires_Proprietes">
+        <PropertyRef Name="IdAccessoire" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccessoireCompatiblite">
+    <End Role="Accessoires" Type="dbgestelacModel.Store.Accessoires" Multiplicity="1" />
+    <End Role="Compatibilites" Type="dbgestelacModel.Store.Compatibilites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accessoires">
+        <PropertyRef Name="IdAccessoire" />
+      </Principal>
+      <Dependent Role="Compatibilites">
+        <PropertyRef Name="IdAccessoire" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccessoireEtVisuels">
+    <End Role="Accessoires" Type="dbgestelacModel.Store.Accessoires" Multiplicity="0..1" />
+    <End Role="Accessoires_Visuels" Type="dbgestelacModel.Store.Accessoires_Visuels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accessoires">
+        <PropertyRef Name="IdAccessoire" />
+      </Principal>
+      <Dependent Role="Accessoires_Visuels">
+        <PropertyRef Name="IdAccessoire" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategorieAccessoire">
+    <End Role="Categories" Type="dbgestelacModel.Store.Categories" Multiplicity="0..1" />
+    <End Role="Accessoires" Type="dbgestelacModel.Store.Accessoires" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="IdCategorie" />
+      </Principal>
+      <Dependent Role="Accessoires">
+        <PropertyRef Name="IdCategorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatutAccessoire">
+    <End Role="Statuts" Type="dbgestelacModel.Store.Statuts" Multiplicity="1" />
+    <End Role="Accessoires" Type="dbgestelacModel.Store.Accessoires" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuts">
+        <PropertyRef Name="IdStatut" />
+      </Principal>
+      <Dependent Role="Accessoires">
+        <PropertyRef Name="IdStatut" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModeleCompatiblite">
+    <End Role="Modeles" Type="dbgestelacModel.Store.Modeles" Multiplicity="1" />
+    <End Role="Compatibilites" Type="dbgestelacModel.Store.Compatibilites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modeles">
+        <PropertyRef Name="IdModele" />
+      </Principal>
+      <Dependent Role="Compatibilites">
+        <PropertyRef Name="IdModele" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MarqueProduitModele">
+    <End Role="Marques" Type="dbgestelacModel.Store.Marques" Multiplicity="1" />
+    <End Role="Modeles" Type="dbgestelacModel.Store.Modeles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marques">
+        <PropertyRef Name="IdMarque" />
+      </Principal>
+      <Dependent Role="Modeles">
+        <PropertyRef Name="IdMarque" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModeleModele_Propriete">
+    <End Role="Modeles" Type="dbgestelacModel.Store.Modeles" Multiplicity="1" />
+    <End Role="Modeles_Proprietes" Type="dbgestelacModel.Store.Modeles_Proprietes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modeles">
+        <PropertyRef Name="IdModele" />
+      </Principal>
+      <Dependent Role="Modeles_Proprietes">
+        <PropertyRef Name="IdModele" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbgestelacModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Accessoire">
+          <Key>
+            <PropertyRef Name="IdAccessoire" />
+          </Key>
+          <Property Name="IdAccessoire" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCategorie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sku" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stock" Type="Int32" />
+          <Property Name="PriceDeBase" Type="Double" />
+          <Property Name="PrixDeVente" Type="Double" />
+          <Property Name="PrixPublic" Type="Double" />
+          <Property Name="Libelle_Francais" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Libelle_Anglais" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description_Html" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Support" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="SupportTechnique" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="IdStatut" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ean" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UrlImage" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="DateAjout" Type="DateTime" Precision="3" />
+          <Property Name="DureeDeGarantie" Type="Int32" />
+          <Property Name="Toremain" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreDeCompatible" Type="Int32" />
+          <Property Name="ImageAccessoire" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Accessoires_Proprietes" Relationship="Self.FK_AccessoireAvoir_Proprietes" FromRole="Accessoires" ToRole="Accessoires_Proprietes" />
+          <NavigationProperty Name="Compatibilites" Relationship="Self.FK_AccessoireCompatiblite" FromRole="Accessoires" ToRole="Compatibilites" />
+          <NavigationProperty Name="Accessoires_Visuels" Relationship="Self.FK_AccessoireEtVisuels" FromRole="Accessoires" ToRole="Accessoires_Visuels" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_CategorieAccessoire" FromRole="Accessoires" ToRole="Categories" />
+          <NavigationProperty Name="Statuts" Relationship="Self.FK_StatutAccessoire" FromRole="Accessoires" ToRole="Statuts" />
+        </EntityType>
+        <EntityType Name="Accessoire_Propriete">
+          <Key>
+            <PropertyRef Name="IdAccessoire_Propriete" />
+          </Key>
+          <Property Name="IdAccessoire_Propriete" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sku" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Valeur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Parent" Type="Int32" />
+          <Property Name="IdAccessoire" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accessoires" Relationship="Self.FK_AccessoireAvoir_Proprietes" FromRole="Accessoires_Proprietes" ToRole="Accessoires" />
+        </EntityType>
+        <EntityType Name="Accessoire_Visuel">
+          <Key>
+            <PropertyRef Name="IdAccessoire_Visuel" />
+          </Key>
+          <Property Name="IdAccessoire_Visuel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MimeType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageAccessoire" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Sku" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateAjout" Type="DateTime" Precision="3" />
+          <Property Name="Taille" Type="Int32" />
+          <Property Name="IdAccessoire" Type="Int32" />
+          <NavigationProperty Name="Accessoires" Relationship="Self.FK_AccessoireEtVisuels" FromRole="Accessoires_Visuels" ToRole="Accessoires" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="IdCategorie" />
+          </Key>
+          <Property Name="IdCategorie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Accessoires" Relationship="Self.FK_CategorieAccessoire" FromRole="Categories" ToRole="Accessoires" />
+        </EntityType>
+        <EntityType Name="Compatibilite">
+          <Key>
+            <PropertyRef Name="IdCompatiblite" />
+          </Key>
+          <Property Name="IdCompatiblite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdModele" Type="Int32" Nullable="false" />
+          <Property Name="IdAccessoire" Type="Int32" Nullable="false" />
+          <Property Name="DateDeMiseAjour" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Accessoires" Relationship="Self.FK_AccessoireCompatiblite" FromRole="Compatibilites" ToRole="Accessoires" />
+          <NavigationProperty Name="Modeles" Relationship="Self.FK_ModeleCompatiblite" FromRole="Compatibilites" ToRole="Modeles" />
+        </EntityType>
+        <EntityType Name="Marque">
+          <Key>
+            <PropertyRef Name="IdMarque" />
+          </Key>
+          <Property Name="IdMarque" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomDeLaMarque" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdGsmArena" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Modeles" Relationship="Self.FK_MarqueProduitModele" FromRole="Marques" ToRole="Modeles" />
+        </EntityType>
+        <EntityType Name="Modele">
+          <Key>
+            <PropertyRef Name="IdModele" />
+          </Key>
+          <Property Name="IdModele" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomDuModele" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReferenceTechnique" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UrlImage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GsmArenaUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdMarque" Type="Int32" Nullable="false" />
+          <Property Name="NomDeLaMarque" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Compatibilites" Relationship="Self.FK_ModeleCompatiblite" FromRole="Modeles" ToRole="Compatibilites" />
+          <NavigationProperty Name="Marques" Relationship="Self.FK_MarqueProduitModele" FromRole="Modeles" ToRole="Marques" />
+          <NavigationProperty Name="Modeles_Proprietes" Relationship="Self.FK_ModeleModele_Propriete" FromRole="Modeles" ToRole="Modeles_Proprietes" />
+        </EntityType>
+        <EntityType Name="Modele_Propriete">
+          <Key>
+            <PropertyRef Name="IdModele_Propriete" />
+          </Key>
+          <Property Name="IdModele_Propriete" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Valeur" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdModele" Type="Int32" Nullable="false" />
+          <Property Name="NomDuModele" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NomDeLaMarque" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Modeles" Relationship="Self.FK_ModeleModele_Propriete" FromRole="Modeles_Proprietes" ToRole="Modeles" />
+        </EntityType>
+        <EntityType Name="Statut">
+          <Key>
+            <PropertyRef Name="IdStatut" />
+          </Key>
+          <Property Name="IdStatut" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Valeur" Type="Int32" />
+          <NavigationProperty Name="Accessoires" Relationship="Self.FK_StatutAccessoire" FromRole="Statuts" ToRole="Accessoires" />
+        </EntityType>
+        <Association Name="FK_AccessoireAvoir_Proprietes">
+          <End Role="Accessoires" Type="dbgestelacModel.Accessoire" Multiplicity="1" />
+          <End Role="Accessoires_Proprietes" Type="dbgestelacModel.Accessoire_Propriete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessoires">
+              <PropertyRef Name="IdAccessoire" />
+            </Principal>
+            <Dependent Role="Accessoires_Proprietes">
+              <PropertyRef Name="IdAccessoire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccessoireCompatiblite">
+          <End Role="Accessoires" Type="dbgestelacModel.Accessoire" Multiplicity="1" />
+          <End Role="Compatibilites" Type="dbgestelacModel.Compatibilite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessoires">
+              <PropertyRef Name="IdAccessoire" />
+            </Principal>
+            <Dependent Role="Compatibilites">
+              <PropertyRef Name="IdAccessoire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccessoireEtVisuels">
+          <End Role="Accessoires" Type="dbgestelacModel.Accessoire" Multiplicity="0..1" />
+          <End Role="Accessoires_Visuels" Type="dbgestelacModel.Accessoire_Visuel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accessoires">
+              <PropertyRef Name="IdAccessoire" />
+            </Principal>
+            <Dependent Role="Accessoires_Visuels">
+              <PropertyRef Name="IdAccessoire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategorieAccessoire">
+          <End Role="Categories" Type="dbgestelacModel.Categorie" Multiplicity="0..1" />
+          <End Role="Accessoires" Type="dbgestelacModel.Accessoire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="IdCategorie" />
+            </Principal>
+            <Dependent Role="Accessoires">
+              <PropertyRef Name="IdCategorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatutAccessoire">
+          <End Role="Statuts" Type="dbgestelacModel.Statut" Multiplicity="1" />
+          <End Role="Accessoires" Type="dbgestelacModel.Accessoire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuts">
+              <PropertyRef Name="IdStatut" />
+            </Principal>
+            <Dependent Role="Accessoires">
+              <PropertyRef Name="IdStatut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModeleCompatiblite">
+          <End Role="Modeles" Type="dbgestelacModel.Modele" Multiplicity="1" />
+          <End Role="Compatibilites" Type="dbgestelacModel.Compatibilite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modeles">
+              <PropertyRef Name="IdModele" />
+            </Principal>
+            <Dependent Role="Compatibilites">
+              <PropertyRef Name="IdModele" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarqueProduitModele">
+          <End Role="Marques" Type="dbgestelacModel.Marque" Multiplicity="1" />
+          <End Role="Modeles" Type="dbgestelacModel.Modele" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marques">
+              <PropertyRef Name="IdMarque" />
+            </Principal>
+            <Dependent Role="Modeles">
+              <PropertyRef Name="IdMarque" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModeleModele_Propriete">
+          <End Role="Modeles" Type="dbgestelacModel.Modele" Multiplicity="1" />
+          <End Role="Modeles_Proprietes" Type="dbgestelacModel.Modele_Propriete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modeles">
+              <PropertyRef Name="IdModele" />
+            </Principal>
+            <Dependent Role="Modeles_Proprietes">
+              <PropertyRef Name="IdModele" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbgestelacEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accessoires" EntityType="dbgestelacModel.Accessoire" />
+          <EntitySet Name="Accessoires_Proprietes" EntityType="dbgestelacModel.Accessoire_Propriete" />
+          <EntitySet Name="Accessoires_Visuels" EntityType="dbgestelacModel.Accessoire_Visuel" />
+          <EntitySet Name="Categories" EntityType="dbgestelacModel.Categorie" />
+          <EntitySet Name="Compatibilites" EntityType="dbgestelacModel.Compatibilite" />
+          <EntitySet Name="Marques" EntityType="dbgestelacModel.Marque" />
+          <EntitySet Name="Modeles" EntityType="dbgestelacModel.Modele" />
+          <EntitySet Name="Modeles_Proprietes" EntityType="dbgestelacModel.Modele_Propriete" />
+          <EntitySet Name="Statuts" EntityType="dbgestelacModel.Statut" />
+          <AssociationSet Name="FK_AccessoireAvoir_Proprietes" Association="Self.FK_AccessoireAvoir_Proprietes">
+            <End Role="Accessoires" EntitySet="Accessoires" />
+            <End Role="Accessoires_Proprietes" EntitySet="Accessoires_Proprietes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccessoireCompatiblite" Association="Self.FK_AccessoireCompatiblite">
+            <End Role="Accessoires" EntitySet="Accessoires" />
+            <End Role="Compatibilites" EntitySet="Compatibilites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccessoireEtVisuels" Association="Self.FK_AccessoireEtVisuels">
+            <End Role="Accessoires" EntitySet="Accessoires" />
+            <End Role="Accessoires_Visuels" EntitySet="Accessoires_Visuels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategorieAccessoire" Association="Self.FK_CategorieAccessoire">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Accessoires" EntitySet="Accessoires" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatutAccessoire" Association="Self.FK_StatutAccessoire">
+            <End Role="Statuts" EntitySet="Statuts" />
+            <End Role="Accessoires" EntitySet="Accessoires" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModeleCompatiblite" Association="Self.FK_ModeleCompatiblite">
+            <End Role="Modeles" EntitySet="Modeles" />
+            <End Role="Compatibilites" EntitySet="Compatibilites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarqueProduitModele" Association="Self.FK_MarqueProduitModele">
+            <End Role="Marques" EntitySet="Marques" />
+            <End Role="Modeles" EntitySet="Modeles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModeleModele_Propriete" Association="Self.FK_ModeleModele_Propriete">
+            <End Role="Modeles" EntitySet="Modeles" />
+            <End Role="Modeles_Proprietes" EntitySet="Modeles_Proprietes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbgestelacModelStoreContainer" CdmEntityContainer="dbgestelacEntities">
+    <EntitySetMapping Name="Accessoires">
+      <EntityTypeMapping TypeName="IsTypeOf(dbgestelacModel.Accessoire)">
+        <MappingFragment StoreEntitySet="Accessoires">
+          <ScalarProperty Name="IdAccessoire" ColumnName="IdAccessoire" />
+          <ScalarProperty Name="IdCategorie" ColumnName="IdCategorie" />
+          <ScalarProperty Name="Sku" ColumnName="Sku" />
+          <ScalarProperty Name="Stock" ColumnName="Stock" />
+          <ScalarProperty Name="PriceDeBase" ColumnName="PriceDeBase" />
+          <ScalarProperty Name="PrixDeVente" ColumnName="PrixDeVente" />
+          <ScalarProperty Name="PrixPublic" ColumnName="PrixPublic" />
+          <ScalarProperty Name="Libelle_Francais" ColumnName="Libelle_Francais" />
+          <ScalarProperty Name="Libelle_Anglais" ColumnName="Libelle_Anglais" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Description_Html" ColumnName="Description_Html" />
+          <ScalarProperty Name="Support" ColumnName="Support" />
+          <ScalarProperty Name="SupportTechnique" ColumnName="SupportTechnique" />
+          <ScalarProperty Name="IdStatut" ColumnName="IdStatut" />
+          <ScalarProperty Name="Ean" ColumnName="Ean" />
+          <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+          <ScalarProperty Name="DateAjout" ColumnName="DateAjout" />
+          <ScalarProperty Name="DureeDeGarantie" ColumnName="DureeDeGarantie" />
+          <ScalarProperty Name="Toremain" ColumnName="Toremain" />
+          <ScalarProperty Name="NombreDeCompatible" ColumnName="NombreDeCompatible" />
+          <ScalarProperty Name="ImageAccessoire" ColumnName="ImageAccessoire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accessoires_Proprietes">
+      <EntityTypeMapping TypeName="IsTypeOf(dbgestelacModel.Accessoire_Propriete)">
+        <MappingFragment StoreEntitySet="Accessoires_Proprietes">
+          <ScalarProperty Name="IdAccessoire_Propriete" ColumnName="IdAccessoire_Propriete" />
+          <ScalarProperty Name="Sku" ColumnName="Sku" />
+          <ScalarProperty Name="Cle" ColumnName="Cle" />
+          <ScalarProperty Name="Valeur" ColumnName="Valeur" />
+          <ScalarProperty Name="Parent" ColumnName="Parent" />
+          <ScalarProperty Name="IdAccessoire" ColumnName="IdAccessoire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accessoires_Visuels">
+      <EntityTypeMapping TypeName="IsTypeOf(dbgestelacModel.Accessoire_Visuel)">
+        <MappingFragment StoreEntitySet="Accessoires_Visuels">
+          <ScalarProperty Name="IdAccessoire_Visuel" ColumnName="IdAccessoire_Visuel" />
+          <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+          <ScalarProperty Name="ImageAccessoire" ColumnName="ImageAccessoire" />
+          <ScalarProperty Name="Sku" ColumnName="Sku" />
+          <ScalarProperty Name="DateAjout" ColumnName="DateAjout" />
+          <ScalarProperty Name="Taille" ColumnName="Taille" />
+          <ScalarProperty Name="IdAccessoire" ColumnName="IdAccessoire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(dbgestelacModel.Categorie)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="IdCategorie" ColumnName="IdCategorie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Compatibilites">
+      <EntityTypeMapping TypeName="IsTypeOf(dbgestelacModel.Compatibilite)">
+        <MappingFragment StoreEntitySet="Compatibilites">
+          <ScalarProperty Name="IdCompatiblite" ColumnName="IdCompatiblite" />
+          <ScalarProperty Name="IdModele" ColumnName="IdModele" />
+          <ScalarProperty Name="IdAccessoire" ColumnName="IdAccessoire" />
+          <ScalarProperty Name="DateDeMiseAjour" ColumnName="DateDeMiseAjour" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marques">
+      <EntityTypeMapping TypeName="IsTypeOf(dbgestelacModel.Marque)">
+        <MappingFragment StoreEntitySet="Marques">
+          <ScalarProperty Name="IdMarque" ColumnName="IdMarque" />
+          <ScalarProperty Name="NomDeLaMarque" ColumnName="NomDeLaMarque" />
+          <ScalarProperty Name="IdGsmArena" ColumnName="IdGsmArena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modeles">
+      <EntityTypeMapping TypeName="IsTypeOf(dbgestelacModel.Modele)">
+        <MappingFragment StoreEntitySet="Modeles">
+          <ScalarProperty Name="IdModele" ColumnName="IdModele" />
+          <ScalarProperty Name="NomDuModele" ColumnName="NomDuModele" />
+          <ScalarProperty Name="ReferenceTechnique" ColumnName="ReferenceTechnique" />
+          <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+          <ScalarProperty Name="GsmArenaUrl" ColumnName="GsmArenaUrl" />
+          <ScalarProperty Name="IdMarque" ColumnName="IdMarque" />
+          <ScalarProperty Name="NomDeLaMarque" ColumnName="NomDeLaMarque" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modeles_Proprietes">
+      <EntityTypeMapping TypeName="IsTypeOf(dbgestelacModel.Modele_Propriete)">
+        <MappingFragment StoreEntitySet="Modeles_Proprietes">
+          <ScalarProperty Name="IdModele_Propriete" ColumnName="IdModele_Propriete" />
+          <ScalarProperty Name="Cle" ColumnName="Cle" />
+          <ScalarProperty Name="Valeur" ColumnName="Valeur" />
+          <ScalarProperty Name="IdModele" ColumnName="IdModele" />
+          <ScalarProperty Name="NomDuModele" ColumnName="NomDuModele" />
+          <ScalarProperty Name="NomDeLaMarque" ColumnName="NomDeLaMarque" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statuts">
+      <EntityTypeMapping TypeName="IsTypeOf(dbgestelacModel.Statut)">
+        <MappingFragment StoreEntitySet="Statuts">
+          <ScalarProperty Name="IdStatut" ColumnName="IdStatut" />
+          <ScalarProperty Name="Valeur" ColumnName="Valeur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
