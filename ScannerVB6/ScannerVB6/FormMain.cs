@@ -381,7 +381,9 @@ namespace ScannerVB6
                         {
                             NomApplication = szApplication,
                             NomDuFichierVBP = CMF.SafeFileName,
-                            Emplacement = System.IO.Path.GetFullPath(szArray0[1].Replace(CMF.SafeFileName, string.Empty))
+                            Emplacement = System.IO.Path.GetFullPath(szArray0[1].Replace(CMF.SafeFileName, string.Empty)),
+                            TypeDeProjet = string.Empty, // Valeur par défaut, sera mise à jour plus tard
+                            NomDuProjet = string.Empty   // Valeur par défaut, sera mise à jour plus tard
                         };
 
                         while ((ligne != null))
@@ -415,11 +417,13 @@ namespace ScannerVB6
                             // Test Reference
                             if ((ligne.StartsWith("Reference")))
                             {
-                                SelectedRefComp = new RefComp();
-                                SelectedRefComp.NomApplication = SelectedProjetVBP.NomApplication;
-                                SelectedRefComp.NomDuProjet = SelectedProjetVBP.NomDuFichierVBP;
-                                SelectedRefComp.ExtraitDeLigneVBP = ligne;
-                                SelectedRefComp.MotClef = (RefComp.LeType)1;
+                                SelectedRefComp = new RefComp
+                                {
+                                    NomApplication = SelectedProjetVBP.NomApplication,
+                                    NomDuProjet = SelectedProjetVBP.NomDuFichierVBP,
+                                    ExtraitDeLigneVBP = ligne,
+                                    MotClef = (RefComp.LeType)1
+                                };
 
                                 SelectedProjetVBP.ListeDeReference.Add(ExtraireReference(ligne));
                                 SelectedProjetVBP.NombreReferenceDLL += 1;
@@ -430,11 +434,13 @@ namespace ScannerVB6
                             // Test Object
                             if ((ligne.StartsWith("Object")))
                             {
-                                SelectedRefComp = new RefComp();
-                                SelectedRefComp.NomApplication = SelectedProjetVBP.NomApplication;
-                                SelectedRefComp.NomDuProjet = SelectedProjetVBP.NomDuFichierVBP;
-                                SelectedRefComp.ExtraitDeLigneVBP = ligne;
-                                SelectedRefComp.MotClef = 0;
+                                SelectedRefComp = new RefComp
+                                {
+                                    NomApplication = SelectedProjetVBP.NomApplication,
+                                    NomDuProjet = SelectedProjetVBP.NomDuFichierVBP,
+                                    ExtraitDeLigneVBP = ligne,
+                                    MotClef = 0
+                                };
 
                                 SelectedProjetVBP.ListeDActiveX.Add(ExtraireObject(ligne));
                                 SelectedProjetVBP.NombreDActiveX += 1;
