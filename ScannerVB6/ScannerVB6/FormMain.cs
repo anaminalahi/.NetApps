@@ -8,29 +8,29 @@ namespace ScannerVB6
 
         #region Proprietes
 
-            public List<ProjetVBP>? ListeDeProject { get; set; }
-            public List<string>? ListeDesApplications { get; set; }
-            public List<string>? ListeDesFichiersVBP { get; set; }
-            public List<string>? ListeDesFichiersNonTrouves { get; set; } 
-            public List<FicSource>? ListeDesFichierSource { get; set; }
-            public List<RefComp>? ListeDesRefOCx { get; set; }
-            public ProjetVBP? SelectedProjetVBP { get; set; }
-            public FicSource? SelectedFormulaire { get; set; }
-            public FicSource? SelectedModule { get; set; }
-            public FicSource? SelectedClsClasse { get; set; }
-            public RefComp? SelectedRefComp { get; set; }
+        public List<ProjetVBP>? ListeDeProject { get; set; }
+        public List<string>? ListeDesApplications { get; set; }
+        public List<string>? ListeDesFichiersVBP { get; set; }
+        public List<string>? ListeDesFichiersNonTrouves { get; set; }
+        public List<FicSource>? ListeDesFichierSource { get; set; }
+        public List<RefComp>? ListeDesRefOCx { get; set; }
+        public ProjetVBP? SelectedProjetVBP { get; set; }
+        public FicSource? SelectedFormulaire { get; set; }
+        public FicSource? SelectedModule { get; set; }
+        public FicSource? SelectedClsClasse { get; set; }
+        public RefComp? SelectedRefComp { get; set; }
 
         #endregion
 
 
         #region Constructeur
 
-            public FormMain()
-            {
-                InitializeComponent();
+        public FormMain()
+        {
+            InitializeComponent();
 
-                // Initialisation de La liste des Applications
-                ListeDesApplications = new List<string>()
+            // Initialisation de La liste des Applications
+            ListeDesApplications = new List<string>()
                 {
                     "AGIRA",
                     "APOGEE",
@@ -50,8 +50,8 @@ namespace ScannerVB6
                     "SPORT"
                 };
 
-                // Initialisation de La liste des projets
-                ListeDesFichiersVBP = new List<string>()
+            // Initialisation de La liste des projets
+            ListeDesFichiersVBP = new List<string>()
                 {
                     @"AGIRA|C:\Analyses_VB\VB6Apps\AGIRA\Suivi\Suivi_Agira.vbp",
                     @"AGIRA|C:\Analyses_VB\VB6Apps\AGIRA\Import\ImportAGIRA.vbp",
@@ -335,17 +335,17 @@ namespace ScannerVB6
                     @"SPORT|C:\Analyses_VB\VB6Apps\SPORT\SPORT_dev\SURVEILLANCE.vbp"
                 };
 
-                ListeDeProject = null;
+            ListeDeProject = null;
 
-                // Autosize des DataGrids
-                DtgListeDesProjets.AutoResizeColumns();
-                DtgListeDesFormulaires.AutoResizeColumns();
-                DtgListeDesReferences.AutoResizeColumns();
-                DtgListeDesActiveX.AutoResizeColumns();
-                DtgListeDesModules.AutoResizeColumns();
-                DtgListeDesClasses.AutoResizeColumns();
-                DtgListeDesUserCtrl.AutoResizeColumns();
-            }
+            // Autosize des DataGrids
+            DtgListeDesProjets.AutoResizeColumns();
+            DtgListeDesFormulaires.AutoResizeColumns();
+            DtgListeDesReferences.AutoResizeColumns();
+            DtgListeDesActiveX.AutoResizeColumns();
+            DtgListeDesModules.AutoResizeColumns();
+            DtgListeDesClasses.AutoResizeColumns();
+            DtgListeDesUserCtrl.AutoResizeColumns();
+        }
 
         #endregion
 
@@ -651,7 +651,7 @@ namespace ScannerVB6
 
             var objRef = new ReferenceDLL();
 
-            if (szArray1[1].Where(x => Equals( @"\")).Count() >= 1)
+            if (szArray1[1].Where(x => Equals(@"\")).Count() >= 1)
             {
                 if (szArray1[1].Where(x => Equals("#")).Count() == 0)
                 {
@@ -800,7 +800,7 @@ namespace ScannerVB6
                         UneLigneProjet = oneProjet.NomApplication + ";";
                         UneLigneProjet = UneLigneProjet + oneProjet.NomDuProjet + ";" + oneProjet.NombreReferenceDLL.ToString() + ";" + oneProjet.NombreDeFormulaire.ToString() + ";";
                         UneLigneProjet = UneLigneProjet + oneProjet.NombreDActiveX.ToString() + ";" + oneProjet.NombreDeUserControles.ToString() + ";" + oneProjet.NombreDeModuleBas.ToString() + ";";
-                        UneLigneProjet = UneLigneProjet +oneProjet.NombreDeClasse.ToString();
+                        UneLigneProjet = UneLigneProjet + oneProjet.NombreDeClasse.ToString();
 
                         FileSystem.PrintLine(1, UneLigneProjet);
                     }
@@ -977,74 +977,80 @@ namespace ScannerVB6
         #region IhmActions
 
         private void BtnAnalyse_Click(object sender, EventArgs e)
-            {
-                AnalyseGobale();
-            }
+        {
+            AnalyseGobale();
+        }
 
-            private void BtnExporter_Click(object sender, EventArgs e)
-            {
-                CreerFichierCSV(ListeDeProject);
-            }
+        private void BtnExporter_Click(object sender, EventArgs e)
+        {
+            CreerFichierCSV(ListeDeProject);
+        }
 
-            private void BtnQuitter_Click(object sender, EventArgs e)
-            {
-                Application.Exit();
-            }
+        private void BtnQuitter_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
-            private void ActualiserEcran()
-            {
-                DtgListeDesFormulaires.DataSource = SelectedProjetVBP.ListeFormulaire;
-                DtgListeDesReferences.DataSource = SelectedProjetVBP.ListeDeReference;
-                DtgListeDesActiveX.DataSource = SelectedProjetVBP.ListeDActiveX;
-                DtgListeDesUserCtrl.DataSource = SelectedProjetVBP.ListeUserControles;
-                DtgListeDesModules.DataSource = SelectedProjetVBP.ListeDeModule;
-                DtgListeDesClasses.DataSource = SelectedProjetVBP.ListeClasse;
+        private void ActualiserEcran()
+        {
+            DtgListeDesFormulaires.DataSource = SelectedProjetVBP.ListeFormulaire;
+            DtgListeDesReferences.DataSource = SelectedProjetVBP.ListeDeReference;
+            DtgListeDesActiveX.DataSource = SelectedProjetVBP.ListeDActiveX;
+            DtgListeDesUserCtrl.DataSource = SelectedProjetVBP.ListeUserControles;
+            DtgListeDesModules.DataSource = SelectedProjetVBP.ListeDeModule;
+            DtgListeDesClasses.DataSource = SelectedProjetVBP.ListeClasse;
 
-                if (SelectedProjetVBP.ListeFormulaire.Count > 0)
-                    DtgListeDesRegeX.DataSource = SelectedProjetVBP.ListeFormulaire.FirstOrDefault().ListofRegeX;
-                else
-                    DtgListeDesRegeX.DataSource = null;
-            }
+            if (SelectedProjetVBP.ListeFormulaire.Count > 0)
+                DtgListeDesRegeX.DataSource = SelectedProjetVBP.ListeFormulaire.FirstOrDefault().ListofRegeX;
+            else
+                DtgListeDesRegeX.DataSource = null;
+        }
+
+        private void BtnRecuperer_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         #region DatagridActions
 
-            private void DtgListeDesProjets_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DtgListeDesProjets_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.DtgListeDesProjets.Rows.Count > 0)
             {
-                if (this.DtgListeDesProjets.Rows.Count > 0)
-                {
-                    SelectedProjetVBP = DtgListeDesProjets.CurrentRow.DataBoundItem as ProjetVBP;
-                    ActualiserEcran();
-                }
+                SelectedProjetVBP = DtgListeDesProjets.CurrentRow.DataBoundItem as ProjetVBP;
+                ActualiserEcran();
             }
+        }
 
-            private void DtgListeDesFormulaires_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DtgListeDesFormulaires_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DtgListeDesFormulaires.Rows.Count > 0)
             {
-                if (DtgListeDesFormulaires.Rows.Count > 0)
-                {
-                    SelectedFormulaire = this.DtgListeDesFormulaires.CurrentRow.DataBoundItem as FicSource;
-                    DtgListeDesRegeX.DataSource = SelectedFormulaire.ListofRegeX;
-                }
+                SelectedFormulaire = this.DtgListeDesFormulaires.CurrentRow.DataBoundItem as FicSource;
+                DtgListeDesRegeX.DataSource = SelectedFormulaire.ListofRegeX;
             }
+        }
 
-            private void DtgListeDesModules_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DtgListeDesModules_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.DtgListeDesModules.Rows.Count > 0)
             {
-                if (this.DtgListeDesModules.Rows.Count > 0)
-                {
-                    SelectedModule = this.DtgListeDesModules.CurrentRow.DataBoundItem as FicSource;
-                    this.DtgListeDesRegeX.DataSource = SelectedModule.ListofRegeX;
-                }
+                SelectedModule = this.DtgListeDesModules.CurrentRow.DataBoundItem as FicSource;
+                this.DtgListeDesRegeX.DataSource = SelectedModule.ListofRegeX;
             }
+        }
 
-            private void DtgListeDesClasses_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DtgListeDesClasses_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.DtgListeDesClasses.Rows.Count > 0)
             {
-                if (this.DtgListeDesClasses.Rows.Count > 0)
-                {
-                    SelectedClsClasse = this.DtgListeDesClasses.CurrentRow.DataBoundItem as FicSource;
-                    this.DtgListeDesRegeX.DataSource = SelectedClsClasse.ListofRegeX;
-                }
+                SelectedClsClasse = this.DtgListeDesClasses.CurrentRow.DataBoundItem as FicSource;
+                this.DtgListeDesRegeX.DataSource = SelectedClsClasse.ListofRegeX;
             }
+        }
 
-            #endregion
+        #endregion
 
         #endregion
 

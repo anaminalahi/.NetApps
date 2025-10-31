@@ -47,7 +47,7 @@
             BtnExporter = new Button();
             DtgListeDesProjets = new DataGridView();
             DtgListeDesRegeX = new DataGridView();
-            button1 = new Button();
+            BtnRecuperer = new Button();
             TabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DtgListeDesUserCtrl).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DtgListeDesClasses).BeginInit();
@@ -276,22 +276,23 @@
             DtgListeDesRegeX.Size = new Size(1410, 188);
             DtgListeDesRegeX.TabIndex = 25;
             // 
-            // button1
+            // BtnRecuperer
             // 
-            button1.Location = new Point(153, 11);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(113, 40);
-            button1.TabIndex = 26;
-            button1.Text = "Récuperer";
-            button1.UseVisualStyleBackColor = true;
+            BtnRecuperer.Location = new Point(153, 11);
+            BtnRecuperer.Margin = new Padding(3, 2, 3, 2);
+            BtnRecuperer.Name = "BtnRecuperer";
+            BtnRecuperer.Size = new Size(113, 40);
+            BtnRecuperer.TabIndex = 26;
+            BtnRecuperer.Text = "Récuperer";
+            BtnRecuperer.UseVisualStyleBackColor = true;
+            BtnRecuperer.Click += BtnRecuperer_Click;
             // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1445, 904);
-            Controls.Add(button1);
+            Controls.Add(BtnRecuperer);
             Controls.Add(DtgListeDesRegeX);
             Controls.Add(TabloDynamique);
             Controls.Add(BtnQuitter);
@@ -339,6 +340,6 @@
         internal Button BtnExporter;
         internal DataGridView DtgListeDesProjets;
         internal DataGridView DtgListeDesRegeX;
-        internal Button button1;
+        internal Button BtnRecuperer;
     }
 }
