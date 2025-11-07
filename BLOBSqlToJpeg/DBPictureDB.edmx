@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBPictureDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FILTEREDPICTURES">
+          <Key>   
+            <PropertyRef Name="EMPID" />
+            <PropertyRef Name="OBJECT" />
+            <PropertyRef Name="TYPE" />
+          </Key>
+          <Property Name="EMPID" Type="int" Nullable="false" />
+          <Property Name="OBJECT" Type="int" Nullable="false" />
+          <Property Name="TYPE" Type="int" Nullable="false" />
+          <Property Name="LNL_BLOB" Type="varbinary(max)" />
+          <Property   Name="LASTCHANGED" Type="datetime" />
+          <Property Name="ACCEPTANCETHRESHOLD" Type="int" />
+          <Property Name="BIO_BODYPART" Type="smallint" />
+          <Property Name="LNL_BLOB_TXT" Type="varbinary(max)" />
+          <Property Name="FORMAT_IMAGE" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="HALFBAD">
+          <Key>      
+            <PropertyRef Name="EMPID" />
+            <PropertyRef Name="OBJECT" />
+            <PropertyRef Name="TYPE" />
+          </Key>
+          <Property Name="EMPID" Type="int" Nullable="false" />
+          <Property Name="OBJECT" Type="int" Nullable="false" />
+          <Property Name="TYPE" Type="int" Nullable="false" />
+          <Property Name="LNL_BLOB" Type="varbinary(max)" />
+          <Property Name="LASTCHANGED" Type="datetime" />
+          <Property Name="ACCEPTANCETHRESHOLD" Type="int" />
+          <Property Name="BIO_BODYPART" Type="smallint" />
+          <Property Name="LNL_BLOB_TXT" Type="varbinary(max)" />
+          <Property Name="FORMAT_IMAGE" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LNN_BLOB.dbo.MMOBJS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MMOBJS">
+          <Key>
+            <PropertyRef Name="EMPID" />
+            <PropertyRef Name="OBJECT" />
+            <PropertyRef Name="TYPE" />
+          </Key>
+          <Property Name="EMPID" Type="int" Nullable="false" />
+          <Property Name="OBJECT" Type="int" Nullable="false" />
+          <Property Name="TYPE" Type="int" Nullable="false" />
+          <Property Name="LNL_BLOB" Type="image" />
+          <Property Name="LASTCHANGED" Type="datetime" />
+          <Property Name="ACCEPTANCETHRESHOLD" Type="int" />
+          <Property Name="BIO_BODYPART" Type="smallint" />
+        </EntityType>
+        <EntityType Name="PERSONEL">
+          <Key>
+            <PropertyRef Name="EMPID" />
+          </Key>
+          <Property Name="EMPID" Type="smallint" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="LASTNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="LNL_BLOB" Type="nvarchar(max)" />
+          <Property Name="OBJECT" Type="tinyint" />
+          <Property Name="TYPE" Type="tinyint" />
+        </EntityType>
+        <EntityContainer Name="DBPictureDBModelStoreContainer">
+          <EntitySet Name="FILTEREDPICTURES" EntityType="Self.FILTEREDPICTURES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HALFBAD" EntityType="Self.HALFBAD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERSONEL" EntityType="Self.PERSONEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MMOBJS" EntityType="Self.MMOBJS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MMOBJS].[EMPID] AS [EMPID], 
+    [MMOBJS].[OBJECT] AS [OBJECT], 
+    [MMOBJS].[TYPE] AS [TYPE], 
+    [MMOBJS].[LNL_BLOB] AS [LNL_BLOB], 
+    [MMOBJS].[LASTCHANGED] AS [LASTCHANGED], 
+    [MMOBJS].[ACCEPTANCETHRESHOLD] AS [ACCEPTANCETHRESHOLD], 
+    [MMOBJS].[BIO_BODYPART] AS [BIO_BODYPART]
+    FROM [dbo].[MMOBJS] AS [MMOBJS]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBPictureDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FILTEREDPICTURES">
+          <Key>     
+            <PropertyRef Name="EMPID" />
+            <PropertyRef Name="OBJECT" />
+            <PropertyRef Name="TYPE" />
+          </Key>
+          <Property Name="EMPID" Type="Int32" Nullable="false" />
+          <Property Name="OBJECT" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="Int32" Nullable="false" />
+          <Property Name="LNL_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LASTCHANGED" Type="DateTime" Precision="3" />
+          <Property Name="ACCEPTANCETHRESHOLD" Type="Int32" />
+          <Property Name="BIO_BODYPART" Type="Int16" />
+          <Property Name="LNL_BLOB_TXT" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FORMAT_IMAGE" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="DBPictureDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FILTEREDPICTURES" EntityType="Self.FILTEREDPICTURES" />
+          <EntitySet Name="HALFBAD" EntityType="Self.HALFBAD" />
+          <EntitySet Name="PERSONEL" EntityType="DBPictureDBModel.PERSONEL" />
+          <EntitySet Name="MMOBJS" EntityType="DBPictureDBModel.MMOBJS" />
+        </EntityContainer>
+        <EntityType Name="HALFBAD">
+          <Key>
+            <PropertyRef Name="EMPID" />
+            <PropertyRef Name="OBJECT" />
+            <PropertyRef Name="TYPE" />
+          </Key>
+          <Property Name="EMPID" Type="Int32" Nullable="false" />
+          <Property Name="OBJECT" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="Int32" Nullable="false" />
+          <Property Name="LNL_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LASTCHANGED" Type="DateTime" Precision="3" />
+          <Property Name="ACCEPTANCETHRESHOLD" Type="Int32" />
+          <Property Name="BIO_BODYPART" Type="Int16" />
+          <Property Name="LNL_BLOB_TXT" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FORMAT_IMAGE" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PERSONEL">
+          <Key>
+            <PropertyRef Name="EMPID" />
+          </Key>
+          <Property Name="EMPID" Type="Int16" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LASTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LNL_BLOB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OBJECT" Type="Byte" />
+          <Property Name="TYPE" Type="Byte" />
+        </EntityType>
+        <EntityType Name="MMOBJS">
+          <Key>
+            <PropertyRef Name="EMPID" />
+            <PropertyRef Name="OBJECT" />
+            <PropertyRef Name="TYPE" />
+          </Key>
+          <Property Name="EMPID" Type="Int32" Nullable="false" />
+          <Property Name="OBJECT" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="Int32" Nullable="false" />
+          <Property Name="LNL_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LASTCHANGED" Type="DateTime" Precision="3" />
+          <Property Name="ACCEPTANCETHRESHOLD" Type="Int32" />
+          <Property Name="BIO_BODYPART" Type="Int16" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+      <EntityContainerMapping StorageEntityContainer="DBPictureDBModelStoreContainer" CdmEntityContainer="DBPictureDBEntities">
+        <EntitySetMapping Name="FILTEREDPICTURES">
+          <EntityTypeMapping TypeName="DBPictureDBModel.FILTEREDPICTURES">
+            <MappingFragment StoreEntitySet="FILTEREDPICTURES">
+              <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+              <ScalarProperty Name="OBJECT" ColumnName="OBJECT" />
+              <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+              <ScalarProperty Name="LNL_BLOB" ColumnName="LNL_BLOB" />
+              <ScalarProperty Name="LASTCHANGED" ColumnName="LASTCHANGED" />
+              <ScalarProperty Name="ACCEPTANCETHRESHOLD" ColumnName="ACCEPTANCETHRESHOLD" />
+              <ScalarProperty Name="BIO_BODYPART" ColumnName="BIO_BODYPART" />
+              <ScalarProperty Name="LNL_BLOB_TXT" ColumnName="LNL_BLOB_TXT" />
+              <ScalarProperty Name="FORMAT_IMAGE" ColumnName="FORMAT_IMAGE" />
+            </MappingFragment>
+          </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="HALFBAD">
+          <EntityTypeMapping TypeName="DBPictureDBModel.HALFBAD">
+            <MappingFragment StoreEntitySet="HALFBAD">
+              <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+              <ScalarProperty Name="OBJECT" ColumnName="OBJECT" />
+              <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+              <ScalarProperty Name="LNL_BLOB" ColumnName="LNL_BLOB" />
+              <ScalarProperty Name="LASTCHANGED" ColumnName="LASTCHANGED" />
+              <ScalarProperty Name="ACCEPTANCETHRESHOLD" ColumnName="ACCEPTANCETHRESHOLD" />
+              <ScalarProperty Name="BIO_BODYPART" ColumnName="BIO_BODYPART" />
+              <ScalarProperty Name="LNL_BLOB_TXT" ColumnName="LNL_BLOB_TXT" />
+              <ScalarProperty Name="FORMAT_IMAGE" ColumnName="FORMAT_IMAGE" />
+            </MappingFragment>
+          </EntityTypeMapping>
+        </EntitySetMapping>
+        <EntitySetMapping Name="PERSONEL">
+            <EntityTypeMapping TypeName="DBPictureDBModel.PERSONEL">
+              <MappingFragment StoreEntitySet="PERSONEL">
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="OBJECT" ColumnName="OBJECT" />
+                <ScalarProperty Name="LNL_BLOB" ColumnName="LNL_BLOB" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MMOBJS">
+            <EntityTypeMapping TypeName="DBPictureDBModel.MMOBJS">
+              <MappingFragment StoreEntitySet="MMOBJS">
+                <ScalarProperty Name="BIO_BODYPART" ColumnName="BIO_BODYPART" />
+                <ScalarProperty Name="ACCEPTANCETHRESHOLD" ColumnName="ACCEPTANCETHRESHOLD" />
+                <ScalarProperty Name="LASTCHANGED" ColumnName="LASTCHANGED" />
+                <ScalarProperty Name="LNL_BLOB" ColumnName="LNL_BLOB" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="OBJECT" ColumnName="OBJECT" />
+                <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
