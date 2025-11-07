@@ -68,9 +68,10 @@
             // TabPage6
             // 
             TabPage6.Controls.Add(DtgListeDesUserCtrl);
-            TabPage6.Location = new Point(4, 24);
+            TabPage6.Location = new Point(4, 34);
+            TabPage6.Margin = new Padding(4, 5, 4, 5);
             TabPage6.Name = "TabPage6";
-            TabPage6.Size = new Size(1410, 317);
+            TabPage6.Size = new Size(1788, 364);
             TabPage6.TabIndex = 5;
             TabPage6.Text = "UserControls";
             TabPage6.UseVisualStyleBackColor = true;
@@ -79,33 +80,34 @@
             // 
             DtgListeDesUserCtrl.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DtgListeDesUserCtrl.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DtgListeDesUserCtrl.Location = new Point(6, 5);
-            DtgListeDesUserCtrl.Margin = new Padding(3, 2, 3, 2);
+            DtgListeDesUserCtrl.Location = new Point(9, 8);
+            DtgListeDesUserCtrl.Margin = new Padding(4, 3, 4, 3);
             DtgListeDesUserCtrl.Name = "DtgListeDesUserCtrl";
             DtgListeDesUserCtrl.RowHeadersWidth = 51;
             DtgListeDesUserCtrl.RowTemplate.Height = 29;
-            DtgListeDesUserCtrl.Size = new Size(1398, 307);
+            DtgListeDesUserCtrl.Size = new Size(1997, 512);
             DtgListeDesUserCtrl.TabIndex = 10;
             // 
             // DtgListeDesClasses
             // 
             DtgListeDesClasses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DtgListeDesClasses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DtgListeDesClasses.Location = new Point(6, 5);
-            DtgListeDesClasses.Margin = new Padding(3, 2, 3, 2);
+            DtgListeDesClasses.Location = new Point(9, 8);
+            DtgListeDesClasses.Margin = new Padding(4, 3, 4, 3);
             DtgListeDesClasses.Name = "DtgListeDesClasses";
             DtgListeDesClasses.RowHeadersWidth = 51;
             DtgListeDesClasses.RowTemplate.Height = 29;
-            DtgListeDesClasses.Size = new Size(1398, 307);
+            DtgListeDesClasses.Size = new Size(1997, 512);
             DtgListeDesClasses.TabIndex = 9;
             DtgListeDesClasses.CellContentClick += DtgListeDesClasses_CellContentClick;
             // 
             // TabPage5
             // 
             TabPage5.Controls.Add(DtgListeDesClasses);
-            TabPage5.Location = new Point(4, 24);
+            TabPage5.Location = new Point(4, 34);
+            TabPage5.Margin = new Padding(4, 5, 4, 5);
             TabPage5.Name = "TabPage5";
-            TabPage5.Size = new Size(1410, 317);
+            TabPage5.Size = new Size(1788, 364);
             TabPage5.TabIndex = 4;
             TabPage5.Text = "Classes";
             TabPage5.UseVisualStyleBackColor = true;
@@ -114,22 +116,23 @@
             // 
             DtgListeDesModules.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DtgListeDesModules.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DtgListeDesModules.Location = new Point(6, 5);
-            DtgListeDesModules.Margin = new Padding(3, 2, 3, 2);
+            DtgListeDesModules.Location = new Point(9, 8);
+            DtgListeDesModules.Margin = new Padding(4, 3, 4, 3);
             DtgListeDesModules.Name = "DtgListeDesModules";
             DtgListeDesModules.RowHeadersWidth = 51;
             DtgListeDesModules.RowTemplate.Height = 29;
-            DtgListeDesModules.Size = new Size(1398, 307);
+            DtgListeDesModules.Size = new Size(1997, 512);
             DtgListeDesModules.TabIndex = 8;
             DtgListeDesModules.CellContentClick += DtgListeDesModules_CellContentClick;
             // 
             // TabPage4
             // 
             TabPage4.Controls.Add(DtgListeDesModules);
-            TabPage4.Location = new Point(4, 24);
+            TabPage4.Location = new Point(4, 34);
+            TabPage4.Margin = new Padding(4, 5, 4, 5);
             TabPage4.Name = "TabPage4";
-            TabPage4.Padding = new Padding(3);
-            TabPage4.Size = new Size(1410, 317);
+            TabPage4.Padding = new Padding(4, 5, 4, 5);
+            TabPage4.Size = new Size(1788, 364);
             TabPage4.TabIndex = 3;
             TabPage4.Text = "Modules";
             TabPage4.UseVisualStyleBackColor = true;
@@ -138,21 +141,22 @@
             // 
             DtgListeDesActiveX.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DtgListeDesActiveX.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DtgListeDesActiveX.Location = new Point(6, 5);
-            DtgListeDesActiveX.Margin = new Padding(3, 2, 3, 2);
+            DtgListeDesActiveX.Location = new Point(9, 8);
+            DtgListeDesActiveX.Margin = new Padding(4, 3, 4, 3);
             DtgListeDesActiveX.Name = "DtgListeDesActiveX";
             DtgListeDesActiveX.RowHeadersWidth = 51;
             DtgListeDesActiveX.RowTemplate.Height = 29;
-            DtgListeDesActiveX.Size = new Size(1398, 307);
+            DtgListeDesActiveX.Size = new Size(1997, 512);
             DtgListeDesActiveX.TabIndex = 8;
             // 
             // TabPage3
             // 
             TabPage3.Controls.Add(DtgListeDesActiveX);
-            TabPage3.Location = new Point(4, 24);
+            TabPage3.Location = new Point(4, 34);
+            TabPage3.Margin = new Padding(4, 5, 4, 5);
             TabPage3.Name = "TabPage3";
-            TabPage3.Padding = new Padding(3);
-            TabPage3.Size = new Size(1410, 317);
+            TabPage3.Padding = new Padding(4, 5, 4, 5);
+            TabPage3.Size = new Size(1788, 364);
             TabPage3.TabIndex = 2;
             TabPage3.Text = "Active Ocx";
             TabPage3.UseVisualStyleBackColor = true;
@@ -161,34 +165,35 @@
             // 
             DtgListeDesReferences.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DtgListeDesReferences.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DtgListeDesReferences.Location = new Point(6, 5);
-            DtgListeDesReferences.Margin = new Padding(3, 2, 3, 2);
+            DtgListeDesReferences.Location = new Point(9, 8);
+            DtgListeDesReferences.Margin = new Padding(4, 3, 4, 3);
             DtgListeDesReferences.Name = "DtgListeDesReferences";
             DtgListeDesReferences.RowHeadersWidth = 51;
             DtgListeDesReferences.RowTemplate.Height = 29;
-            DtgListeDesReferences.Size = new Size(1398, 307);
+            DtgListeDesReferences.Size = new Size(1997, 512);
             DtgListeDesReferences.TabIndex = 7;
             // 
             // DtgListeDesFormulaires
             // 
             DtgListeDesFormulaires.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DtgListeDesFormulaires.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DtgListeDesFormulaires.Location = new Point(6, 5);
-            DtgListeDesFormulaires.Margin = new Padding(3, 2, 3, 2);
+            DtgListeDesFormulaires.Location = new Point(9, 8);
+            DtgListeDesFormulaires.Margin = new Padding(4, 3, 4, 3);
             DtgListeDesFormulaires.Name = "DtgListeDesFormulaires";
             DtgListeDesFormulaires.RowHeadersWidth = 51;
             DtgListeDesFormulaires.RowTemplate.Height = 29;
-            DtgListeDesFormulaires.Size = new Size(1398, 307);
+            DtgListeDesFormulaires.Size = new Size(1768, 347);
             DtgListeDesFormulaires.TabIndex = 6;
             DtgListeDesFormulaires.CellContentClick += DtgListeDesFormulaires_CellContentClick;
             // 
             // TabPage1
             // 
             TabPage1.Controls.Add(DtgListeDesFormulaires);
-            TabPage1.Location = new Point(4, 24);
+            TabPage1.Location = new Point(4, 34);
+            TabPage1.Margin = new Padding(4, 5, 4, 5);
             TabPage1.Name = "TabPage1";
-            TabPage1.Padding = new Padding(3);
-            TabPage1.Size = new Size(1410, 317);
+            TabPage1.Padding = new Padding(4, 5, 4, 5);
+            TabPage1.Size = new Size(1788, 364);
             TabPage1.TabIndex = 0;
             TabPage1.Text = "Formulaires";
             TabPage1.UseVisualStyleBackColor = true;
@@ -201,29 +206,31 @@
             TabloDynamique.Controls.Add(TabPage4);
             TabloDynamique.Controls.Add(TabPage5);
             TabloDynamique.Controls.Add(TabPage6);
-            TabloDynamique.Location = new Point(13, 272);
+            TabloDynamique.Location = new Point(24, 327);
+            TabloDynamique.Margin = new Padding(4, 5, 4, 5);
             TabloDynamique.Name = "TabloDynamique";
             TabloDynamique.SelectedIndex = 0;
-            TabloDynamique.Size = new Size(1418, 345);
+            TabloDynamique.Size = new Size(1796, 402);
             TabloDynamique.TabIndex = 24;
             // 
             // TabPage2
             // 
             TabPage2.Controls.Add(DtgListeDesReferences);
-            TabPage2.Location = new Point(4, 24);
+            TabPage2.Location = new Point(4, 34);
+            TabPage2.Margin = new Padding(4, 5, 4, 5);
             TabPage2.Name = "TabPage2";
-            TabPage2.Padding = new Padding(3);
-            TabPage2.Size = new Size(1410, 317);
+            TabPage2.Padding = new Padding(4, 5, 4, 5);
+            TabPage2.Size = new Size(1788, 364);
             TabPage2.TabIndex = 1;
             TabPage2.Text = "Références DLL";
             TabPage2.UseVisualStyleBackColor = true;
             // 
             // BtnQuitter
             // 
-            BtnQuitter.Location = new Point(1314, 856);
-            BtnQuitter.Margin = new Padding(3, 2, 3, 2);
+            BtnQuitter.Location = new Point(1656, 18);
+            BtnQuitter.Margin = new Padding(4, 3, 4, 3);
             BtnQuitter.Name = "BtnQuitter";
-            BtnQuitter.Size = new Size(113, 36);
+            BtnQuitter.Size = new Size(161, 46);
             BtnQuitter.TabIndex = 22;
             BtnQuitter.Text = "Quitter";
             BtnQuitter.UseVisualStyleBackColor = true;
@@ -231,10 +238,10 @@
             // 
             // BtnAnalyse
             // 
-            BtnAnalyse.Location = new Point(14, 11);
-            BtnAnalyse.Margin = new Padding(3, 2, 3, 2);
+            BtnAnalyse.Location = new Point(24, 18);
+            BtnAnalyse.Margin = new Padding(4, 3, 4, 3);
             BtnAnalyse.Name = "BtnAnalyse";
-            BtnAnalyse.Size = new Size(113, 40);
+            BtnAnalyse.Size = new Size(161, 46);
             BtnAnalyse.TabIndex = 20;
             BtnAnalyse.Text = "Analyser";
             BtnAnalyse.UseVisualStyleBackColor = true;
@@ -242,10 +249,10 @@
             // 
             // BtnExporter
             // 
-            BtnExporter.Location = new Point(17, 853);
-            BtnExporter.Margin = new Padding(3, 2, 3, 2);
+            BtnExporter.Location = new Point(405, 18);
+            BtnExporter.Margin = new Padding(4, 3, 4, 3);
             BtnExporter.Name = "BtnExporter";
-            BtnExporter.Size = new Size(113, 40);
+            BtnExporter.Size = new Size(161, 46);
             BtnExporter.TabIndex = 21;
             BtnExporter.Text = "Exporter CSV";
             BtnExporter.UseVisualStyleBackColor = true;
@@ -255,12 +262,12 @@
             // 
             DtgListeDesProjets.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DtgListeDesProjets.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DtgListeDesProjets.Location = new Point(17, 66);
-            DtgListeDesProjets.Margin = new Padding(3, 2, 3, 2);
+            DtgListeDesProjets.Location = new Point(24, 80);
+            DtgListeDesProjets.Margin = new Padding(4, 3, 4, 3);
             DtgListeDesProjets.Name = "DtgListeDesProjets";
             DtgListeDesProjets.RowHeadersWidth = 51;
             DtgListeDesProjets.RowTemplate.Height = 29;
-            DtgListeDesProjets.Size = new Size(1410, 188);
+            DtgListeDesProjets.Size = new Size(1791, 230);
             DtgListeDesProjets.TabIndex = 23;
             DtgListeDesProjets.CellContentClick += DtgListeDesProjets_CellContentClick;
             // 
@@ -268,20 +275,20 @@
             // 
             DtgListeDesRegeX.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             DtgListeDesRegeX.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DtgListeDesRegeX.Location = new Point(17, 643);
-            DtgListeDesRegeX.Margin = new Padding(3, 2, 3, 2);
+            DtgListeDesRegeX.Location = new Point(28, 742);
+            DtgListeDesRegeX.Margin = new Padding(4, 3, 4, 3);
             DtgListeDesRegeX.Name = "DtgListeDesRegeX";
             DtgListeDesRegeX.RowHeadersWidth = 51;
             DtgListeDesRegeX.RowTemplate.Height = 29;
-            DtgListeDesRegeX.Size = new Size(1410, 188);
+            DtgListeDesRegeX.Size = new Size(1787, 209);
             DtgListeDesRegeX.TabIndex = 25;
             // 
             // BtnRecuperer
             // 
-            BtnRecuperer.Location = new Point(153, 11);
-            BtnRecuperer.Margin = new Padding(3, 2, 3, 2);
+            BtnRecuperer.Location = new Point(213, 18);
+            BtnRecuperer.Margin = new Padding(4, 3, 4, 3);
             BtnRecuperer.Name = "BtnRecuperer";
-            BtnRecuperer.Size = new Size(113, 40);
+            BtnRecuperer.Size = new Size(161, 46);
             BtnRecuperer.TabIndex = 26;
             BtnRecuperer.Text = "Récuperer";
             BtnRecuperer.UseVisualStyleBackColor = true;
@@ -289,9 +296,9 @@
             // 
             // FormMain
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1445, 904);
+            ClientSize = new Size(1894, 961);
             Controls.Add(BtnRecuperer);
             Controls.Add(DtgListeDesRegeX);
             Controls.Add(TabloDynamique);
@@ -299,8 +306,10 @@
             Controls.Add(BtnAnalyse);
             Controls.Add(BtnExporter);
             Controls.Add(DtgListeDesProjets);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "FormMain";
             Text = "FormMain";
+            WindowState = FormWindowState.Maximized;
             TabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)DtgListeDesUserCtrl).EndInit();
             ((System.ComponentModel.ISupportInitialize)DtgListeDesClasses).EndInit();

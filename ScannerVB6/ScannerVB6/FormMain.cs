@@ -628,9 +628,31 @@ namespace ScannerVB6
             }
         }
 
+        private void AnalyseBeceubed() 
+        {
+            ListeDesApplications = new List<string>()
+            {
+                "BAC"
+            };
 
+            ListeDesFichiersVBP = new List<string>()
+            {
+                @"BAC|C:\VBApps\Migration\BAC\ArreteCie\AgentciePropre.vbp",
+                @"BAC|C:\VBApps\Migration\BAC\Journal\JournalPropre.vbp"
+            };
+                
+            ListeDeProject = null;
 
+            // Autosize des DataGrids
+            DtgListeDesProjets.AutoResizeColumns();
+            DtgListeDesFormulaires.AutoResizeColumns();
+            DtgListeDesReferences.AutoResizeColumns();
+            DtgListeDesActiveX.AutoResizeColumns();
+            DtgListeDesModules.AutoResizeColumns();
+            DtgListeDesClasses.AutoResizeColumns();
+            DtgListeDesUserCtrl.AutoResizeColumns();
 
+        }
 
         #endregion
 
@@ -1008,6 +1030,13 @@ namespace ScannerVB6
 
         private void BtnRecuperer_Click(object sender, EventArgs e)
         {
+            // liste des projet
+            AnalyseBeceubed();
+
+            AnalyseGobale();
+
+            // liste des instructions
+
 
         }
 
