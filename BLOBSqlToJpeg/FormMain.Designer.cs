@@ -81,14 +81,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PicBox.Location = new System.Drawing.Point(353, 52);
             this.PicBox.Name = "PicBox";
-            this.PicBox.Size = new System.Drawing.Size(302, 349);
+            this.PicBox.Size = new System.Drawing.Size(302, 352);
             this.PicBox.TabIndex = 3;
             this.PicBox.TabStop = false;
             // 
             // BtnSaveCurrent
             // 
             this.BtnSaveCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnSaveCurrent.Location = new System.Drawing.Point(353, 407);
+            this.BtnSaveCurrent.Location = new System.Drawing.Point(353, 410);
             this.BtnSaveCurrent.Name = "BtnSaveCurrent";
             this.BtnSaveCurrent.Size = new System.Drawing.Size(80, 23);
             this.BtnSaveCurrent.TabIndex = 5;
@@ -99,7 +99,7 @@
             // BtnSaveAll
             // 
             this.BtnSaveAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnSaveAll.Location = new System.Drawing.Point(439, 407);
+            this.BtnSaveAll.Location = new System.Drawing.Point(439, 410);
             this.BtnSaveAll.Name = "BtnSaveAll";
             this.BtnSaveAll.Size = new System.Drawing.Size(63, 23);
             this.BtnSaveAll.TabIndex = 6;
@@ -110,7 +110,7 @@
             // BtnExit
             // 
             this.BtnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnExit.Location = new System.Drawing.Point(602, 407);
+            this.BtnExit.Location = new System.Drawing.Point(602, 410);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(53, 23);
             this.BtnExit.TabIndex = 7;
@@ -127,21 +127,20 @@
             this.DBGridPersonel.Name = "DBGridPersonel";
             this.DBGridPersonel.RowHeadersWidth = 62;
             this.DBGridPersonel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DBGridPersonel.Size = new System.Drawing.Size(333, 422);
+            this.DBGridPersonel.Size = new System.Drawing.Size(333, 425);
             this.DBGridPersonel.TabIndex = 8;
             this.DBGridPersonel.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DBGridPersonel_CellClick);
             // 
             // BtnManualUpload
             // 
             this.BtnManualUpload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnManualUpload.Location = new System.Drawing.Point(508, 407);
+            this.BtnManualUpload.Location = new System.Drawing.Point(508, 410);
             this.BtnManualUpload.Name = "BtnManualUpload";
             this.BtnManualUpload.Size = new System.Drawing.Size(88, 23);
             this.BtnManualUpload.TabIndex = 9;
             this.BtnManualUpload.Text = "Manual Upload";
             this.BtnManualUpload.UseVisualStyleBackColor = true;
             this.BtnManualUpload.Click += new System.EventHandler(this.BtnManualUpload_Click);
-            this.BtnManualUpload.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BtnManualUpload_MouseClick);
             // 
             // NightlyTimer
             // 
@@ -153,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 455);
+            this.ClientSize = new System.Drawing.Size(667, 458);
             this.Controls.Add(this.BtnManualUpload);
             this.Controls.Add(this.DBGridPersonel);
             this.Controls.Add(this.BtnExit);
