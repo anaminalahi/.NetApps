@@ -510,12 +510,6 @@ namespace BLOBSqlToJpeg
             MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
         }
 
-        //private void BtnManualUpload_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
-        //    MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
-        //}
-
         private void BtnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
