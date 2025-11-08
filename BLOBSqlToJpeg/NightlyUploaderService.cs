@@ -1,20 +1,15 @@
 using System;
 using System.Data.SqlClient;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
-using System.Data;
-using System.Configuration;
-using System.Linq;
-using System.Threading;
-using System.Windows.Forms;
 
 namespace BLOBSqlToJpeg
 {
     public class NightlyUploaderService
     {
         private readonly Func<SqlConnection> _connFactory;
-        private readonly FormMain _parentForm; // For logging access
+        //private readonly FormMain _parentForm; // For logging access
 
         public NightlyUploaderService(Func<SqlConnection> connFactory)
         {
@@ -59,20 +54,23 @@ namespace BLOBSqlToJpeg
             // Filter by FORMAT_IMAGE if needed; here assuming JPEG
             string query = @"
                 SELECT 
-                    p.EMPID,
-                    p.FirstName,
-                    p.LastName,
-                    f.LASTCHANGED AS DeactivationDate,
-                    f.LNN_BLOB AS BlobData,
-                    f.FORMAT_IMAGE
-                FROM dbo.PERSONEL p
-                INNER JOIN dbo.FILTEREDPICTURES f ON CAST(p.EMPID AS INT) = f.EMPID
-                WHERE f.FORMAT_IMAGE = 'JPEG'  -- Adjust filter as needed; assuming JPEG images
+                    p.EMPID, 
+                    p.FirstName, 
+                    p.LastName, 
+                    CONCAT(p.FirstName, ' ', p.LastName) AS FullName, 
+                    f.LASTCHANGED AS DeactivationDate, 
+                    f.LNL_BLOB AS BlobData, 
+                    f.FORMAT_IMAGE 
+                FROM dbo.PERSONNEL p 
+                INNER JOIN dbo.FILTEREDPICTURES f ON CAST(p.EMPID AS INT) = f.EMPID 
+                WHERE f.FORMAT_IMAGE = 'JPEG' 
                 ORDER BY p.EMPID";
 
+            //WHERE f.FORMAT_IMAGE = 'JPEG'-- Adjust filter as needed; assuming JPEG images
+            
             var csvBuilder = new StringBuilder();
-            csvBuilder.AppendLine("ImageFilePath,EMPID,StoreID,CaseNumber-Reported Loss,timeIncident,Action"); 
-            // Headers; adjust if CaseNumber and Reported Loss are separate columns
+            csvBuilder.AppendLine("ImageFilePath,caseNumber,reportedloss,expdate,Action");
+            //Headers; adjust if CaseNumber and Reported Loss are separate columns
 
             int processedCount = 0;
 
@@ -92,9 +90,13 @@ namespace BLOBSqlToJpeg
                             {
                                 // Use indexer with casting to handle column names
                                 int empId = Convert.ToInt32(reader["EMPID"]);
+
                                 string firstName = reader["FirstName"] == DBNull.Value ? "" : (string)reader["FirstName"];
                                 string lastName = reader["LastName"] == DBNull.Value ? "" : (string)reader["LastName"];
+                                string fullName = reader["FullName"] == DBNull.Value ? "" : (string)reader["FullName"];
+
                                 DateTime deactivationDate = reader["DeactivationDate"] == DBNull.Value ? DateTime.MinValue : (DateTime)reader["DeactivationDate"];
+
                                 byte[] blobData = reader["BlobData"] == DBNull.Value ? null : (byte[])reader["BlobData"];
                                 string formatImage = reader["FORMAT_IMAGE"] == DBNull.Value ? "" : (string)reader["FORMAT_IMAGE"];
 
@@ -102,16 +104,28 @@ namespace BLOBSqlToJpeg
                                 {
                                     string imageFileName = $"{empId}.jpg";
                                     string fullImagePath = Path.Combine(imageDir, imageFileName);
+
                                     File.WriteAllBytes(fullImagePath, blobData);
+
+                                    //File.WriteAllBytes(fullImagePath, imageFileName);  // Need to convert string to byte
                                     LogToFile($"Saved image: {imageFileName}");
 
-                                    string fullName = $"{firstName} {lastName}".Trim();
-                                    string imageFilePath = Path.Combine("c:\\BLOBSqlToJpeg\\SavePicturesFolder\\", imageFileName).Replace("\\", "/"); // Use forward slashes if needed for CSV compatibility
-                                    string timeIncident = deactivationDate.ToString("yyyy-MM-dd HH:mm:ss"); // Format as needed
-                                    string caseNumberWithLoss = $"{fullName},0"; // Combined as per query example; adjust if separate columns
+                                    //string fullName = $"{firstName} {lastName}".Trim();
+                                    string imageFilePath = Path.Combine("c:\\BLOBSqlToJpeg\\SavePicturesFolder\\", imageFileName).Replace("\\", "/"); 
+                                    
+                                    // Use forward slashes if needed for CSV compatibility
+                                    
+                                    //string timeIncident = deactivationDate.ToString("yyyy-MM-dd HH:mm:ss"); // Format as needed
+                                    string expDate = deactivationDate.ToString("yyyy-MM-dd HH:mm:ss"); // Format as needed
+                                    
+                                    //string caseNumberWithLoss = $"{fullName},0"; // Combined as per query example; adjust if separate columns
+                                    string caseNumber = $"{fullName},0"; // Combined as per query example; adjust if separate columns
 
-                                    string csvRow = $"{imageFilePath},{empId},SCSPA,{caseNumberWithLoss},{timeIncident},No Action Needed";
+                                    //string csvRow = $"{imageFilePath},{empId},SCSPA,{caseNumber},0,{timeIncident},No Action Needed";
+                                    string csvRow = $"{imageFilePath},{empId},SCSPA,{caseNumber},0,{expDate},No Action Needed";
+                                    
                                     csvBuilder.AppendLine(csvRow);
+                                    
                                     processedCount++;
                                 }
                             }
@@ -164,15 +178,14 @@ namespace BLOBSqlToJpeg
             return processedCount;
         }
 
-
-
         private void LogToFile(string message)
         {
             try
             {
-                string logPath = Path.Combine(Application.StartupPath, "NightlyUpload.log");
+                string logDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string logPath = Path.Combine(logDirectory, "NightlyUpload.log");
+                //string logPath = Path.Combine(Application.StartupPath, "NightlyUpload.log");
                 string fullMsg = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}\n";
-
                 File.AppendAllText(logPath, fullMsg);
             }
             catch
@@ -180,8 +193,5 @@ namespace BLOBSqlToJpeg
                 // Silent fail on logging
             }
         }
-
-
-
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.BtnSelectFolder = new System.Windows.Forms.Button();
             this.LblFolderImages = new System.Windows.Forms.Label();
             this.TxtImagesFolder = new System.Windows.Forms.TextBox();
@@ -38,6 +39,7 @@
             this.CMDFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.DBGridPersonel = new System.Windows.Forms.DataGridView();
             this.BtnManualUpload = new System.Windows.Forms.Button();
+            this.NightlyTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DBGridPersonel)).BeginInit();
             this.SuspendLayout();
@@ -138,6 +140,14 @@
             this.BtnManualUpload.TabIndex = 9;
             this.BtnManualUpload.Text = "Manual Upload";
             this.BtnManualUpload.UseVisualStyleBackColor = true;
+            this.BtnManualUpload.Click += new System.EventHandler(this.BtnManualUpload_Click);
+            this.BtnManualUpload.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BtnManualUpload_MouseClick);
+            // 
+            // NightlyTimer
+            // 
+            this.NightlyTimer.Enabled = true;
+            this.NightlyTimer.Interval = 60000;
+            this.NightlyTimer.Tick += new System.EventHandler(this.NightlyTimer_Tick);
             // 
             // FormMain
             // 
@@ -177,5 +187,6 @@
         private System.Windows.Forms.FolderBrowserDialog CMDFolder;
         private System.Windows.Forms.DataGridView DBGridPersonel;
         private System.Windows.Forms.Button BtnManualUpload;
+        private System.Windows.Forms.Timer NightlyTimer;
     }
 }

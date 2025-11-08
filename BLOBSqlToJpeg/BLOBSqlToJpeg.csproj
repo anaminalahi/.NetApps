@@ -82,7 +82,7 @@
     </Compile>
     <Compile Include="MongoUploader.cs" />
     <Compile Include="NightlyUploaderService.cs" />
-    <Compile Include="PERSONEL.cs">
+    <Compile Include="PERSONNEL.cs">
       <DependentUpon>DBPictureDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />

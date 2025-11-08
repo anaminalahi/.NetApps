@@ -7,13 +7,17 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Data.Entity.Infrastructure.Design.Executor;
+
 
 namespace BLOBSqlToJpeg
 {
     public partial class FormMain : Form
     {
+
         #region PROPRIETES
 
         private DBPictureDBEntities DBCnx;
@@ -24,12 +28,24 @@ namespace BLOBSqlToJpeg
 
         private string SaveFolderImages;
 
-        private System.Windows.Forms.Timer NightlyTimer;
+
+        private MongoUploader mongoUploader;
+
+        public int NumberOfTransactions;
+        public string Emp_ImageFile;
+        public int nbRecords;
+
+        public string DatabaseName = "lenel_db";
+        public string ConnectionString = "mongodb://127.0.0.1:27017";
+        public string CollectionName = "employees";
+
+        private byte[] byteBLOBData;
+
+
         private DateTime LastRunDate = DateTime.MinValue;
-
-        //private Button btnManualUpload;
-
         private string LogFilePath = Path.Combine(Application.StartupPath, "NightlyUpload.log");
+
+        //private System.Windows.Forms.Timer NightlyTimer;
 
         #endregion
 
@@ -38,15 +54,19 @@ namespace BLOBSqlToJpeg
         {
             InitializeComponent();
 
-            DBCnx = new DBPictureDBEntities();
-
             TxtImagesFolder.Text = "c:\\BLOBSqlToJpeg\\SavePicturesFolder\\";
             SaveFolderImages = "c:\\BLOBSqlToJpeg\\SavePicturesFolder\\";
 
-            NightlyTimer = new System.Windows.Forms.Timer();
-            NightlyTimer.Interval = 60 * 1000;
-            NightlyTimer.Tick += NightlyTimer_Tick;
-            NightlyTimer.Start();
+            DBCnx = new DBPictureDBEntities();
+
+            mongoUploader = new MongoUploader(ConnectionString, DatabaseName, CollectionName);
+
+            #region CodeMort
+            // Setup nightly timer
+            //NightlyTimer = new System.Windows.Forms.Timer();
+            //NightlyTimer.Interval = 60 * 1000;
+            //NightlyTimer.Tick += NightlyTimer_Tick;
+            //NightlyTimer.Start();
 
             // Add manual upload button
             //BtnManualUpload = new Button();
@@ -54,12 +74,14 @@ namespace BLOBSqlToJpeg
             //BtnManualUpload.Location = new Point(790, 600);
             //BtnManualUpload.Size = new Size(70, 35);
 
-            BtnManualUpload.Click += (s, e) => {
-                ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
-                MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
-            };
+            // Setup manual upload button event
+            //BtnManualUpload.Click += (s, e) => {
+            //    ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
+            //    MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
+            //};
 
-            this.Controls.Add(BtnManualUpload);
+            //this.Controls.Add(BtnManualUpload);
+            #endregion
         }
 
 
@@ -69,6 +91,7 @@ namespace BLOBSqlToJpeg
             {
                 LogToFile("Application started.");
 
+                // Test database connection SqlServer
                 if (!DBCnx.Database.Exists())
                 {
                     LogToFile("Database connection failed.");
@@ -76,26 +99,24 @@ namespace BLOBSqlToJpeg
 
                     return;
                 }
-
                 LogToFile("Database connection successful.");
 
-               //MessageBox.Show("Database connection successful.");
 
+                // Load pictures from DB SqlServer Database
                 PictureList = (from photo in DBCnx.FILTEREDPICTURES orderby photo.EMPID ascending select photo).ToList();
                 LogToFile($"Loaded {PictureList.Count} pictures from DB.");
 
-                //MessageBox.Show($"Loaded {PictureList.Count} pictures from DB.");
 
+                // Check first picture BLOB size ???
                 if (PictureList.Count > 0 && PictureList[0].LNL_BLOB != null && PictureList[0].LNL_BLOB.Length > 0)
                 {
                     LogToFile($"First picture BLOB size: {PictureList[0].LNL_BLOB.Length} bytes");
-                    //MessageBox.Show($"First picture BLOB size: {PictureList[0].LNL_BLOB.Length} bytes");
                 }
                 else if (PictureList.Count > 0)
                 {
                     LogToFile("First picture has no BLOB data.");
-                    MessageBox.Show("First picture has no BLOB data.");
                 }
+
 
                 // Pre-process PictureList to handle invalid BLOBs and prevent grid rendering errors
                 foreach (var photo in PictureList)
@@ -115,6 +136,7 @@ namespace BLOBSqlToJpeg
                     }
                 }
 
+                // Bind to DataGridView
                 DBGridPersonel.DataSource = PictureList;
 
                 // Hide the LNL_BLOB column to prevent automatic image rendering attempts
@@ -126,8 +148,10 @@ namespace BLOBSqlToJpeg
                 // Handle DataGridView errors to suppress default dialogs
                 DBGridPersonel.DataError += DBGridPersonel_DataError;
 
+                // Select first picture by default
                 SelectedPersonne = PictureList.FirstOrDefault();
 
+                // Display first picture
                 ConvertBlobToPicture(ref SelectedPersonne);
             }
             catch (Exception ex)
@@ -140,6 +164,7 @@ namespace BLOBSqlToJpeg
 
 
 
+        // Nightly timer tick event
         private void NightlyTimer_Tick(object sender, EventArgs e)
         {
             var timeStr = ConfigurationManager.AppSettings["NightlyRunTime"] ?? "02:00";
@@ -157,46 +182,143 @@ namespace BLOBSqlToJpeg
             {
                 LastRunDate = now.Date;
                 LogToFile($"Nightly timer triggered at {now}.");
+                
                 ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
             }
         }
+
 
 
         private void RunNightlyUpload()
         {
             try
             {
+                string outputDir = @"c:\BLOBSqlToJpeg\";
+                string imageDir = Path.Combine(outputDir, "SavePicturesFolder\\");
+                string csvFilePath = Path.Combine(outputDir, "output.csv");
+
+                // Ensure directories exist
+                try
+                {
+                    Directory.CreateDirectory(imageDir);
+                    Directory.CreateDirectory(outputDir);
+                    LogToFile("Directories created.");
+                }
+                catch (Exception ex)
+                {
+                    LogToFile($"Error creating directories: {ex.Message}");
+                    return;
+                }
+
                 LogToFile("Nightly upload started");
 
-                var efConnString = ConfigurationManager.ConnectionStrings["DBPictureDBEntities"]?.ConnectionString;
-                if (string.IsNullOrEmpty(efConnString))
-                {
-                    string errorMsg = "DBPictureDBEntities connection string not found.";
-                    LogToFile(errorMsg);
+                //var efConnString = ConfigurationManager.ConnectionStrings["DBPictureDBEntities"]?.ConnectionString;
+                //if (string.IsNullOrEmpty(efConnString))
+                //{
+                //    string errorMsg = "DBPictureDBEntities connection string not found.";
+                //    LogToFile(errorMsg);
 
-                    //InvokeOnUIThread(() => MessageBox.Show(errorMsg));
-                    return;
+                //    //InvokeOnUIThread(() => MessageBox.Show(errorMsg));
+                //    return;
+                //}
+
+                //var sqlConnString = GetSqlConnectionStringFromEntity(efConnString);
+                //if (string.IsNullOrEmpty(sqlConnString))
+                //{
+                //    string errorMsg = "Unable to extract SQL provider connection string from EF connection string.";
+                //    LogToFile(errorMsg);
+
+                //    //InvokeOnUIThread(() => MessageBox.Show(errorMsg));
+                //    return;
+                //}
+
+                //LogToFile("Connection strings loaded successfully.");
+
+
+                var rqList = (from p in DBCnx.PERSONNEL
+                              join f in DBCnx.FILTEREDPICTURES
+                                  on p.EMPID equals f.EMPID
+                              orderby p.EMPID
+                              select new
+                              {
+                                  p.EMPID,
+                                  p.FirstName,
+                                  p.LastName,
+                                  FullName = p.FirstName + " " + p.LastName,
+                                  DeactivationDate = f.LASTCHANGED,
+                                  BlobData = f.LNL_BLOB,
+                                  f.FORMAT_IMAGE
+                              }).ToList();
+
+                LogToFile($"Prepared upload list with {rqList.Count} items.");
+
+                var csvBuilder = new StringBuilder();
+                csvBuilder.AppendLine("ImageFilePath,caseNumber,reportedloss,expdate,Action");
+
+                foreach (var unEnreg in rqList)
+                {
+                    try
+                    {
+                        // Use indexer with casting to handle column names
+                        int empId = Convert.ToInt32(unEnreg.EMPID);
+                        string firstName = unEnreg.FirstName;
+                        string lastName = unEnreg.LastName;
+                        string fullName = unEnreg.FullName;
+                        DateTime deactivationDate = (DateTime)unEnreg.DeactivationDate;
+
+                        byte[] blobData = null;
+                        if (unEnreg.BlobData != null)
+                        {
+                            blobData = (byte[])unEnreg.BlobData;
+                        }
+
+                        string formatImage = null;
+                        if (unEnreg.FORMAT_IMAGE != null)
+                        {
+                            formatImage = unEnreg.FORMAT_IMAGE;
+                            if (string.IsNullOrEmpty(formatImage)) formatImage = DetectBlobType(blobData);
+                        }
+
+                        // Build the data for the CSV
+                        string imageFileName = $"{empId}.jpg";
+                        string fullImagePath = Path.Combine(imageDir, imageFileName);
+                        File.WriteAllBytes(fullImagePath, blobData);
+
+                        LogToFile($"Saved image: {imageFileName}");
+                        string imageFilePath = Path.Combine("c:\\BLOBSqlToJpeg\\SavePicturesFolder\\", imageFileName).Replace("\\", "/");
+                        string expDate = deactivationDate.ToString("yyyy-MM-dd HH:mm:ss");
+                        string caseNumber = $"{fullName},0";
+
+                        //string csvRow = $"{imageFilePath},{empId},SCSPA,{caseNumber},0,{timeIncident},No Action Needed";
+                        string csvRow = $"{imageFilePath},{empId},SCSPA,{caseNumber},0,{expDate},No Action Needed";
+
+                        csvBuilder.AppendLine(csvRow);
+
+                    }
+                    catch (Exception rowEx)
+                    {
+                        LogToFile($"Error processing row: {rowEx.Message}");
+                    }
                 }
 
-                var sqlConnString = GetSqlConnectionStringFromEntity(efConnString);
-                if (string.IsNullOrEmpty(sqlConnString))
+                // Write CSV File
+                try
                 {
-                    string errorMsg = "Unable to extract SQL provider connection string from EF connection string.";
-                    LogToFile(errorMsg);
-
-                    //InvokeOnUIThread(() => MessageBox.Show(errorMsg));
-                    return;
+                    File.WriteAllText(csvFilePath, csvBuilder.ToString(), Encoding.UTF8);
+                    LogToFile($"CSV file generated at: {csvFilePath}");
+                }
+                catch (Exception ex)
+                {
+                    LogToFile($"Error writing CSV: {ex.Message}");
+                    return; // Still return count even if CSV fails
                 }
 
-                LogToFile("Connection strings loaded successfully.");
 
-                Func<SqlConnection> connFactory = () => new SqlConnection(sqlConnString);
+                //Func<SqlConnection> connFactory = () => new SqlConnection(sqlConnString);
+                //var service = new NightlyUploaderService(connFactory);
+                //int uploadedCount = service.Run();
 
-                var service = new NightlyUploaderService(connFactory);
-
-                int uploadedCount = service.Run();
                 string successMsg = $"Nightly upload completed. Processed {uploadedCount} items.";
-
                 LogToFile(successMsg);
 
                 //InvokeOnUIThread(() => MessageBox.Show(successMsg));
@@ -228,8 +350,6 @@ namespace BLOBSqlToJpeg
             }
             return rest.Trim().TrimEnd(';');
         }
-
-
 
         private void DBGridPersonel_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -269,6 +389,9 @@ namespace BLOBSqlToJpeg
         {
             try
             {
+                string logDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string logPath = Path.Combine(logDirectory, "NightlyUpload.log");
+
                 string fullMsg = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}\n";
                 File.AppendAllText(LogFilePath, fullMsg);
             }
@@ -288,7 +411,6 @@ namespace BLOBSqlToJpeg
                 SaveFolderImages = CMDFolder.SelectedPath + "\\";
             }
         }
-
 
         private void BtnSaveCurrent_Click(object sender, EventArgs e)
         {
@@ -316,7 +438,6 @@ namespace BLOBSqlToJpeg
             File.WriteAllBytes(fullPath, bytes);
             MessageBox.Show($"Saved picture to: {fullPath}");
         }
-
 
         private void BtnSaveAll_Click(object sender, EventArgs e)
         {
@@ -356,6 +477,18 @@ namespace BLOBSqlToJpeg
             LogToFile(successMsg);
         }
 
+
+        private void BtnManualUpload_Click(object sender, EventArgs e)
+        {
+            ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
+            MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
+        }
+
+        private void BtnManualUpload_MouseClick(object sender, MouseEventArgs e)
+        {
+            ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
+            MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
+        }
 
         private void BtnExit_Click(object sender, EventArgs e)
         {
@@ -447,8 +580,11 @@ namespace BLOBSqlToJpeg
         }
 
 
-        #endregion
 
+
+
+
+        #endregion
 
     }
 }
