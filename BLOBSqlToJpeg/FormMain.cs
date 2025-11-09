@@ -230,6 +230,21 @@ namespace BLOBSqlToJpeg
                 //LogToFile("Connection strings loaded successfully.");
                 #endregion
 
+                //var rqList = (from p in DBCnx.PERSONNEL
+                //              join f in DBCnx.FILTEREDPICTURES
+                //                  on p.EMPID equals f.EMPID
+                //              orderby p.EMPID
+                //              select new
+                //              {
+                //                  p.EMPID,
+                //                  p.FirstName,
+                //                  p.LastName,
+                //                  FullName = p.FirstName + " " + p.LastName,
+                //                  DeactivationDate = f.LASTCHANGED,
+                //                  BlobData = f.LNL_BLOB,
+                //                  f.FORMAT_IMAGE
+                //              }).ToList();
+
 
                 var rqList = (from p in DBCnx.PERSONNEL
                               join f in DBCnx.FILTEREDPICTURES

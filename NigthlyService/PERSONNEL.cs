@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BLOBSqlToJpeg
+namespace NigthlyService
 {
     using System;
     using System.Collections.Generic;

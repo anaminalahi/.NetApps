@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BLOBSqlToJpeg
+namespace NigthlyService
 {
     using System;
     using System.Data.Entity;
@@ -27,7 +27,7 @@ namespace BLOBSqlToJpeg
     
         public virtual DbSet<FILTEREDPICTURES> FILTEREDPICTURES { get; set; }
         public virtual DbSet<HALFBAD> HALFBAD { get; set; }
-        public virtual DbSet<MMOBJS> MMOBJS { get; set; }
         public virtual DbSet<PERSONNEL> PERSONNEL { get; set; }
+        public virtual DbSet<MMOBJS> MMOBJS { get; set; }
     }
 }
