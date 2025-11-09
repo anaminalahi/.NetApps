@@ -1,14 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using ScannerVB6.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ScannerVB6
 {
@@ -160,43 +152,6 @@ namespace ScannerVB6
 
                                 ListeDesRefOCx.Add(SelectedRefComp);
                             }
-
-                            //// Test UserControl
-                            //if ((ligne.StartsWith("UserControl")))
-                            //{
-                            //    SelectedProjetVBP.ListeUserControles.Add(ExtraireUserCtrl(ligne));
-                            //    SelectedProjetVBP.NombreDeUserControles += 1;
-                            //}
-
-                            //// Test Formulaire
-                            //if ((ligne.StartsWith("Form")))
-                            //{
-                            //    var obj = ExtraireFichier(ligne, (byte)TypeSource.TypeFichier.Frm);
-                            //    ListeDesFichierSource.Add(obj);
-                            //    SelectedProjetVBP.ListeFormulaire.Add(obj);
-                            //    SelectedProjetVBP.NombreDeFormulaire += 1;
-                            //    obj = null/* TODO Change to default(_) if this is not a reference type */;
-                            //}
-
-                            //// Test Module
-                            //if ((ligne.StartsWith("Module")))
-                            //{
-                            //    var obj = ExtraireFichier(ligne, (byte)TypeSource.TypeFichier.ModuleBas);
-                            //    ListeDesFichierSource.Add(obj);
-                            //    SelectedProjetVBP.ListeDeModule.Add(obj);
-                            //    SelectedProjetVBP.NombreDeModuleBas += 1;
-                            //    obj = null/* TODO Change to default(_) if this is not a reference type */;
-                            //}
-
-                            //// Test Classe
-                            //if ((ligne.StartsWith("Class")))
-                            //{
-                            //    var obj = ExtraireFichier(ligne, (byte)TypeSource.TypeFichier.Classe);
-                            //    ListeDesFichierSource.Add(obj);
-                            //    SelectedProjetVBP.ListeClasse.Add(obj);
-                            //    SelectedProjetVBP.NombreDeClasse += 1;
-                            //    obj = null/* TODO Change to default(_) if this is not a reference type */;
-                            //}
 
                             ligne = monStreamReader.ReadLine();
                         }

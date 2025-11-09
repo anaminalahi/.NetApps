@@ -37,7 +37,7 @@ namespace BLOBSqlToJpeg
         public string CollectionName = "employees";
 
         //private System.Windows.Forms.Timer NightlyTimer;
-
+        private Button BtnManualUpload;
         #endregion
 
 
@@ -53,28 +53,28 @@ namespace BLOBSqlToJpeg
 
 
             #region CODEMORT NIGHTLY SERVICES
-            // Setup nightly timer
-            //NightlyTimer = new System.Windows.Forms.Timer();
-            //NightlyTimer.Interval = 60 * 1000;
-            //NightlyTimer.Tick += NightlyTimer_Tick;
-            //NightlyTimer.Start();
+            //Setup nightly timer
+            NightlyTimer = new System.Windows.Forms.Timer();
+            NightlyTimer.Interval = 60 * 1000;
+            NightlyTimer.Tick += NightlyTimer_Tick;
+            NightlyTimer.Start();
 
-            // Add manual upload button
-            //BtnManualUpload = new Button();
-            //BtnManualUpload.Text = "Manual Upload";
-            //BtnManualUpload.Location = new Point(790, 600);
-            //BtnManualUpload.Size = new Size(70, 35);
+            //Add manual upload button
+            BtnManualUpload = new Button();
+            BtnManualUpload.Text = "Manual Upload";
+            BtnManualUpload.Location = new Point(790, 600);
+            BtnManualUpload.Size = new Size(70, 35);
 
-            // Setup manual upload button event
-            //BtnManualUpload.Click += (s, e) => {
-            //    ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
-            //    MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
-            //};
+            //Setup manual upload button event
+            BtnManualUpload.Click += (s, e) => {
+                ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
+                MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
+            };
 
-            //this.Controls.Add(BtnManualUpload);
-            #endregion
+            this.Controls.Add(BtnManualUpload);
+    #endregion
 
-        }
+    }
 
 
         // APPLICATION CODE
@@ -504,11 +504,11 @@ namespace BLOBSqlToJpeg
         }
 
 
-        private void BtnManualUpload_Click(object sender, EventArgs e)
-        {
-            ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
-            MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
-        }
+        //private void BtnManualUpload_Click(object sender, EventArgs e)
+        //{
+        //    ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
+        //    MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
+        //}
 
         private void BtnExit_Click(object sender, EventArgs e)
         {

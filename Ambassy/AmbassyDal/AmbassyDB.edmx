@@ -13,7 +13,100 @@
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="AmbassyDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="AmbassyDBContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pays" EntityType="AmbassyDB.Pays" />
+          <EntitySet Name="Langues" EntityType="AmbassyDB.Langues" />
+          <EntitySet Name="Traduction" EntityType="AmbassyDB.Traduction" />
+          <EntitySet Name="JoursNationaux" EntityType="AmbassyDB.JoursNationaux" />
+          <EntitySet Name="JoursWeekEnd" EntityType="AmbassyDB.JoursWeekEnd" />
+          <EntitySet Name="Services" EntityType="AmbassyDB.Services" />
+          <EntitySet Name="ServicesPrestations" EntityType="AmbassyDB.ServicesPrestations" />
+          <AssociationSet Name="FK__ServicesP__IdSer__00750D23" Association="AmbassyDB.FK__ServicesP__IdSer__00750D23">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="ServicesPrestations" EntitySet="ServicesPrestations" />
+          </AssociationSet>
+          <EntitySet Name="Prestations" EntityType="AmbassyDB.Prestations" />
         </EntityContainer>
+        <EntityType Name="Pays">
+          <Key>
+            <PropertyRef Name="IdPays" />
+          </Key>
+          <Property Name="IdPays" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IdLangue" Type="Int32" Nullable="false" />
+          <Property Name="TimeOffsetInHours" Type="Int32" Nullable="false" />
+          <Property Name="IsActif" Type="Boolean" Nullable="false" />
+          <Property Name="CodeIso" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Langues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Traduction">
+          <Key>
+            <PropertyRef Name="IdTraduction" />
+          </Key>
+          <Property Name="IdTraduction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Table" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdLigne" Type="Int32" Nullable="false" />
+          <Property Name="Colonne" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Traduction1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdLangue" Type="Int32" />
+        </EntityType>
+        <EntityType Name="JoursNationaux">
+          <Key>
+            <PropertyRef Name="IdJournationaux" />
+          </Key>
+          <Property Name="IdJournationaux" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Jour" Type="Int32" Nullable="false" />
+          <Property Name="Mois" Type="Int32" Nullable="false" />
+          <Property Name="MoisL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="JoursWeekEnd">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IdPays" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="IdService" />
+          </Key>
+          <Property Name="IdService" Type="Int32" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ServicesPrestations" Relationship="AmbassyDB.FK__ServicesP__IdSer__00750D23" FromRole="Services" ToRole="ServicesPrestations" />
+        </EntityType>
+        <EntityType Name="ServicesPrestations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdService" Type="Int32" Nullable="false" />
+          <Property Name="IdPrestations" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Services" Relationship="AmbassyDB.FK__ServicesP__IdSer__00750D23" FromRole="ServicesPrestations" ToRole="Services" />
+        </EntityType>
+        <Association Name="FK__ServicesP__IdSer__00750D23">
+          <End Type="AmbassyDB.Services" Role="Services" Multiplicity="1" />
+          <End Type="AmbassyDB.ServicesPrestations" Role="ServicesPrestations" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Prestations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Lien" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="NecessiteImmatriculation" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

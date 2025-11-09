@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8ce7404746cb460aa69a5dd14eb7285d" Name="Diagram1">
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.CalendrierCanvas" Width="1.5" PointX="3" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Decoupages" Width="1.5" PointX="5.25" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Demandes" Width="1.5" PointX="21" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Documents" Width="1.5" PointX="23.25" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.DocumentsRequis" Width="1.5" PointX="15" PointY="41.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.DocumentTypes" Width="1.5" PointX="12.75" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Entites" Width="1.5" PointX="10.5" PointY="34" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Entites_x_Prestations" Width="1.5" PointX="12.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Entites_x_Tranches" Width="1.5" PointX="15" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.ExtensionsTypes" Width="1.5" PointX="15" PointY="49.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Groupes" Width="1.5" PointX="16.5" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.HorairesCanvas" Width="1.5" PointX="10.5" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.HorairesCanvasServices" Width="1.5" PointX="12.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Immatriculation" Width="1.5" PointX="26.25" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.JoursFeries" Width="1.5" PointX="8.25" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.JoursFeriesPosteConsulaire" Width="1.5" PointX="12.75" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.JoursNationaux" Width="1.5" PointX="5.25" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.JoursNationauxPosteConsulaire" Width="1.5" PointX="15.75" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.JoursWeekEnd" Width="1.5" PointX="5.25" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Langues" Width="1.5" PointX="0.75" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Membres" Width="1.5" PointX="23.25" PointY="53.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Membres_x_Prestations" Width="1.5" PointX="25.5" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.NatureRequete" Width="1.5" PointX="18.75" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Pays" Width="1.5" PointX="3" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.PlannigTravailPays" Width="1.5" PointX="5.25" PointY="31.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.PlannigTravailPosteConsulaire" Width="1.5" PointX="15.75" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Prestations" Width="1.5" PointX="10.5" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.PrestationsDocumentTypes" Width="1.5" PointX="18" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Professions" Width="1.5" PointX="20.75" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Roles" Width="1.5" PointX="16.5" PointY="46.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Services" Width="1.5" PointX="8.25" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.ServicesPrestations" Width="1.5" PointX="12.75" PointY="45.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Theme" Width="1.5" PointX="18.75" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Traduction" Width="1.5" PointX="3" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Tranches" Width="1.5" PointX="12.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.TypeDecoupage" Width="1.5" PointX="3" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.TypeJoursFeries" Width="1.5" PointX="6" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Diplomatie.RDVModel.Utilisateurs" Width="1.5" PointX="18.75" PointY="34.125" IsExpanded="true" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__HorairesC__IDTra__4B422AD5" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__PlannigTr__IdCal__3EA749C6" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__PlannigTr__IdCal__436BFEE3" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Tranches__IDCale__50FB042B" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Decoupage__IdPay__15DA3E5D" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Decoupage__IdTyp__16CE6296" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Demandes_NatureRequete" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Demandes_Theme" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Demandes_Tranches" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Demandes_Utilisateurs" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Documents_Demandes" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Immatriculation_Demandes" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Membres_Demandes" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Documents_DocumentsRequis" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Documents_DocumentTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Documents_Membres_x_Prestations" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Documents__IdEnt__1E3A7A34" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_DocumentsRequis_DocumentTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Prestatio__IdDoc__4A18FC72" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Entites__IdPays__7C1A6C5A" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Entites__IdServi__6991A7CB" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__HorairesC__IdSer__67A95F59" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__JoursFeri__IdEnt__60FC61CA" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__JoursNati__IdEnt__60083D91" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__PlannigTr__IdEnt__64CCF2AE" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Tranches__codePo__66B53B20" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Entites_Entites" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Entites_x_Prestations_Entites" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Entites_x_Tranches_Entites" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Utilisateurs_Entites" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Entites_x_Prestations_Prestations" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Entites_x_Tranches_Tranches" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__HorairesC__IdHor__4EDDB18F" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__PlannigTr__IDHor__4460231C" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Tranches__IDHora__51EF2864" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Immatriculation_PaysNaissance" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Immatriculation_PaysNaissanceEpouse" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Immatriculation_PaysResidence" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__JoursFeri__IdJou__2B947552" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__JoursFeri__IdPay__6D6238AF" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__JoursFeri__IdTyp__2334397B" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__JoursNati__IdJou__27C3E46E" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__JoursNati__IdPay__6C6E1476" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__JoursWeek__IdPay__7226EDCC" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Pays__IdLangue__0697FACD" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Traductio__IdLan__7EF6D905" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Membres_x_Prestations_Membres" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Membres_x_Prestations_Prestations" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__PlannigTr__IdPay__703EA55A" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK_Utilisateurs_Pays" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__PlannigTr__IdPla__4183B671" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Tranches__IdPlan__3CBF0154" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__Prestatio__IdPre__78D3EB5B" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__ServicesP__IdPre__0169315C" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.FK__ServicesP__IdSer__00750D23" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.DocumentTypesExtensionsTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.Entite_x_Pays" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.EntitesDecoupages" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.Utilisateurs_x_Groupes" ManuallyRouted="false" />
+        <AssociationConnector Association="Diplomatie.RDVModel.Utilisateurs_x_Roles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

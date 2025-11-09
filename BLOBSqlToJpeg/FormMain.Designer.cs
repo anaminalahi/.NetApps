@@ -38,7 +38,6 @@
             this.BtnExit = new System.Windows.Forms.Button();
             this.CMDFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.DBGridPersonel = new System.Windows.Forms.DataGridView();
-            this.BtnManualUpload = new System.Windows.Forms.Button();
             this.NightlyTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DBGridPersonel)).BeginInit();
@@ -131,17 +130,6 @@
             this.DBGridPersonel.TabIndex = 8;
             this.DBGridPersonel.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DBGridPersonel_CellClick);
             // 
-            // BtnManualUpload
-            // 
-            this.BtnManualUpload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnManualUpload.Location = new System.Drawing.Point(508, 410);
-            this.BtnManualUpload.Name = "BtnManualUpload";
-            this.BtnManualUpload.Size = new System.Drawing.Size(88, 23);
-            this.BtnManualUpload.TabIndex = 9;
-            this.BtnManualUpload.Text = "Manual Upload";
-            this.BtnManualUpload.UseVisualStyleBackColor = true;
-            this.BtnManualUpload.Click += new System.EventHandler(this.BtnManualUpload_Click);
-            // 
             // NightlyTimer
             // 
             this.NightlyTimer.Enabled = true;
@@ -153,7 +141,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(667, 458);
-            this.Controls.Add(this.BtnManualUpload);
             this.Controls.Add(this.DBGridPersonel);
             this.Controls.Add(this.BtnExit);
             this.Controls.Add(this.BtnSaveAll);
@@ -185,7 +172,6 @@
         private System.Windows.Forms.Button BtnExit;
         private System.Windows.Forms.FolderBrowserDialog CMDFolder;
         private System.Windows.Forms.DataGridView DBGridPersonel;
-        private System.Windows.Forms.Button BtnManualUpload;
         private System.Windows.Forms.Timer NightlyTimer;
     }
 }

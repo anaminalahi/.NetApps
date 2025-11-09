@@ -4,7 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c8d42eabe740433393ce4feeba1b3a11" Name="Diagram1" />
+      <Diagram DiagramId="c8d42eabe740433393ce4feeba1b3a11" Name="Diagram1" >
+        <EntityTypeShape EntityType="AmbassyDB.Pays" Width="1.875" PointX="3.25" PointY="0.875" />
+        <EntityTypeShape EntityType="AmbassyDB.Langues" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="AmbassyDB.Traduction" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="AmbassyDB.JoursNationaux" Width="1.5" PointX="3.5" PointY="4" />
+        <EntityTypeShape EntityType="AmbassyDB.JoursWeekEnd" Width="1.5" PointX="1.5" PointY="6.625" />
+        <EntityTypeShape EntityType="AmbassyDB.Services" Width="1.5" PointX="7" PointY="4.75" />
+        <EntityTypeShape EntityType="AmbassyDB.ServicesPrestations" Width="1.75" PointX="10" PointY="5.375" />
+        <AssociationConnector Association="AmbassyDB.FK__ServicesP__IdSer__00750D23" />
+        <EntityTypeShape EntityType="AmbassyDB.Prestations" Width="1.625" PointX="10.125" PointY="1.75" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
