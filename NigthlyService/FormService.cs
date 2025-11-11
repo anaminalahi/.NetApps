@@ -4,20 +4,22 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
+
 namespace BLOBSqlToJpeg
 {
     public partial class FormService : Form
     {
+
         #region PROPRIETES
 
         private DBPictureDBEntities DBCnx;
+
         private List<FILTEREDPICTURES> PictureList;
         private FILTEREDPICTURES SelectedPersonne;
         private string SaveFolderImages;
@@ -27,17 +29,13 @@ namespace BLOBSqlToJpeg
         private DateTime LastRunDate = DateTime.MinValue;
         private string LogFilePath = Path.Combine(Application.StartupPath, "NightlyUpload.log");
 
-        public int NumberOfTransactions;
-        public string Emp_ImageFile;
-        public int nbRecords;
 
-        private MongoUploader mongoUploader;
-        public string DatabaseName = "lenel_db";
-        public string ConnectionString = "mongodb://127.0.0.1:27017";
-        public string CollectionName = "employees";
-
+        //private MongoUploader mongoUploader;
+        //public string DatabaseName = "BlobImagesDb";
+        //public string ConnectionString = "mongodb://localhost:27017";
+        //public string CollectionName = "employees";
+        //mongoUploader = new MongoUploader(ConnectionString, DatabaseName, CollectionName);
         #endregion
-
 
 
         public FormService()
@@ -47,40 +45,33 @@ namespace BLOBSqlToJpeg
             SaveFolderImages = "c:\\BLOBSqlToJpeg\\SavePicturesFolder\\";
 
             DBCnx = new DBPictureDBEntities();
-            mongoUploader = new MongoUploader(ConnectionString, DatabaseName, CollectionName);
-
-            #region NIGHTLY SERVICES
-            //Setup nightly timer
-            //NightlyTimer = new System.Windows.Forms.Timer();
-            //NightlyTimer.Interval = 60 * 1000;
-            //NightlyTimer.Tick += NightlyTimer_Tick;
-            //NightlyTimer.Start();
-
-            //Add manual upload button
-            BtnManualUpload = new Button();
-            BtnManualUpload.Text = "Manual Upload";
-            BtnManualUpload.Location = new Point(790, 600);
-            BtnManualUpload.Size = new Size(70, 35);
-
-            //Setup manual upload button event
-            BtnManualUpload.Click += (s, e) => {
-                ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
-                MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
-            };
-
-            this.Controls.Add(BtnManualUpload);
-            #endregion
-
         }
+
+
+        #region UI BUTTONS ACTIONS
 
         private void FormService_Load(object sender, EventArgs e)
         {
-
+            NightlyTimer?.Start();
+            Libelle.Text = "Service is running...";
         }
 
+        private void BtnManualUpload_Click(object sender, EventArgs e)
+        {
+            ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
+            MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
+        }
+
+        private void BtnExit_Click(object sender, EventArgs e)
+        {
+            NightlyTimer?.Stop();
+            Application.Exit();
+        }
+
+        #endregion
 
 
-        #region NIGHTLY TASKS
+        #region NIGHTLY TIMER
 
         private void NightlyTimer_Tick(object sender, EventArgs e)
         {
@@ -104,6 +95,10 @@ namespace BLOBSqlToJpeg
             }
         }
 
+        #endregion
+
+
+        #region NIGHTLY TASK UPLOAD
 
         private void RunNightlyUpload()
         {
@@ -111,9 +106,8 @@ namespace BLOBSqlToJpeg
             {
                 string outputDir = @"c:\BLOBSqlToJpeg\";
                 string imageDir = Path.Combine(outputDir, "SavePicturesFolder\\");
-                string csvFilePath = Path.Combine(outputDir, "output.csv");
-
-                // Ensure directories exist
+                string csvFilePath = Path.Combine(outputDir, "Output.csv");
+                
                 try
                 {
                     Directory.CreateDirectory(imageDir);
@@ -128,7 +122,6 @@ namespace BLOBSqlToJpeg
 
                 LogToFile("Nightly upload started");
 
-
                 var rqList = (from p in DBCnx.PERSONNEL
                               join f in DBCnx.FILTEREDPICTURES
                                   on p.EMPID equals f.EMPID
@@ -139,13 +132,14 @@ namespace BLOBSqlToJpeg
                                   p.FULLNAME,
                                   DeactivationDate = f.LASTCHANGED,
                                   BlobData = f.LNL_BLOB,
-                                  f.FORMAT_IMAGE
+                                  f.FORMAT_IMAGE //where f.FORMAT_IMAGE == "jpeg"
                               }).ToList();
+
 
                 LogToFile($"Prepared upload list with {rqList.Count} items.");
 
                 var csvBuilder = new StringBuilder();
-                csvBuilder.AppendLine("ImageFilePath,caseNumber,reportedloss,expdate,Action");
+                csvBuilder.AppendLine("ImageFilePath,store,caseNumber,reportedloss,expdate,action"); // Headers; adjust if CaseNumber and Reported Loss are separate columns
 
                 // Loop - Process each record
                 foreach (var unEnreg in rqList)
@@ -157,31 +151,52 @@ namespace BLOBSqlToJpeg
                         string fullName = unEnreg.FULLNAME;
                         DateTime deactivationDate = (DateTime)unEnreg.DeactivationDate;
 
+                        string imageFileName = "";
+                        string fullImagePath = "";
+                        string imageFilePath = "";
+                        string expDate = "";
+                        string caseNumber = "";
+
+                        // Get the BLOB data
                         byte[] blobData = null;
+                        string formatImage = null;
+
                         if (unEnreg.BlobData != null)
                         {
                             blobData = (byte[])unEnreg.BlobData;
-                        }
+                            formatImage = DetectBlobType(blobData);
+                            if (formatImage == "unknown")
+                            {
+                                LogToFile($"Unknown blob format for EMPID {empId}. Skipping.");
+                                continue; // Skip this record
+                            }
+                            formatImage = "jpeg";
 
-                        string formatImage = null;
-                        if (unEnreg.FORMAT_IMAGE != null)
-                        {
-                            formatImage = unEnreg.FORMAT_IMAGE;
-                            if (string.IsNullOrEmpty(formatImage)) formatImage = DetectBlobType(blobData);
+                            #region CODE MORT
+                            //if (unEnreg.FORMAT_IMAGE != null)
+                            //{
+                            //    formatImage = unEnreg.FORMAT_IMAGE;
+                            //    if ((formatImage != "jpg") && (fmt != formatImage))
+                            //    {
+                            //        formatImage = "jpg";
+                            //    }
+                            //}
+                            #endregion
+                        
                         }
 
                         // Build the data for the CSV
-                        string imageFileName = $"{empId}.jpg";
-                        string fullImagePath = Path.Combine(imageDir, imageFileName);
+                        imageFileName = $"{empId}.jpeg";
+                        fullImagePath = Path.Combine(imageDir, imageFileName);
                         File.WriteAllBytes(fullImagePath, blobData);
 
                         LogToFile($"Saved image: {imageFileName}");
-                        string imageFilePath = Path.Combine("c:\\BLOBSqlToJpeg\\SavePicturesFolder\\", imageFileName).Replace("\\", "/");
-                        string expDate = deactivationDate.ToString("yyyy-MM-dd HH:mm:ss");
-                        string caseNumber = $"{fullName},0";
-
-                        string csvRow = $"{imageFilePath},{empId},SCSPA,{caseNumber},0,{expDate},No Action Needed";
-
+                        imageFilePath = Path.Combine("c:\\BLOBSqlToJpeg\\SavePicturesFolder\\", imageFileName).Replace("\\", "/");
+                        expDate = deactivationDate.ToString("yyyy-MM-dd HH:mm:ss");
+                        caseNumber = $"{fullName}";
+                        string csvRow = $"{imageFilePath},SCSPA,{caseNumber},0,{expDate},No Action Needed";
+                        //string csvRow = $"{imageFilePath},{empId},SCSPA,{caseNumber},0,{expDate},No Action Needed";
+                        
                         csvBuilder.AppendLine(csvRow);
 
                     }
@@ -224,7 +239,6 @@ namespace BLOBSqlToJpeg
                     LogToFile($"EXE not found at: {exePath}");
                 }
 
-
                 string successMsg = $"Nightly upload completed. Processed {rqList.Count} items.";
                 LogToFile(successMsg);
                 InvokeOnUIThread(() => MessageBox.Show(successMsg));
@@ -235,6 +249,13 @@ namespace BLOBSqlToJpeg
                 LogToFile(errorMsg);
                 InvokeOnUIThread(() => MessageBox.Show(errorMsg));
             }
+        }
+
+
+        private void BtnManualUpload_Click_1(object sender, EventArgs e)
+        {
+            ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
+            MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
         }
 
         #endregion
@@ -271,23 +292,8 @@ namespace BLOBSqlToJpeg
         #endregion
 
 
-        #region UI BUTTONS ACTIONS
+        #region DETECTION BLOB FORMATS
 
-        private void BtnManualUpload_Click(object sender, EventArgs e)
-        {
-            ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
-            MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
-        }
-
-        private void BtnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        #endregion
-
-
-        #region DETECTION BLOB
 
         private string DetectBlobType(byte[] blobData)
         {
@@ -322,8 +328,8 @@ namespace BLOBSqlToJpeg
             return "unknown";
         }
 
-        #endregion
 
+        #endregion
 
     }
 }
