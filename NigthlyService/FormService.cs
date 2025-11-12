@@ -54,6 +54,7 @@ namespace BLOBSqlToJpeg
         {
             NightlyTimer?.Start();
             Libelle.Text = "Service is running...";
+            //Libelle.Text = "Service is running... Next scheduled run at: " + (DateTime.Now.Date + TimeSpan.Parse(ConfigurationManager.AppSettings["NightlyRunTime"] ?? "11:30")).ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         private void BtnManualUpload_Click(object sender, EventArgs e)
@@ -132,9 +133,8 @@ namespace BLOBSqlToJpeg
                                   p.FULLNAME,
                                   DeactivationDate = f.LASTCHANGED,
                                   BlobData = f.LNL_BLOB,
-                                  f.FORMAT_IMAGE //where f.FORMAT_IMAGE == "jpeg"
+                                  f.FORMAT_IMAGE
                               }).ToList();
-
 
                 LogToFile($"Prepared upload list with {rqList.Count} items.");
 
@@ -155,7 +155,7 @@ namespace BLOBSqlToJpeg
                         string fullImagePath = "";
                         string imageFilePath = "";
                         string expDate = "";
-                        string caseNumber = "";
+                        string aseNumber = "";
 
                         // Get the BLOB data
                         byte[] blobData = null;
@@ -171,18 +171,6 @@ namespace BLOBSqlToJpeg
                                 continue; // Skip this record
                             }
                             formatImage = "jpeg";
-
-                            #region CODE MORT
-                            //if (unEnreg.FORMAT_IMAGE != null)
-                            //{
-                            //    formatImage = unEnreg.FORMAT_IMAGE;
-                            //    if ((formatImage != "jpg") && (fmt != formatImage))
-                            //    {
-                            //        formatImage = "jpg";
-                            //    }
-                            //}
-                            #endregion
-                        
                         }
 
                         // Build the data for the CSV
@@ -193,8 +181,8 @@ namespace BLOBSqlToJpeg
                         LogToFile($"Saved image: {imageFileName}");
                         imageFilePath = Path.Combine("c:\\BLOBSqlToJpeg\\SavePicturesFolder\\", imageFileName).Replace("\\", "/");
                         expDate = deactivationDate.ToString("yyyy-MM-dd HH:mm:ss");
-                        caseNumber = $"{fullName}";
-                        string csvRow = $"{imageFilePath},SCSPA,{caseNumber},0,{expDate},No Action Needed";
+                        aseNumber = $"{fullName}";
+                        string csvRow = $"{imageFilePath},SCSPA,{aseNumber},0,{expDate},No Action Needed";
                         //string csvRow = $"{imageFilePath},{empId},SCSPA,{caseNumber},0,{expDate},No Action Needed";
                         
                         csvBuilder.AppendLine(csvRow);
