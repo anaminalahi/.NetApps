@@ -7,8 +7,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
+using MongoDB.Bson;
+using MongoDB.Driver;
+
 
 
 namespace BLOBSqlToJpeg
@@ -29,12 +31,18 @@ namespace BLOBSqlToJpeg
         private DateTime LastRunDate = DateTime.MinValue;
         private string LogFilePath = Path.Combine(Application.StartupPath, "NightlyUpload.log");
 
+        private string ConnectionString = "mongodb://localhost:27017";
+        private string DatabaseName = "BlobImagesDb";
+        private string CollectionName = "personnel";
 
-        //private MongoUploader mongoUploader;
-        //public string DatabaseName = "BlobImagesDb";
-        //public string ConnectionString = "mongodb://localhost:27017";
-        //public string CollectionName = "employees";
-        //mongoUploader = new MongoUploader(ConnectionString, DatabaseName, CollectionName);
+        private MongoClient myclient;
+        private IMongoDatabase mydatabase;
+        private IMongoCollection<BsonDocument> mycollection;
+        private List<MongoDbRowEnreg> MongoDbList;
+
+
+        private int NumberOfTransactions = 0;
+
         #endregion
 
 
@@ -45,6 +53,10 @@ namespace BLOBSqlToJpeg
             SaveFolderImages = "c:\\BLOBSqlToJpeg\\SavePicturesFolder\\";
 
             DBCnx = new DBPictureDBEntities();
+
+            myclient = new MongoClient(ConnectionString);
+            mydatabase = myclient.GetDatabase(DatabaseName);
+            mycollection = mydatabase.GetCollection<BsonDocument>(CollectionName);
         }
 
 
@@ -54,14 +66,22 @@ namespace BLOBSqlToJpeg
         {
             NightlyTimer?.Start();
             Libelle.Text = "Service is running...";
-            //Libelle.Text = "Service is running... Next scheduled run at: " + (DateTime.Now.Date + TimeSpan.Parse(ConfigurationManager.AppSettings["NightlyRunTime"] ?? "11:30")).ToString("yyyy-MM-dd HH:mm:ss");
         }
+
 
         private void BtnManualUpload_Click(object sender, EventArgs e)
         {
-            ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
-            MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
+            Libelle.Text = "Manual upload triggered—check NightlyUpload.log for progress.";
+            BtnManualUpload.Enabled= false;
+            this.Refresh();
+            
+            RunNightlyUpload();
+
+            this.Refresh();
+            BtnManualUpload.Enabled= true;
+            Libelle.Text = "Service is running...";
         }
+
 
         private void BtnExit_Click(object sender, EventArgs e)
         {
@@ -92,7 +112,7 @@ namespace BLOBSqlToJpeg
                 LastRunDate = now.Date;
                 LogToFile($"Nightly timer triggered at {now}.");
 
-                ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
+                RunNightlyUpload();
             }
         }
 
@@ -126,6 +146,7 @@ namespace BLOBSqlToJpeg
                 var rqList = (from p in DBCnx.PERSONNEL
                               join f in DBCnx.FILTEREDPICTURES
                                   on p.EMPID equals f.EMPID
+                              where f.LNL_BLOB != null
                               orderby p.EMPID
                               select new
                               {
@@ -136,131 +157,173 @@ namespace BLOBSqlToJpeg
                                   f.FORMAT_IMAGE
                               }).ToList();
 
-                LogToFile($"Prepared upload list with {rqList.Count} items.");
+                NumberOfTransactions = rqList.Count;
 
-                var csvBuilder = new StringBuilder();
-                csvBuilder.AppendLine("ImageFilePath,store,caseNumber,reportedloss,expdate,action"); // Headers; adjust if CaseNumber and Reported Loss are separate columns
+                LogToFile($"Prepared upload list with {NumberOfTransactions} items.");
 
-                // Loop - Process each record
-                foreach (var unEnreg in rqList)
+                // If there are records to process
+                if (NumberOfTransactions > 0)
                 {
-                    try
+                    MongoDbList = new List<MongoDbRowEnreg>();
+
+                    // Headers; adjust if CaseNumber and Reported Loss are separate columns
+                    var csvBuilder = new StringBuilder();
+                    csvBuilder.AppendLine("ImageFilePath,store,caseNumber,reportedloss,expdate,action"); 
+                    
+                    foreach (var unEnreg in rqList)
                     {
-                        // Use indexer with casting to handle column names
-                        int empId = Convert.ToInt32(unEnreg.EMPID);
-                        string fullName = unEnreg.FULLNAME;
-                        DateTime deactivationDate = (DateTime)unEnreg.DeactivationDate;
-
-                        string imageFileName = "";
-                        string fullImagePath = "";
-                        string imageFilePath = "";
-                        string expDate = "";
-                        string aseNumber = "";
-
-                        // Get the BLOB data
-                        byte[] blobData = null;
-                        string formatImage = null;
-
-                        if (unEnreg.BlobData != null)
+                        try
                         {
-                            blobData = (byte[])unEnreg.BlobData;
-                            formatImage = DetectBlobType(blobData);
-                            if (formatImage == "unknown")
-                            {
-                                LogToFile($"Unknown blob format for EMPID {empId}. Skipping.");
-                                continue; // Skip this record
-                            }
-                            formatImage = "jpeg";
-                        }
-
-                        // Build the data for the CSV
-                        imageFileName = $"{empId}.jpeg";
-                        fullImagePath = Path.Combine(imageDir, imageFileName);
-                        File.WriteAllBytes(fullImagePath, blobData);
-
-                        LogToFile($"Saved image: {imageFileName}");
-                        imageFilePath = Path.Combine("c:\\BLOBSqlToJpeg\\SavePicturesFolder\\", imageFileName).Replace("\\", "/");
-                        expDate = deactivationDate.ToString("yyyy-MM-dd HH:mm:ss");
-                        aseNumber = $"{fullName}";
-                        string csvRow = $"{imageFilePath},SCSPA,{aseNumber},0,{expDate},No Action Needed";
-                        //string csvRow = $"{imageFilePath},{empId},SCSPA,{caseNumber},0,{expDate},No Action Needed";
+                            // Use indexer with casting to handle column names
+                            int empId = Convert.ToInt32(unEnreg.EMPID);
+                            string fullName = unEnreg.FULLNAME;
                         
-                        csvBuilder.AppendLine(csvRow);
+                            DateTime deactivationDate = (DateTime)unEnreg.DeactivationDate;
 
+                            string imageFileName = "";
+                            string fullImagePath = "";
+                            string imageFilePath = "";
+                            string expDate = "";
+                            string caseNumber = "";
+
+                            // Get the BLOB data
+                            byte[] blobData = null;
+                            string formatImage = null;
+
+                            if (unEnreg.BlobData != null)
+                            {
+                                blobData = (byte[])unEnreg.BlobData;
+                                formatImage = DetectBlobType(blobData);
+                                if (formatImage == "unknown")
+                                {
+                                    LogToFile($"Unknown blob format for EMPID {empId}. Skipping.");
+                                    continue; // Skip this record
+                                }
+                            }
+
+                            // Build the data for the CSV
+                            imageFileName = $"{empId}_0.jpeg";
+                            fullImagePath = Path.Combine(imageDir, imageFileName);
+                            File.WriteAllBytes(fullImagePath, blobData);
+
+                            LogToFile($"Saved image: {imageFileName}");
+                            imageFilePath = Path.Combine("c:\\BLOBSqlToJpeg\\SavePicturesFolder\\", imageFileName).Replace("\\", "/");
+                            expDate = deactivationDate.ToString("yyyy-MM-dd HH:mm:ss");
+                            caseNumber = $"{fullName}";
+                        
+                            string csvRow = $"{imageFilePath},SCSPA,{caseNumber},0,{expDate},No Action Needed";
+                        
+                            csvBuilder.AppendLine(csvRow);
+
+                            // Prepare MongoDB entry
+                            MongoDbRowEnreg uneLigne = new MongoDbRowEnreg
+                            {
+                                EmpID = empId,
+                                FullName = fullName,
+                                DeactivationDate = deactivationDate,
+                                BlobData = blobData,
+                                FormatImage = "jpeg"
+                            };
+
+                            // Upload to MongoDBList
+                            MongoDbList.Add(uneLigne);
+
+                        }
+                        catch (Exception rowEx)
+                        {
+                            LogToFile($"Error processing row: {rowEx.Message}");
+                        }
                     }
-                    catch (Exception rowEx)
-                    {
-                        LogToFile($"Error processing row: {rowEx.Message}");
-                    }
-                }
 
-
-                // Write CSV File
-                try
-                {
-                    File.WriteAllText(csvFilePath, csvBuilder.ToString(), Encoding.UTF8);
-                    LogToFile($"CSV file generated at: {csvFilePath}");
-                }
-                catch (Exception ex)
-                {
-                    LogToFile($"Error writing CSV: {ex.Message}");
-                    return; // Still return count even if CSV fails
-                }
-
-
-                // Trigger the EXE
-                string exePath = Path.Combine(outputDir, "FaceFirst.Tools.AutoEnroller.exe");
-                if (File.Exists(exePath))
-                {
+                    // Write CSV File
                     try
                     {
-                        Process.Start(exePath);
-                        LogToFile($"Started {exePath}");
+                        File.WriteAllText(csvFilePath, csvBuilder.ToString(), Encoding.UTF8);
+                        LogToFile($"CSV file generated at: {csvFilePath}");
                     }
                     catch (Exception ex)
                     {
-                        LogToFile($"Error starting EXE: {ex.Message}");
+                        LogToFile($"Error writing CSV: {ex.Message}");
+                        return; // Still return count even if CSV fails
                     }
-                }
-                else
-                {
-                    LogToFile($"EXE not found at: {exePath}");
-                }
 
-                string successMsg = $"Nightly upload completed. Processed {rqList.Count} items.";
-                LogToFile(successMsg);
-                InvokeOnUIThread(() => MessageBox.Show(successMsg));
+
+                    // Upload to MongoDB
+                    foreach (var mongoEntry in MongoDbList)
+                    {
+                        UploadToMongoDB(mongoEntry.EmpID, mongoEntry.FullName, mongoEntry.BlobData, mongoEntry.FormatImage, mongoEntry.DeactivationDate);
+                    }
+
+
+                    // Trigger the EXE
+                    string exePath = Path.Combine(outputDir, "FaceFirst.Tools.AutoEnroller.exe");
+                    if (File.Exists(exePath))
+                    {
+                        try
+                        {
+                            Process.Start(exePath);
+                            LogToFile($"Started {exePath}");
+                        }
+                        catch (Exception ex)
+                        {
+                            LogToFile($"Error starting EXE: {ex.Message}");
+                        }
+                    }
+                    else
+                    {
+                        LogToFile($"EXE not found at: {exePath}");
+                    }
+
+                    string successMsg = $"Nightly upload completed. Processed {rqList.Count} items.";
+                    LogToFile(successMsg);
+                    MessageBox.Show(successMsg); 
+
+                }
+                else 
+                { 
+                    LogToFile("No records to process. Exiting nightly upload.");
+                    return;
+                }
             }
             catch (Exception ex)
             {
                 string errorMsg = "Nightly upload failed: " + ex.Message + "\nStackTrace: " + ex.StackTrace;
                 LogToFile(errorMsg);
-                InvokeOnUIThread(() => MessageBox.Show(errorMsg));
+                MessageBox.Show(errorMsg);
             }
         }
 
+        #endregion
 
-        private void BtnManualUpload_Click_1(object sender, EventArgs e)
+         
+        #region TO MONGODB
+
+        private void UploadToMongoDB(int empId, string fullname, byte[] blobData, string formatImage , DateTime deactivationDate)
         {
-            ThreadPool.QueueUserWorkItem(_ => RunNightlyUpload());
-            MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
+            try
+            {
+                var document = new BsonDocument
+                {
+                    { "empId", empId },
+                    { "fullName", fullname },
+                    { "blobData", Convert.ToBase64String(blobData) },
+                    { "formatImage", formatImage },
+                    { "deactivationDate", deactivationDate }
+                };
+
+                mycollection.InsertOne(document);
+                LogToFile($"Uploaded EMPID {empId} to MongoDB.");
+            }
+            catch (Exception ex)
+            {
+                LogToFile($"Error uploading EMPID {empId} to MongoDB: {ex.Message}");
+            }
         }
 
         #endregion
 
 
-        #region INVOKE ACTION & LOG TO FILE
-        private void InvokeOnUIThread(Action action)
-        {
-            if (InvokeRequired)
-            {
-                Invoke(action);
-            }
-            else
-            {
-                action();
-            }
-        }
+        #region LOG TO FILE
 
         private void LogToFile(string message)
         {
@@ -277,11 +340,11 @@ namespace BLOBSqlToJpeg
                 // Silent fail on logging
             }
         }
+
         #endregion
 
 
         #region DETECTION BLOB FORMATS
-
 
         private string DetectBlobType(byte[] blobData)
         {
@@ -289,7 +352,7 @@ namespace BLOBSqlToJpeg
 
             if (blobData.Length > 3 && blobData[0] == 0xFF && blobData[1] == 0xD8 && blobData[2] == 0xFF)
             {
-                return "jpg";
+                return "jpeg";
             }
 
             if (blobData.Length > 8 && blobData[0] == 0x89 && blobData[1] == 0x50 && blobData[2] == 0x4E && blobData[3] == 0x47)
@@ -316,8 +379,8 @@ namespace BLOBSqlToJpeg
             return "unknown";
         }
 
-
         #endregion
+
 
     }
 }

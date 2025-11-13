@@ -61,7 +61,7 @@
             this.BtnManualUpload.TabIndex = 9;
             this.BtnManualUpload.Text = "Uploader Service";
             this.BtnManualUpload.UseVisualStyleBackColor = true;
-            this.BtnManualUpload.Click += new System.EventHandler(this.BtnManualUpload_Click_1);
+            this.BtnManualUpload.Click += new System.EventHandler(this.BtnManualUpload_Click);
             // 
             // Libelle
             // 

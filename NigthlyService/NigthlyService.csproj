@@ -180,6 +180,7 @@
     <Compile Include="MMOBJS.cs">
       <DependentUpon>DBPictureDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="MongoDbRowEnreg.cs" />
     <Compile Include="MongoUploader.cs" />
     <Compile Include="PERSONNEL.cs">
       <DependentUpon>DBPictureDB.tt</DependentUpon>
