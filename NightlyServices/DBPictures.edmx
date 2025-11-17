@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBPictures.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DBPicturesStoreContainer">
+    <EntitySet Name="FILTEREDPICTURES" EntityType="DBPictures.Store.FILTEREDPICTURES" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PERSONNEL" EntityType="DBPictures.Store.PERSONNEL" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="FILTEREDPICTURES">
+    <Key>
+      <PropertyRef Name="EMPID" />
+      <PropertyRef Name="OBJECT" />
+      <PropertyRef Name="TYPE" />
+    </Key>
+    <Property Name="EMPID" Type="int" Nullable="false" />
+    <Property Name="OBJECT" Type="int" Nullable="false" />
+    <Property Name="TYPE" Type="int" Nullable="false" />
+    <Property Name="LNL_BLOB" Type="varbinary(max)" Nullable="true" />
+    <Property Name="LASTCHANGED" Type="datetime" Nullable="true" />
+    <Property Name="ACCEPTANCETHRESHOLD" Type="int" Nullable="true" />
+    <Property Name="BIO_BODYPART" Type="smallint" Nullable="true" />
+    <Property Name="LNL_BLOB_TXT" Type="varbinary(max)" Nullable="true" />
+    <Property Name="FORMAT_IMAGE" Type="nvarchar" Nullable="true" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="PERSONNEL">
+    <Key>
+      <PropertyRef Name="EMPID" />
+    </Key>
+    <Property Name="EMPID" Type="int" Nullable="false" />
+    <Property Name="FULLNAME" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="LNL_BLOB" Type="varbinary(max)" Nullable="true" />
+    <Property Name="CARD_NUMBER" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="STATUS" Type="nvarchar" Nullable="true" MaxLength="25" />
+    <Property Name="ACTIVATION" Type="datetime" Nullable="true" />
+    <Property Name="DEACTIVATION" Type="datetime" Nullable="true" />
+  </EntityType>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBPictures" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FILTEREDPICTURES">
+          <Key>
+            <PropertyRef Name="EMPID" />
+            <PropertyRef Name="OBJECT" />
+            <PropertyRef Name="TYPE" />
+          </Key>
+          <Property Name="EMPID" Type="Int32" Nullable="false" />
+          <Property Name="OBJECT" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="Int32" Nullable="false" />
+          <Property Name="LNL_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LASTCHANGED" Type="DateTime" Precision="3" />
+          <Property Name="ACCEPTANCETHRESHOLD" Type="Int32" />
+          <Property Name="BIO_BODYPART" Type="Int16" />
+          <Property Name="LNL_BLOB_TXT" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FORMAT_IMAGE" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PERSONNEL">
+          <Key>
+            <PropertyRef Name="EMPID" />
+          </Key>
+          <Property Name="EMPID" Type="Int32" Nullable="false" />
+          <Property Name="FULLNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LNL_BLOB" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CARD_NUMBER" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ACTIVATION" Type="DateTime" Precision="3" />
+          <Property Name="DEACTIVATION" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="DBPicturesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FILTEREDPICTURES" EntityType="Self.FILTEREDPICTURES" />
+          <EntitySet Name="PERSONNEL" EntityType="Self.PERSONNEL" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBPicturesStoreContainer" CdmEntityContainer="DBPicturesEntities">
+    <EntitySetMapping Name="FILTEREDPICTURES">
+      <EntityTypeMapping TypeName="IsTypeOf(DBPictures.FILTEREDPICTURES)">
+        <MappingFragment StoreEntitySet="FILTEREDPICTURES">
+          <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+          <ScalarProperty Name="OBJECT" ColumnName="OBJECT" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="LNL_BLOB" ColumnName="LNL_BLOB" />
+          <ScalarProperty Name="LASTCHANGED" ColumnName="LASTCHANGED" />
+          <ScalarProperty Name="ACCEPTANCETHRESHOLD" ColumnName="ACCEPTANCETHRESHOLD" />
+          <ScalarProperty Name="BIO_BODYPART" ColumnName="BIO_BODYPART" />
+          <ScalarProperty Name="LNL_BLOB_TXT" ColumnName="LNL_BLOB_TXT" />
+          <ScalarProperty Name="FORMAT_IMAGE" ColumnName="FORMAT_IMAGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERSONNEL">
+      <EntityTypeMapping TypeName="IsTypeOf(DBPictures.PERSONNEL)">
+        <MappingFragment StoreEntitySet="PERSONNEL">
+          <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+          <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+          <ScalarProperty Name="LNL_BLOB" ColumnName="LNL_BLOB" />
+          <ScalarProperty Name="CARD_NUMBER" ColumnName="CARD_NUMBER" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="ACTIVATION" ColumnName="ACTIVATION" />
+          <ScalarProperty Name="DEACTIVATION" ColumnName="DEACTIVATION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
