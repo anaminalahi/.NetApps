@@ -27,7 +27,5 @@ namespace BLOBSqlToJpeg
     
         public virtual DbSet<FILTEREDPICTURES> FILTEREDPICTURES { get; set; }
         public virtual DbSet<HALFBAD> HALFBAD { get; set; }
-        public virtual DbSet<MMOBJS> MMOBJS { get; set; }
-        public virtual DbSet<PERSONNEL> PERSONNEL { get; set; }
     }
 }

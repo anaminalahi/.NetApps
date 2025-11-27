@@ -264,7 +264,7 @@ public class CodeStringGenerator
             string.Join(", ", parameters.Select(p => "@" + p.EsqlParameterName).ToArray()),
             _code.StringBefore(", ", string.Join(", ", parameters.Select(p => p.ExecuteParameterName).ToArray())));
     }
-      
+    
     public string FunctionMethod(EdmFunction edmFunction, string modelNamespace, bool includeMergeOption)
     {
         var parameters = _typeMapper.GetParameters(edmFunction);

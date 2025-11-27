@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BLOBSqlToJpeg
 {
    public static class StringVB
-    {  
+    {
         public static string MidVB(this String str, int startIndex, int length)
         {
             if (startIndex > str.Length)
@@ -30,7 +30,7 @@ namespace BLOBSqlToJpeg
             {
                 return str.Substring(0, length);
             }
-        }        
+        }
 
         public static string RightVB(this String str, int length)
         {
