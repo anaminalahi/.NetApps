@@ -1,0 +1,1471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FacilDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="FacilDBStoreContainer">
+    <EntitySet Name="Instruments" EntityType="FacilDB.Store.Instruments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MotDePasses" EntityType="FacilDB.Store.MotDePasses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pays" EntityType="FacilDB.Store.Pays" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RepartitionGenerales" EntityType="FacilDB.Store.RepartitionGenerales" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RibIbans" EntityType="FacilDB.Store.RibIbans" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SpedAdresses" EntityType="FacilDB.Store.SpedAdresses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Spedinautes" EntityType="FacilDB.Store.Spedinautes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TacheEffectuees" EntityType="FacilDB.Store.TacheEffectuees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TypeAdresses" EntityType="FacilDB.Store.TypeAdresses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TypeDeVoies" EntityType="FacilDB.Store.TypeDeVoies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DeclarationFiscales" EntityType="FacilDB.Store.DeclarationFiscales" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DetailsDeRepartions" EntityType="FacilDB.Store.DetailsDeRepartions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Assemblees" EntityType="FacilDB.Store.Assemblees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DocumentDisponibles" EntityType="FacilDB.Store.DocumentDisponibles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Feuilles" EntityType="FacilDB.Store.Feuilles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Informations" EntityType="FacilDB.Store.Informations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Mandataires" EntityType="FacilDB.Store.Mandataires" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Mandats" EntityType="FacilDB.Store.Mandats" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TypeDeMandats" EntityType="FacilDB.Store.TypeDeMandats" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DeclarationFiscaleFinales" EntityType="FacilDB.Store.DeclarationFiscaleFinales" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InstrumentsJoues" EntityType="FacilDB.Store.InstrumentsJoues" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_SpedinauteMotDePasse" Association="FacilDB.Store.FK_SpedinauteMotDePasse">
+      <End Role="Spedinautes" EntitySet="Spedinautes" />
+      <End Role="MotDePasses" EntitySet="MotDePasses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SpedinauteTacheEffectuee" Association="FacilDB.Store.FK_SpedinauteTacheEffectuee">
+      <End Role="Spedinautes" EntitySet="Spedinautes" />
+      <End Role="TacheEffectuees" EntitySet="TacheEffectuees" />
+    </AssociationSet>
+    <AssociationSet Name="SpedinauteRibIban" Association="FacilDB.Store.SpedinauteRibIban">
+      <End Role="Spedinaute" EntitySet="Spedinautes" />
+      <End Role="RibIban" EntitySet="RibIbans" />
+    </AssociationSet>
+    <AssociationSet Name="SpedinauteSpedAdresse" Association="FacilDB.Store.SpedinauteSpedAdresse">
+      <End Role="Spedinaute" EntitySet="Spedinautes" />
+      <End Role="SpedAdresse" EntitySet="SpedAdresses" />
+    </AssociationSet>
+    <AssociationSet Name="TypeAdressesSpedAdresse" Association="FacilDB.Store.TypeAdressesSpedAdresse">
+      <End Role="TypeAdresses" EntitySet="TypeAdresses" />
+      <End Role="SpedAdresse" EntitySet="SpedAdresses" />
+    </AssociationSet>
+    <AssociationSet Name="AssembleeDocumentDisponible" Association="FacilDB.Store.AssembleeDocumentDisponible">
+      <End Role="Assemblee" EntitySet="Assemblees" />
+      <End Role="DocumentDisponible" EntitySet="DocumentDisponibles" />
+    </AssociationSet>
+    <AssociationSet Name="RepartitionConcerneDetailsDeRepartion" Association="FacilDB.Store.RepartitionConcerneDetailsDeRepartion">
+      <End Role="Repartition" EntitySet="RepartitionGenerales" />
+      <End Role="DetailsDeRepartion" EntitySet="DetailsDeRepartions" />
+    </AssociationSet>
+    <AssociationSet Name="SpedinauteDetailsDeRepartion" Association="FacilDB.Store.SpedinauteDetailsDeRepartion">
+      <End Role="Spedinaute" EntitySet="Spedinautes" />
+      <End Role="DetailsDeRepartion" EntitySet="DetailsDeRepartions" />
+    </AssociationSet>
+    <AssociationSet Name="DetailsDeRepartionFeuille" Association="FacilDB.Store.DetailsDeRepartionFeuille">
+      <End Role="DetailsDeRepartion" EntitySet="DetailsDeRepartions" />
+      <End Role="Feuille" EntitySet="Feuilles" />
+    </AssociationSet>
+    <AssociationSet Name="FeuilleInformation" Association="FacilDB.Store.FeuilleInformation">
+      <End Role="Feuille" EntitySet="Feuilles" />
+      <End Role="Information" EntitySet="Informations" />
+    </AssociationSet>
+    <AssociationSet Name="MandataireAvoirMandat" Association="FacilDB.Store.MandataireAvoirMandat">
+      <End Role="Mandataire" EntitySet="Mandataires" />
+      <End Role="Mandat" EntitySet="Mandats" />
+    </AssociationSet>
+    <AssociationSet Name="SpedinauteMandat" Association="FacilDB.Store.SpedinauteMandat">
+      <End Role="Spedinaute" EntitySet="Spedinautes" />
+      <End Role="Mandat" EntitySet="Mandats" />
+    </AssociationSet>
+    <AssociationSet Name="TypeDeMandatEtMandat" Association="FacilDB.Store.TypeDeMandatEtMandat">
+      <End Role="TypeDeMandat" EntitySet="TypeDeMandats" />
+      <End Role="Mandat" EntitySet="Mandats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentsJoues_Spedinaute" Association="FacilDB.Store.FK_InstrumentsJoues_Spedinaute">
+      <End Role="Spedinaute" EntitySet="Spedinautes" />
+      <End Role="InstrumentsJoues" EntitySet="InstrumentsJoues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InstrumentsJoues_Instrument" Association="FacilDB.Store.FK_InstrumentsJoues_Instrument">
+      <End Role="Instrument" EntitySet="Instruments" />
+      <End Role="InstrumentsJoues" EntitySet="InstrumentsJoues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaysRibIban" Association="FacilDB.Store.FK_PaysRibIban">
+      <End Role="Pays" EntitySet="Pays" />
+      <End Role="RibIban" EntitySet="RibIbans" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Instruments">
+    <Key>
+      <PropertyRef Name="id_instr" />
+    </Key>
+    <Property Name="id_instr" Type="int" Nullable="false" />
+    <Property Name="raninstr" Type="int" Nullable="true" />
+    <Property Name="lb_instr" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="no_instr" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="scapr" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="lb_scapr" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="typscapr" Type="nvarchar" Nullable="true" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="MotDePasses">
+    <Key>
+      <PropertyRef Name="IdMotDePasse" />
+    </Key>
+    <Property Name="IdMotDePasse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateDeCreation" Type="datetime" Nullable="false" />
+    <Property Name="DateDeRenvoi" Type="datetime" Nullable="false" />
+    <Property Name="Actuel" Type="bit" Nullable="false" />
+    <Property Name="PasseMot" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="IntegreDansBachON" Type="bit" Nullable="false" />
+    <Property Name="IdSpedinaute" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pays">
+    <Key>
+      <PropertyRef Name="id_pays" />
+    </Key>
+    <Property Name="id_pays" Type="varchar" Nullable="false" MaxLength="3" />
+    <Property Name="id_Web" Type="int" Nullable="true" />
+    <Property Name="lb_pays" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="co_ipd" Type="varchar" Nullable="true" MaxLength="3" />
+    <Property Name="on_ue" Type="bit" Nullable="false" />
+    <Property Name="dt_ue" Type="datetime" Nullable="true" />
+    <Property Name="co_insee" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="cfpcps" Type="float" Nullable="true" />
+    <Property Name="cfpcpa" Type="float" Nullable="true" />
+    <Property Name="cfpre" Type="float" Nullable="true" />
+    <Property Name="dt_rome" Type="datetime" Nullable="true" />
+    <Property Name="on_rome" Type="bit" Nullable="false" />
+    <Property Name="est_sepa" Type="bit" Nullable="false" />
+    <Property Name="long_iban" Type="int" Nullable="true" />
+    <Property Name="pays_iban" Type="nvarchar" Nullable="true" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="RepartitionGenerales">
+    <Key>
+      <PropertyRef Name="IdRepartition" />
+    </Key>
+    <Property Name="IdRepartition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Annee" Type="nvarchar" Nullable="false" MaxLength="4" />
+    <Property Name="MoisRepartition" Type="nvarchar" Nullable="true" MaxLength="13" />
+    <Property Name="TableDecodification" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ReglesDeRepartition" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LettreDAccompagnement" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RibIbans">
+    <Key>
+      <PropertyRef Name="IdRibIban" />
+    </Key>
+    <Property Name="IdRibIban" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titulaire" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="BicSwift" Type="nvarchar" Nullable="true" MaxLength="11" />
+    <Property Name="NumeroIBAN" Type="nvarchar" Nullable="true" MaxLength="34" />
+    <Property Name="Domiciliation" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="CodeBanque" Type="nvarchar" Nullable="true" MaxLength="5" />
+    <Property Name="Guichet" Type="nvarchar" Nullable="true" MaxLength="5" />
+    <Property Name="NumeroCompte" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="CleRIB" Type="nvarchar" Nullable="true" MaxLength="3" />
+    <Property Name="DateDeSaisie" Type="datetime" Nullable="true" />
+    <Property Name="Actuel" Type="bit" Nullable="false" />
+    <Property Name="IntegreDansBachON" Type="bit" Nullable="false" />
+    <Property Name="IdSpedinaute" Type="int" Nullable="false" />
+    <Property Name="Id_pays" Type="varchar" Nullable="true" MaxLength="3" />
+    <Property Name="NomDuFichierJoint" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="ControledByJJ" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="SpedAdresses">
+    <Key>
+      <PropertyRef Name="IdAdresse" />
+    </Key>
+    <Property Name="IdAdresse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeAdresse" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="Numero" Type="varchar" Nullable="true" MaxLength="5" />
+    <Property Name="TypeDeVoie" Type="nvarchar" Nullable="true" MaxLength="5" />
+    <Property Name="LibelleVoie" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Adresse2" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="CodePostal" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="Ville" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Bureau" Type="nvarchar" Nullable="true" MaxLength="32" />
+    <Property Name="DateSaisie" Type="datetime" Nullable="true" />
+    <Property Name="Actuelle" Type="bit" Nullable="true" />
+    <Property Name="IntegreDansBachON" Type="bit" Nullable="true" />
+    <Property Name="IdSpedinaute" Type="int" Nullable="false" />
+    <Property Name="Id_pays" Type="varchar" Nullable="true" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="Spedinautes">
+    <Key>
+      <PropertyRef Name="IdSpedinaute" />
+    </Key>
+    <Property Name="IdSpedinaute" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeDeProfil" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="Civilite" Type="nvarchar" Nullable="true" MaxLength="15" />
+    <Property Name="Prenom" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="AutrePrenom" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Nom" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="NomDeJeuneFille" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="DateDeNaissance" Type="datetime" Nullable="true" />
+    <Property Name="LieuDeNaissance" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Nationalite" Type="nvarchar" Nullable="true" MaxLength="3" />
+    <Property Name="NumeroDeMobile" Type="nvarchar" Nullable="true" MaxLength="17" />
+    <Property Name="NumeroDeFixe" Type="nvarchar" Nullable="true" MaxLength="17" />
+    <Property Name="AdresseEmail" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="PasseMot" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="NumeroIdAyant" Type="char" Nullable="false" MaxLength="6" />
+    <Property Name="IPN" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="NumeroAD" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="NumeroNA" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="ArtistePrincipalSpedidam" Type="bit" Nullable="true" DefaultValue="false" />
+    <Property Name="AccepterEmailInfos" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="Enligne" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="DernierDateDeConnexion" Type="datetime" Nullable="true" />
+    <Property Name="MotDePasseOublie" Type="bit" Nullable="true" />
+    <Property Name="CompteUsurpe" Type="bit" Nullable="true" />
+    <Property Name="DateDUsurpation" Type="datetime" Nullable="true" />
+    <Property Name="Pseudonyme1" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="Pseudonyme2" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="Pseudonyme3" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="Instrument1" Type="int" Nullable="true" />
+    <Property Name="Instrument2" Type="int" Nullable="true" />
+    <Property Name="Instrument3" Type="int" Nullable="true" />
+    <Property Name="Photo" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="IntegreDansBachON" Type="bit" Nullable="true" DefaultValue="false" />
+  </EntityType>
+  <EntityType Name="TacheEffectuees">
+    <Key>
+      <PropertyRef Name="IdTacheEffectuee" />
+    </Key>
+    <Property Name="IdTacheEffectuee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeDeTache" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="DateDuJour" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HeureCourante" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IdAdresseConcernee" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="IdModePasseConcerne" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="IdRibIbanConcerne" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="FicheConcernee" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="NomDuDevice" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="AdresseMac" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="AdresseIP" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Commentaire" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="HistoriserON" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="IdSpedinaute" Type="int" Nullable="false" />
+    <Property Name="IntegreDansBachON" Type="bit" Nullable="false" DefaultValue="false" />
+  </EntityType>
+  <EntityType Name="TypeAdresses">
+    <Key>
+      <PropertyRef Name="TypeAdresse" />
+    </Key>
+    <Property Name="TypeAdresse" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="LibelleAdresse" Type="nvarchar" Nullable="true" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="TypeDeVoies">
+    <Key>
+      <PropertyRef Name="TypeDeVoie" />
+    </Key>
+    <Property Name="TypeDeVoie" Type="nvarchar" Nullable="false" MaxLength="5" />
+    <Property Name="LbelleVoie" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DeclarationFiscales">
+    <Key>
+      <PropertyRef Name="IdDeclarationFiscale" />
+    </Key>
+    <Property Name="IdDeclarationFiscale" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Annee" Type="nvarchar" Nullable="true" MaxLength="4" />
+    <Property Name="NomDuFichier" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="NumeroIdAyant" Type="char" Nullable="true" MaxLength="6" />
+  </EntityType>
+  <EntityType Name="DetailsDeRepartions">
+    <Key>
+      <PropertyRef Name="IdDetailsDeRepartion" />
+    </Key>
+    <Property Name="IdDetailsDeRepartion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FichierDetail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdRepartition" Type="int" Nullable="false" />
+    <Property Name="IdSpedinaute" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Assemblees">
+    <Key>
+      <PropertyRef Name="IdAssemblee" />
+    </Key>
+    <Property Name="IdAssemblee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Exercice" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="DateDuJour" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Horaire" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Lieu" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Adresse" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="OrdreDuJourFichier" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="LeJourEnTexte" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Actuelle" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DocumentDisponibles">
+    <Key>
+      <PropertyRef Name="IdDocumentDisponible" />
+    </Key>
+    <Property Name="IdDocumentDisponible" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAssemblee" Type="int" Nullable="false" />
+    <Property Name="NumeroDOrdre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TitreDuSujet" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EmplacementDuFichier" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Feuilles">
+    <Key>
+      <PropertyRef Name="IdFeuille" />
+    </Key>
+    <Property Name="IdFeuille" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumeroDeFeuille" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IntituleGeneral" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdDetailsDeRepartion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Informations">
+    <Key>
+      <PropertyRef Name="IdInformation" />
+    </Key>
+    <Property Name="IdInformation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateEnregistrement" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TitreOeuvre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ArtistePrincipalOuGroupe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Compositeur" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Destinations" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdFeuille" Type="int" Nullable="false" />
+    <Property Name="NumeroDeFeuille" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mandataires">
+    <Key>
+      <PropertyRef Name="IdMandataire" />
+    </Key>
+    <Property Name="IdMandataire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prenom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AdresseEmail" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="PasseMot" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="Enligne" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="DernierDateDeConnexion" Type="datetime" Nullable="true" />
+    <Property Name="MotDePasseOublie" Type="bit" Nullable="true" />
+    <Property Name="IntegreDansBachON" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mandats">
+    <Key>
+      <PropertyRef Name="IdMandat" />
+    </Key>
+    <Property Name="IdMandat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTypeDeMandat" Type="int" Nullable="false" />
+    <Property Name="DateDeDebut" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateDeFin" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IdMandataire" Type="int" Nullable="false" />
+    <Property Name="IdSpedinaute" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="TypeDeMandats">
+    <Key>
+      <PropertyRef Name="IdTypeDeMandat" />
+    </Key>
+    <Property Name="IdTypeDeMandat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DeclarationFiscaleFinales">
+    <Key>
+      <PropertyRef Name="IdDeclarationFiscale" />
+    </Key>
+    <Property Name="IdDeclarationFiscale" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Annee" Type="nvarchar" Nullable="true" MaxLength="13" />
+    <Property Name="NomDuFichier" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="MontantNet" Type="real" Nullable="false" />
+    <Property Name="DroitsBruts" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PrelevementSocial" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CSGDeductible" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NetImposable" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NumeroIdAyant" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="IdSpedinaute" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstrumentsJoues">
+    <Key>
+      <PropertyRef Name="Spedinaute_IdSpedinaute" />
+      <PropertyRef Name="Instrument_id_instr" />
+    </Key>
+    <Property Name="Spedinaute_IdSpedinaute" Type="int" Nullable="false" />
+    <Property Name="Instrument_id_instr" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_SpedinauteMotDePasse">
+    <End Role="Spedinautes" Type="FacilDB.Store.Spedinautes" Multiplicity="1" />
+    <End Role="MotDePasses" Type="FacilDB.Store.MotDePasses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spedinautes">
+        <PropertyRef Name="IdSpedinaute" />
+      </Principal>
+      <Dependent Role="MotDePasses">
+        <PropertyRef Name="IdSpedinaute" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SpedinauteTacheEffectuee">
+    <End Role="Spedinautes" Type="FacilDB.Store.Spedinautes" Multiplicity="1" />
+    <End Role="TacheEffectuees" Type="FacilDB.Store.TacheEffectuees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spedinautes">
+        <PropertyRef Name="IdSpedinaute" />
+      </Principal>
+      <Dependent Role="TacheEffectuees">
+        <PropertyRef Name="IdSpedinaute" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SpedinauteRibIban">
+    <End Role="Spedinaute" Type="FacilDB.Store.Spedinautes" Multiplicity="1" />
+    <End Role="RibIban" Type="FacilDB.Store.RibIbans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spedinaute">
+        <PropertyRef Name="IdSpedinaute" />
+      </Principal>
+      <Dependent Role="RibIban">
+        <PropertyRef Name="IdSpedinaute" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SpedinauteSpedAdresse">
+    <End Role="Spedinaute" Type="FacilDB.Store.Spedinautes" Multiplicity="1" />
+    <End Role="SpedAdresse" Type="FacilDB.Store.SpedAdresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spedinaute">
+        <PropertyRef Name="IdSpedinaute" />
+      </Principal>
+      <Dependent Role="SpedAdresse">
+        <PropertyRef Name="IdSpedinaute" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TypeAdressesSpedAdresse">
+    <End Role="TypeAdresses" Type="FacilDB.Store.TypeAdresses" Multiplicity="1" />
+    <End Role="SpedAdresse" Type="FacilDB.Store.SpedAdresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeAdresses">
+        <PropertyRef Name="TypeAdresse" />
+      </Principal>
+      <Dependent Role="SpedAdresse">
+        <PropertyRef Name="TypeAdresse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AssembleeDocumentDisponible">
+    <End Role="Assemblee" Type="FacilDB.Store.Assemblees" Multiplicity="1" />
+    <End Role="DocumentDisponible" Type="FacilDB.Store.DocumentDisponibles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assemblee">
+        <PropertyRef Name="IdAssemblee" />
+      </Principal>
+      <Dependent Role="DocumentDisponible">
+        <PropertyRef Name="IdAssemblee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RepartitionConcerneDetailsDeRepartion">
+    <End Role="Repartition" Type="FacilDB.Store.RepartitionGenerales" Multiplicity="1" />
+    <End Role="DetailsDeRepartion" Type="FacilDB.Store.DetailsDeRepartions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Repartition">
+        <PropertyRef Name="IdRepartition" />
+      </Principal>
+      <Dependent Role="DetailsDeRepartion">
+        <PropertyRef Name="IdRepartition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SpedinauteDetailsDeRepartion">
+    <End Role="Spedinaute" Type="FacilDB.Store.Spedinautes" Multiplicity="1" />
+    <End Role="DetailsDeRepartion" Type="FacilDB.Store.DetailsDeRepartions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spedinaute">
+        <PropertyRef Name="IdSpedinaute" />
+      </Principal>
+      <Dependent Role="DetailsDeRepartion">
+        <PropertyRef Name="IdSpedinaute" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DetailsDeRepartionFeuille">
+    <End Role="DetailsDeRepartion" Type="FacilDB.Store.DetailsDeRepartions" Multiplicity="1" />
+    <End Role="Feuille" Type="FacilDB.Store.Feuilles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DetailsDeRepartion">
+        <PropertyRef Name="IdDetailsDeRepartion" />
+      </Principal>
+      <Dependent Role="Feuille">
+        <PropertyRef Name="IdDetailsDeRepartion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FeuilleInformation">
+    <End Role="Feuille" Type="FacilDB.Store.Feuilles" Multiplicity="1" />
+    <End Role="Information" Type="FacilDB.Store.Informations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feuille">
+        <PropertyRef Name="IdFeuille" />
+      </Principal>
+      <Dependent Role="Information">
+        <PropertyRef Name="IdFeuille" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MandataireAvoirMandat">
+    <End Role="Mandataire" Type="FacilDB.Store.Mandataires" Multiplicity="1" />
+    <End Role="Mandat" Type="FacilDB.Store.Mandats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mandataire">
+        <PropertyRef Name="IdMandataire" />
+      </Principal>
+      <Dependent Role="Mandat">
+        <PropertyRef Name="IdMandataire" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SpedinauteMandat">
+    <End Role="Spedinaute" Type="FacilDB.Store.Spedinautes" Multiplicity="0..1" />
+    <End Role="Mandat" Type="FacilDB.Store.Mandats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spedinaute">
+        <PropertyRef Name="IdSpedinaute" />
+      </Principal>
+      <Dependent Role="Mandat">
+        <PropertyRef Name="IdSpedinaute" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TypeDeMandatEtMandat">
+    <End Role="TypeDeMandat" Type="FacilDB.Store.TypeDeMandats" Multiplicity="1" />
+    <End Role="Mandat" Type="FacilDB.Store.Mandats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeDeMandat">
+        <PropertyRef Name="IdTypeDeMandat" />
+      </Principal>
+      <Dependent Role="Mandat">
+        <PropertyRef Name="IdTypeDeMandat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaysRibIban">
+    <End Role="Pays" Type="FacilDB.Store.Pays" Multiplicity="0..1" />
+    <End Role="RibIban" Type="FacilDB.Store.RibIbans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pays">
+        <PropertyRef Name="id_pays" />
+      </Principal>
+      <Dependent Role="RibIban">
+        <PropertyRef Name="Id_pays" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentsJoues_Spedinaute">
+    <End Role="Spedinaute" Type="FacilDB.Store.Spedinautes" Multiplicity="1" />
+    <End Role="InstrumentsJoues" Type="FacilDB.Store.InstrumentsJoues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Spedinaute">
+        <PropertyRef Name="IdSpedinaute" />
+      </Principal>
+      <Dependent Role="InstrumentsJoues">
+        <PropertyRef Name="Spedinaute_IdSpedinaute" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InstrumentsJoues_Instrument">
+    <End Role="InstrumentsJoues" Type="FacilDB.Store.InstrumentsJoues" Multiplicity="*" />
+    <End Role="Instrument" Type="FacilDB.Store.Instruments" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Instrument">
+        <PropertyRef Name="id_instr" />
+      </Principal>
+      <Dependent Role="InstrumentsJoues">
+        <PropertyRef Name="Instrument_id_instr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="FacilDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="FacilDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Instruments" EntityType="FacilDB.Instrument" />
+          <EntitySet Name="MotDePasses" EntityType="FacilDB.MotDePasse" />
+          <EntitySet Name="Pays" EntityType="FacilDB.Pays" />
+          <EntitySet Name="RepartitionGenerales" EntityType="FacilDB.RepartitionGenerale" />
+          <EntitySet Name="RibIbans" EntityType="FacilDB.RibIban" />
+          <EntitySet Name="SpedAdresses" EntityType="FacilDB.SpedAdresse" />
+          <EntitySet Name="Spedinautes" EntityType="FacilDB.Spedinaute" />
+          <EntitySet Name="TacheEffectuees" EntityType="FacilDB.TacheEffectuee" />
+          <EntitySet Name="TypeAdresses" EntityType="FacilDB.TypeAdresses" />
+          <EntitySet Name="TypeDeVoies" EntityType="FacilDB.TypeDeVoies" />
+          <AssociationSet Name="FK_SpedinauteMotDePasse" Association="FacilDB.FK_SpedinauteMotDePasse">
+            <End Role="Spedinautes" EntitySet="Spedinautes" />
+            <End Role="MotDePasses" EntitySet="MotDePasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpedinauteTacheEffectuee" Association="FacilDB.FK_SpedinauteTacheEffectuee">
+            <End Role="Spedinautes" EntitySet="Spedinautes" />
+            <End Role="TacheEffectuees" EntitySet="TacheEffectuees" />
+          </AssociationSet>
+          <AssociationSet Name="SpedinauteRibIban" Association="FacilDB.SpedinauteRibIban">
+            <End Role="Spedinaute" EntitySet="Spedinautes" />
+            <End Role="RibIban" EntitySet="RibIbans" />
+          </AssociationSet>
+          <AssociationSet Name="SpedinauteSpedAdresse" Association="FacilDB.SpedinauteSpedAdresse">
+            <End Role="Spedinaute" EntitySet="Spedinautes" />
+            <End Role="SpedAdresse" EntitySet="SpedAdresses" />
+          </AssociationSet>
+          <AssociationSet Name="TypeAdressesSpedAdresse" Association="FacilDB.TypeAdressesSpedAdresse">
+            <End Role="TypeAdresses" EntitySet="TypeAdresses" />
+            <End Role="SpedAdresse" EntitySet="SpedAdresses" />
+          </AssociationSet>
+          <EntitySet Name="DeclarationFiscales" EntityType="FacilDB.DeclarationFiscale" />
+          <EntitySet Name="DetailsDeRepartions" EntityType="FacilDB.DetailsDeRepartion" />
+          <EntitySet Name="Assemblees" EntityType="FacilDB.Assemblee" />
+          <EntitySet Name="DocumentDisponibles" EntityType="FacilDB.DocumentDisponible" />
+          <AssociationSet Name="AssembleeDocumentDisponible" Association="FacilDB.AssembleeDocumentDisponible">
+            <End Role="Assemblee" EntitySet="Assemblees" />
+            <End Role="DocumentDisponible" EntitySet="DocumentDisponibles" />
+          </AssociationSet>
+          <EntitySet Name="Feuilles" EntityType="FacilDB.Feuille" />
+          <EntitySet Name="Informations" EntityType="FacilDB.Information" />
+          <AssociationSet Name="RepartitionConcerneDetailsDeRepartion" Association="FacilDB.RepartitionConcerneDetailsDeRepartion">
+            <End Role="Repartition" EntitySet="RepartitionGenerales" />
+            <End Role="DetailsDeRepartion" EntitySet="DetailsDeRepartions" />
+          </AssociationSet>
+          <AssociationSet Name="SpedinauteDetailsDeRepartion" Association="FacilDB.SpedinauteDetailsDeRepartion">
+            <End Role="Spedinaute" EntitySet="Spedinautes" />
+            <End Role="DetailsDeRepartion" EntitySet="DetailsDeRepartions" />
+          </AssociationSet>
+          <AssociationSet Name="DetailsDeRepartionFeuille" Association="FacilDB.DetailsDeRepartionFeuille">
+            <End Role="DetailsDeRepartion" EntitySet="DetailsDeRepartions" />
+            <End Role="Feuille" EntitySet="Feuilles" />
+          </AssociationSet>
+          <AssociationSet Name="FeuilleInformation" Association="FacilDB.FeuilleInformation">
+            <End Role="Feuille" EntitySet="Feuilles" />
+            <End Role="Information" EntitySet="Informations" />
+          </AssociationSet>
+          <EntitySet Name="Mandataires" EntityType="FacilDB.Mandataire" />
+          <EntitySet Name="Mandats" EntityType="FacilDB.Mandat" />
+          <AssociationSet Name="MandataireAvoirMandat" Association="FacilDB.MandataireAvoirMandat">
+            <End Role="Mandataire" EntitySet="Mandataires" />
+            <End Role="Mandat" EntitySet="Mandats" />
+          </AssociationSet>
+          <AssociationSet Name="SpedinauteMandat" Association="FacilDB.SpedinauteMandat">
+            <End Role="Spedinaute" EntitySet="Spedinautes" />
+            <End Role="Mandat" EntitySet="Mandats" />
+          </AssociationSet>
+          <EntitySet Name="TypeDeMandats" EntityType="FacilDB.TypeDeMandat" />
+          <AssociationSet Name="TypeDeMandatEtMandat" Association="FacilDB.TypeDeMandatEtMandat">
+            <End Role="TypeDeMandat" EntitySet="TypeDeMandats" />
+            <End Role="Mandat" EntitySet="Mandats" />
+          </AssociationSet>
+          <AssociationSet Name="InstrumentsJoues" Association="FacilDB.InstrumentsJoues">
+            <End Role="Spedinaute" EntitySet="Spedinautes" />
+            <End Role="Instrument" EntitySet="Instruments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaysRibIban" Association="FacilDB.FK_PaysRibIban">
+            <End Role="Pays" EntitySet="Pays" />
+            <End Role="RibIban" EntitySet="RibIbans" />
+          </AssociationSet>
+          <EntitySet Name="DeclarationFiscaleFinales" EntityType="FacilDB.DeclarationFiscaleFinale" />
+        </EntityContainer>
+        <EntityType Name="Instrument">
+          <Key>
+            <PropertyRef Name="id_instr" />
+          </Key>
+          <Property Name="id_instr" Type="Int32" Nullable="false" />
+          <Property Name="raninstr" Type="Int32" />
+          <Property Name="lb_instr" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="no_instr" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="scapr" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="lb_scapr" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="typscapr" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Spedinaute" Relationship="FacilDB.InstrumentsJoues" FromRole="Instrument" ToRole="Spedinaute" />
+        </EntityType>
+        <EntityType Name="MotDePasse">
+          <Key>
+            <PropertyRef Name="IdMotDePasse" />
+          </Key>
+          <Property Name="IdMotDePasse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateDeCreation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateDeRenvoi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Actuel" Type="Boolean" Nullable="false" />
+          <Property Name="PasseMot" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="IntegreDansBachON" Type="Boolean" Nullable="false" />
+          <Property Name="IdSpedinaute" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Spedinautes" Relationship="FacilDB.FK_SpedinauteMotDePasse" FromRole="MotDePasses" ToRole="Spedinautes" />
+        </EntityType>
+        <EntityType Name="Pays">
+          <Key>
+            <PropertyRef Name="id_pays" />
+          </Key>
+          <Property Name="id_pays" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="id_Web" Type="Int32" />
+          <Property Name="lb_pays" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="co_ipd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="on_ue" Type="Boolean" Nullable="false" />
+          <Property Name="dt_ue" Type="DateTime" Precision="3" />
+          <Property Name="co_insee" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="cfpcps" Type="Double" />
+          <Property Name="cfpcpa" Type="Double" />
+          <Property Name="cfpre" Type="Double" />
+          <Property Name="dt_rome" Type="DateTime" Precision="3" />
+          <Property Name="on_rome" Type="Boolean" Nullable="false" />
+          <Property Name="est_sepa" Type="Boolean" Nullable="false" />
+          <Property Name="long_iban" Type="Int32" />
+          <Property Name="pays_iban" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RibIbans" Relationship="FacilDB.FK_PaysRibIban" FromRole="Pays" ToRole="RibIban" />
+        </EntityType>
+        <EntityType Name="RepartitionGenerale">
+          <Key>
+            <PropertyRef Name="IdRepartition" />
+          </Key>
+          <Property Name="IdRepartition" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Annee" Type="String" Nullable="false" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="MoisRepartition" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="TableDecodification" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ReglesDeRepartition" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LettreDAccompagnement" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DetailsDeRepartion" Relationship="FacilDB.RepartitionConcerneDetailsDeRepartion" FromRole="Repartition" ToRole="DetailsDeRepartion" />
+        </EntityType>
+        <EntityType Name="RibIban">
+          <Key>
+            <PropertyRef Name="IdRibIban" />
+          </Key>
+          <Property Name="IdRibIban" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulaire" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="BicSwift" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="NumeroIBAN" Type="String" MaxLength="34" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Domiciliation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="CodeBanque" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Guichet" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="NumeroCompte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="CleRIB" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="DateDeSaisie" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="Actuel" Type="Boolean" Nullable="false" />
+          <Property Name="IntegreDansBachON" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Spedinaute" Relationship="FacilDB.SpedinauteRibIban" FromRole="RibIban" ToRole="Spedinaute" />
+          <Property Name="IdSpedinaute" Type="Int32" Nullable="false" />
+          <Property Name="Id_pays" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pays" Relationship="FacilDB.FK_PaysRibIban" FromRole="RibIban" ToRole="Pays" />
+          <Property Name="NomDuFichierJoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ControledByJJ" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SpedAdresse">
+          <Key>
+            <PropertyRef Name="IdAdresse" />
+          </Key>
+          <Property Name="IdAdresse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeAdresse" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Numero" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="true" />
+          <Property Name="TypeDeVoie" Nullable="true" MaxLength="5" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="LibelleVoie" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Adresse2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="CodePostal" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Bureau" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="DateSaisie" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="Actuelle" Type="Boolean" />
+          <Property Name="IntegreDansBachON" Type="Boolean" />
+          <NavigationProperty Name="Spedinaute" Relationship="FacilDB.SpedinauteSpedAdresse" FromRole="SpedAdresse" ToRole="Spedinaute" />
+          <Property Name="IdSpedinaute" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TypeAdresses" Relationship="FacilDB.TypeAdressesSpedAdresse" FromRole="SpedAdresse" ToRole="TypeAdresses" />
+          <Property Name="Id_pays" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          </EntityType>
+        <EntityType Name="Spedinaute">
+          <Key>
+            <PropertyRef Name="IdSpedinaute" />
+          </Key>
+          <Property Name="IdSpedinaute" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeDeProfil" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Civilite" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="AutrePrenom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="NomDeJeuneFille" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="DateDeNaissance" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="LieuDeNaissance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Nationalite" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="NumeroDeMobile" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="NumeroDeFixe" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="AdresseEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="PasseMot" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="NumeroIdAyant" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IPN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="NumeroAD" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="NumeroNA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="ArtistePrincipalSpedidam" Type="Boolean" Nullable="true" DefaultValue="False" />
+          <Property Name="AccepterEmailInfos" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Enligne" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="DernierDateDeConnexion" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="MotDePasseOublie" Type="Boolean" Nullable="true" />
+          <Property Name="CompteUsurpe" Type="Boolean" Nullable="true" />
+          <Property Name="DateDUsurpation" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="Pseudonyme1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" ConcurrencyMode="None" Nullable="true" />
+          <Property Name="Pseudonyme2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Pseudonyme3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Instrument1" Type="Int32" Nullable="true" />
+          <Property Name="Instrument2" Type="Int32" Nullable="true" />
+          <Property Name="Instrument3" Type="Int32" Nullable="true" />
+          <Property Name="Photo" Type="String" FixedLength="false" Unicode="true" MaxLength="255" Nullable="true" />
+          <Property Name="IntegreDansBachON" Type="Boolean" Nullable="true" DefaultValue="False" />
+          <NavigationProperty Name="MotDePasses" Relationship="FacilDB.FK_SpedinauteMotDePasse" FromRole="Spedinautes" ToRole="MotDePasses" />
+          <NavigationProperty Name="TacheEffectuees" Relationship="FacilDB.FK_SpedinauteTacheEffectuee" FromRole="Spedinautes" ToRole="TacheEffectuees" />
+          <NavigationProperty Name="RibIban" Relationship="FacilDB.SpedinauteRibIban" FromRole="Spedinaute" ToRole="RibIban" />
+          <NavigationProperty Name="SpedAdresse" Relationship="FacilDB.SpedinauteSpedAdresse" FromRole="Spedinaute" ToRole="SpedAdresse" />
+          <NavigationProperty Name="DetailsDeRepartion" Relationship="FacilDB.SpedinauteDetailsDeRepartion" FromRole="Spedinaute" ToRole="DetailsDeRepartion" />
+          <NavigationProperty Name="Mandat" Relationship="FacilDB.SpedinauteMandat" FromRole="Spedinaute" ToRole="Mandat" />
+          <NavigationProperty Name="Instrument" Relationship="FacilDB.InstrumentsJoues" FromRole="Spedinaute" ToRole="Instrument" />
+        </EntityType>
+        <EntityType Name="TacheEffectuee">
+          <Key>
+            <PropertyRef Name="IdTacheEffectuee" />
+          </Key>
+          <Property Name="IdTacheEffectuee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeDeTache" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="DateDuJour" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HeureCourante" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="IdAdresseConcernee" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IdModePasseConcerne" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IdRibIbanConcerne" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="FicheConcernee" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="NomDuDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="AdresseMac" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="AdresseIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Commentaire" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="HistoriserON" Type="Boolean" Nullable="false" DefaultValue="False" />
+          <Property Name="IdSpedinaute" Type="Int32" Nullable="false" />
+          <Property Name="IntegreDansBachON" Type="Boolean" Nullable="false" DefaultValue="False" />
+          <NavigationProperty Name="Spedinautes" Relationship="FacilDB.FK_SpedinauteTacheEffectuee" FromRole="TacheEffectuees" ToRole="Spedinautes" />
+        </EntityType>
+        <EntityType Name="TypeAdresses">
+          <Key>
+            <PropertyRef Name="TypeAdresse" />
+          </Key>
+          <Property Name="TypeAdresse" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="LibelleAdresse" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SpedAdresse" Relationship="FacilDB.TypeAdressesSpedAdresse" FromRole="TypeAdresses" ToRole="SpedAdresse" />
+        </EntityType>
+        <EntityType Name="TypeDeVoies">
+          <Key>
+            <PropertyRef Name="TypeDeVoie" />
+          </Key>
+          <Property Name="TypeDeVoie" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="LbelleVoie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_SpedinauteMotDePasse">
+          <End Type="FacilDB.Spedinaute" Role="Spedinautes" Multiplicity="1" />
+          <End Type="FacilDB.MotDePasse" Role="MotDePasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spedinautes">
+              <PropertyRef Name="IdSpedinaute" />
+            </Principal>
+            <Dependent Role="MotDePasses">
+              <PropertyRef Name="IdSpedinaute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpedinauteTacheEffectuee">
+          <End Type="FacilDB.Spedinaute" Role="Spedinautes" Multiplicity="1" />
+          <End Type="FacilDB.TacheEffectuee" Role="TacheEffectuees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spedinautes">
+              <PropertyRef Name="IdSpedinaute" />
+            </Principal>
+            <Dependent Role="TacheEffectuees">
+              <PropertyRef Name="IdSpedinaute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpedinauteRibIban">
+          <End Type="FacilDB.Spedinaute" Role="Spedinaute" Multiplicity="1" />
+          <End Type="FacilDB.RibIban" Role="RibIban" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spedinaute">
+              <PropertyRef Name="IdSpedinaute" />
+            </Principal>
+            <Dependent Role="RibIban">
+              <PropertyRef Name="IdSpedinaute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpedinauteSpedAdresse">
+          <End Type="FacilDB.Spedinaute" Role="Spedinaute" Multiplicity="1" />
+          <End Type="FacilDB.SpedAdresse" Role="SpedAdresse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spedinaute">
+              <PropertyRef Name="IdSpedinaute" />
+            </Principal>
+            <Dependent Role="SpedAdresse">
+              <PropertyRef Name="IdSpedinaute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TypeAdressesSpedAdresse">
+          <End Type="FacilDB.TypeAdresses" Role="TypeAdresses" Multiplicity="1" />
+          <End Type="FacilDB.SpedAdresse" Role="SpedAdresse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeAdresses">
+              <PropertyRef Name="TypeAdresse" />
+            </Principal>
+            <Dependent Role="SpedAdresse">
+              <PropertyRef Name="TypeAdresse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DeclarationFiscale">
+          <Key>
+            <PropertyRef Name="IdDeclarationFiscale" />
+          </Key>
+          <Property Name="IdDeclarationFiscale" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Annee" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="NomDuFichier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroIdAyant" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DetailsDeRepartion">
+          <Key>
+            <PropertyRef Name="IdDetailsDeRepartion" />
+          </Key>
+          <Property Name="IdDetailsDeRepartion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FichierDetail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Repartition" Relationship="FacilDB.RepartitionConcerneDetailsDeRepartion" FromRole="DetailsDeRepartion" ToRole="Repartition" />
+          <Property Name="IdRepartition" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Spedinaute" Relationship="FacilDB.SpedinauteDetailsDeRepartion" FromRole="DetailsDeRepartion" ToRole="Spedinaute" />
+          <Property Name="IdSpedinaute" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Feuille" Relationship="FacilDB.DetailsDeRepartionFeuille" FromRole="DetailsDeRepartion" ToRole="Feuille" />
+        </EntityType>
+        <EntityType Name="Assemblee">
+          <Key>
+            <PropertyRef Name="IdAssemblee" />
+          </Key>
+          <Property Name="IdAssemblee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Exercice" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateDuJour" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Horaire" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Lieu" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Adresse" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="OrdreDuJourFichier" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DocumentDisponible" Relationship="FacilDB.AssembleeDocumentDisponible" FromRole="Assemblee" ToRole="DocumentDisponible" />
+          <Property Name="LeJourEnTexte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Actuelle" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DocumentDisponible">
+          <Key>
+            <PropertyRef Name="IdDocumentDisponible" />
+          </Key>
+          <Property Name="IdDocumentDisponible" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Assemblee" Relationship="FacilDB.AssembleeDocumentDisponible" FromRole="DocumentDisponible" ToRole="Assemblee" />
+          <Property Name="IdAssemblee" Type="Int32" Nullable="false" />
+          <Property Name="NumeroDOrdre" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TitreDuSujet" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="EmplacementDuFichier" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="AssembleeDocumentDisponible">
+          <End Type="FacilDB.Assemblee" Role="Assemblee" Multiplicity="1" />
+          <End Type="FacilDB.DocumentDisponible" Role="DocumentDisponible" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Assemblee">
+              <PropertyRef Name="IdAssemblee" />
+            </Principal>
+            <Dependent Role="DocumentDisponible">
+              <PropertyRef Name="IdAssemblee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Feuille">
+          <Key>
+            <PropertyRef Name="IdFeuille" />
+          </Key>
+          <Property Name="IdFeuille" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroDeFeuille" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="IntituleGeneral" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DetailsDeRepartion" Relationship="FacilDB.DetailsDeRepartionFeuille" FromRole="Feuille" ToRole="DetailsDeRepartion" />
+          <Property Name="IdDetailsDeRepartion" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Information" Relationship="FacilDB.FeuilleInformation" FromRole="Feuille" ToRole="Information" />
+        </EntityType>
+        <EntityType Name="Information">
+          <Key>
+            <PropertyRef Name="IdInformation" />
+          </Key>
+          <Property Name="IdInformation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateEnregistrement" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TitreOeuvre" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ArtistePrincipalOuGroupe" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Compositeur" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Destinations" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Feuille" Relationship="FacilDB.FeuilleInformation" FromRole="Information" ToRole="Feuille" />
+          <Property Name="IdFeuille" Type="Int32" Nullable="false" />
+          <Property Name="NumeroDeFeuille" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="RepartitionConcerneDetailsDeRepartion">
+          <End Type="FacilDB.RepartitionGenerale" Role="Repartition" Multiplicity="1" />
+          <End Type="FacilDB.DetailsDeRepartion" Role="DetailsDeRepartion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Repartition">
+              <PropertyRef Name="IdRepartition" />
+            </Principal>
+            <Dependent Role="DetailsDeRepartion">
+              <PropertyRef Name="IdRepartition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpedinauteDetailsDeRepartion">
+          <End Type="FacilDB.Spedinaute" Role="Spedinaute" Multiplicity="1" />
+          <End Type="FacilDB.DetailsDeRepartion" Role="DetailsDeRepartion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spedinaute">
+              <PropertyRef Name="IdSpedinaute" />
+            </Principal>
+            <Dependent Role="DetailsDeRepartion">
+              <PropertyRef Name="IdSpedinaute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DetailsDeRepartionFeuille">
+          <End Type="FacilDB.DetailsDeRepartion" Role="DetailsDeRepartion" Multiplicity="1" />
+          <End Type="FacilDB.Feuille" Role="Feuille" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DetailsDeRepartion">
+              <PropertyRef Name="IdDetailsDeRepartion" />
+            </Principal>
+            <Dependent Role="Feuille">
+              <PropertyRef Name="IdDetailsDeRepartion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FeuilleInformation">
+          <End Type="FacilDB.Feuille" Role="Feuille" Multiplicity="1" />
+          <End Type="FacilDB.Information" Role="Information" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feuille">
+              <PropertyRef Name="IdFeuille" />
+            </Principal>
+            <Dependent Role="Information">
+              <PropertyRef Name="IdFeuille" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Mandataire">
+          <Key>
+            <PropertyRef Name="IdMandataire" />
+          </Key>
+          <Property Name="IdMandataire" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Mandat" Relationship="FacilDB.MandataireAvoirMandat" FromRole="Mandataire" ToRole="Mandat" />
+          <Property Name="AdresseEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PasseMot" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Enligne" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="DernierDateDeConnexion" Type="DateTime" Precision="3" />
+          <Property Name="MotDePasseOublie" Type="Boolean" />
+          <Property Name="IntegreDansBachON" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mandat">
+          <Key>
+            <PropertyRef Name="IdMandat" />
+          </Key>
+          <Property Name="IdMandat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTypeDeMandat" Type="Int32" Nullable="false" />
+          <Property Name="DateDeDebut" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateDeFin" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Mandataire" Relationship="FacilDB.MandataireAvoirMandat" FromRole="Mandat" ToRole="Mandataire" />
+          <Property Name="IdMandataire" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Spedinaute" Relationship="FacilDB.SpedinauteMandat" FromRole="Mandat" ToRole="Spedinaute" />
+          <Property Name="IdSpedinaute" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="TypeDeMandat" Relationship="FacilDB.TypeDeMandatEtMandat" FromRole="Mandat" ToRole="TypeDeMandat" />
+        </EntityType>
+        <Association Name="MandataireAvoirMandat">
+          <End Type="FacilDB.Mandataire" Role="Mandataire" Multiplicity="1" />
+          <End Type="FacilDB.Mandat" Role="Mandat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandataire">
+              <PropertyRef Name="IdMandataire" />
+            </Principal>
+            <Dependent Role="Mandat">
+              <PropertyRef Name="IdMandataire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpedinauteMandat">
+          <End Type="FacilDB.Spedinaute" Role="Spedinaute" Multiplicity="0..1" />
+          <End Type="FacilDB.Mandat" Role="Mandat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spedinaute">
+              <PropertyRef Name="IdSpedinaute" />
+            </Principal>
+            <Dependent Role="Mandat">
+              <PropertyRef Name="IdSpedinaute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TypeDeMandat">
+          <Key>
+            <PropertyRef Name="IdTypeDeMandat" />
+          </Key>
+          <Property Name="IdTypeDeMandat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Mandat" Relationship="FacilDB.TypeDeMandatEtMandat" FromRole="TypeDeMandat" ToRole="Mandat" />
+        </EntityType>
+        <Association Name="TypeDeMandatEtMandat">
+          <End Type="FacilDB.TypeDeMandat" Role="TypeDeMandat" Multiplicity="1" />
+          <End Type="FacilDB.Mandat" Role="Mandat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeDeMandat">
+              <PropertyRef Name="IdTypeDeMandat" />
+            </Principal>
+            <Dependent Role="Mandat">
+              <PropertyRef Name="IdTypeDeMandat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InstrumentsJoues">
+          <End Type="FacilDB.Spedinaute" Role="Spedinaute" Multiplicity="*" />
+          <End Type="FacilDB.Instrument" Role="Instrument" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_PaysRibIban">
+          <End Type="FacilDB.Pays" Role="Pays" Multiplicity="0..1" />
+          <End Type="FacilDB.RibIban" Role="RibIban" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pays">
+              <PropertyRef Name="id_pays" />
+            </Principal>
+            <Dependent Role="RibIban">
+              <PropertyRef Name="Id_pays" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DeclarationFiscaleFinale">
+          <Key>
+            <PropertyRef Name="IdDeclarationFiscale" />
+          </Key>
+          <Property Name="IdDeclarationFiscale" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Annee" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="NomDuFichier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MontantNet" Type="Single" Nullable="false" />
+          <Property Name="DroitsBruts" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrelevementSocial" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CSGDeductible" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NetImposable" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroIdAyant" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="IdSpedinaute" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FacilDBStoreContainer" CdmEntityContainer="FacilDBEntities">
+    <EntitySetMapping Name="Instruments">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.Instrument)">
+        <MappingFragment StoreEntitySet="Instruments">
+          <ScalarProperty Name="id_instr" ColumnName="id_instr" />
+          <ScalarProperty Name="raninstr" ColumnName="raninstr" />
+          <ScalarProperty Name="lb_instr" ColumnName="lb_instr" />
+          <ScalarProperty Name="no_instr" ColumnName="no_instr" />
+          <ScalarProperty Name="scapr" ColumnName="scapr" />
+          <ScalarProperty Name="lb_scapr" ColumnName="lb_scapr" />
+          <ScalarProperty Name="typscapr" ColumnName="typscapr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MotDePasses">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.MotDePasse)">
+        <MappingFragment StoreEntitySet="MotDePasses">
+          <ScalarProperty Name="IdMotDePasse" ColumnName="IdMotDePasse" />
+          <ScalarProperty Name="DateDeCreation" ColumnName="DateDeCreation" />
+          <ScalarProperty Name="DateDeRenvoi" ColumnName="DateDeRenvoi" />
+          <ScalarProperty Name="Actuel" ColumnName="Actuel" />
+          <ScalarProperty Name="PasseMot" ColumnName="PasseMot" />
+          <ScalarProperty Name="IntegreDansBachON" ColumnName="IntegreDansBachON" />
+          <ScalarProperty Name="IdSpedinaute" ColumnName="IdSpedinaute" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pays">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.Pays)">
+        <MappingFragment StoreEntitySet="Pays">
+          <ScalarProperty Name="id_pays" ColumnName="id_pays" />
+          <ScalarProperty Name="id_Web" ColumnName="id_Web" />
+          <ScalarProperty Name="lb_pays" ColumnName="lb_pays" />
+          <ScalarProperty Name="co_ipd" ColumnName="co_ipd" />
+          <ScalarProperty Name="on_ue" ColumnName="on_ue" />
+          <ScalarProperty Name="dt_ue" ColumnName="dt_ue" />
+          <ScalarProperty Name="co_insee" ColumnName="co_insee" />
+          <ScalarProperty Name="cfpcps" ColumnName="cfpcps" />
+          <ScalarProperty Name="cfpcpa" ColumnName="cfpcpa" />
+          <ScalarProperty Name="cfpre" ColumnName="cfpre" />
+          <ScalarProperty Name="dt_rome" ColumnName="dt_rome" />
+          <ScalarProperty Name="on_rome" ColumnName="on_rome" />
+          <ScalarProperty Name="est_sepa" ColumnName="est_sepa" />
+          <ScalarProperty Name="long_iban" ColumnName="long_iban" />
+          <ScalarProperty Name="pays_iban" ColumnName="pays_iban" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RepartitionGenerales">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.RepartitionGenerale)">
+        <MappingFragment StoreEntitySet="RepartitionGenerales">
+          <ScalarProperty Name="IdRepartition" ColumnName="IdRepartition" />
+          <ScalarProperty Name="Annee" ColumnName="Annee" />
+          <ScalarProperty Name="MoisRepartition" ColumnName="MoisRepartition" />
+          <ScalarProperty Name="TableDecodification" ColumnName="TableDecodification" />
+          <ScalarProperty Name="ReglesDeRepartition" ColumnName="ReglesDeRepartition" />
+          <ScalarProperty Name="LettreDAccompagnement" ColumnName="LettreDAccompagnement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RibIbans">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.RibIban)">
+        <MappingFragment StoreEntitySet="RibIbans">
+          <ScalarProperty Name="IdRibIban" ColumnName="IdRibIban" />
+          <ScalarProperty Name="Titulaire" ColumnName="Titulaire" />
+          <ScalarProperty Name="BicSwift" ColumnName="BicSwift" />
+          <ScalarProperty Name="NumeroIBAN" ColumnName="NumeroIBAN" />
+          <ScalarProperty Name="Domiciliation" ColumnName="Domiciliation" />
+          <ScalarProperty Name="CodeBanque" ColumnName="CodeBanque" />
+          <ScalarProperty Name="Guichet" ColumnName="Guichet" />
+          <ScalarProperty Name="NumeroCompte" ColumnName="NumeroCompte" />
+          <ScalarProperty Name="CleRIB" ColumnName="CleRIB" />
+          <ScalarProperty Name="DateDeSaisie" ColumnName="DateDeSaisie" />
+          <ScalarProperty Name="Actuel" ColumnName="Actuel" />
+          <ScalarProperty Name="IntegreDansBachON" ColumnName="IntegreDansBachON" />
+          <ScalarProperty Name="IdSpedinaute" ColumnName="IdSpedinaute" />
+          <ScalarProperty Name="Id_pays" ColumnName="Id_pays" />
+          <ScalarProperty Name="NomDuFichierJoint" ColumnName="NomDuFichierJoint" />
+          <ScalarProperty Name="ControledByJJ" ColumnName="ControledByJJ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpedAdresses">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.SpedAdresse)">
+        <MappingFragment StoreEntitySet="SpedAdresses">
+          <ScalarProperty Name="IdAdresse" ColumnName="IdAdresse" />
+          <ScalarProperty Name="TypeAdresse" ColumnName="TypeAdresse" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="TypeDeVoie" ColumnName="TypeDeVoie" />
+          <ScalarProperty Name="LibelleVoie" ColumnName="LibelleVoie" />
+          <ScalarProperty Name="Adresse2" ColumnName="Adresse2" />
+          <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Bureau" ColumnName="Bureau" />
+          <ScalarProperty Name="DateSaisie" ColumnName="DateSaisie" />
+          <ScalarProperty Name="Actuelle" ColumnName="Actuelle" />
+          <ScalarProperty Name="IntegreDansBachON" ColumnName="IntegreDansBachON" />
+          <ScalarProperty Name="IdSpedinaute" ColumnName="IdSpedinaute" />
+          <ScalarProperty Name="Id_pays" ColumnName="Id_pays" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Spedinautes">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.Spedinaute)">
+        <MappingFragment StoreEntitySet="Spedinautes">
+          <ScalarProperty Name="IdSpedinaute" ColumnName="IdSpedinaute" />
+          <ScalarProperty Name="TypeDeProfil" ColumnName="TypeDeProfil" />
+          <ScalarProperty Name="Civilite" ColumnName="Civilite" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="AutrePrenom" ColumnName="AutrePrenom" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="NomDeJeuneFille" ColumnName="NomDeJeuneFille" />
+          <ScalarProperty Name="DateDeNaissance" ColumnName="DateDeNaissance" />
+          <ScalarProperty Name="LieuDeNaissance" ColumnName="LieuDeNaissance" />
+          <ScalarProperty Name="Nationalite" ColumnName="Nationalite" />
+          <ScalarProperty Name="NumeroDeMobile" ColumnName="NumeroDeMobile" />
+          <ScalarProperty Name="NumeroDeFixe" ColumnName="NumeroDeFixe" />
+          <ScalarProperty Name="AdresseEmail" ColumnName="AdresseEmail" />
+          <ScalarProperty Name="PasseMot" ColumnName="PasseMot" />
+          <ScalarProperty Name="NumeroIdAyant" ColumnName="NumeroIdAyant" />
+          <ScalarProperty Name="IPN" ColumnName="IPN" />
+          <ScalarProperty Name="NumeroAD" ColumnName="NumeroAD" />
+          <ScalarProperty Name="NumeroNA" ColumnName="NumeroNA" />
+          <ScalarProperty Name="ArtistePrincipalSpedidam" ColumnName="ArtistePrincipalSpedidam" />
+          <ScalarProperty Name="AccepterEmailInfos" ColumnName="AccepterEmailInfos" />
+          <ScalarProperty Name="Enligne" ColumnName="Enligne" />
+          <ScalarProperty Name="DernierDateDeConnexion" ColumnName="DernierDateDeConnexion" />
+          <ScalarProperty Name="MotDePasseOublie" ColumnName="MotDePasseOublie" />
+          <ScalarProperty Name="CompteUsurpe" ColumnName="CompteUsurpe" />
+          <ScalarProperty Name="DateDUsurpation" ColumnName="DateDUsurpation" />
+          <ScalarProperty Name="Pseudonyme1" ColumnName="Pseudonyme1" />
+          <ScalarProperty Name="Pseudonyme2" ColumnName="Pseudonyme2" />
+          <ScalarProperty Name="Pseudonyme3" ColumnName="Pseudonyme3" />
+          <ScalarProperty Name="Instrument1" ColumnName="Instrument1" />
+          <ScalarProperty Name="Instrument2" ColumnName="Instrument2" />
+          <ScalarProperty Name="Instrument3" ColumnName="Instrument3" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="IntegreDansBachON" ColumnName="IntegreDansBachON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TacheEffectuees">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.TacheEffectuee)">
+        <MappingFragment StoreEntitySet="TacheEffectuees">
+          <ScalarProperty Name="IdTacheEffectuee" ColumnName="IdTacheEffectuee" />
+          <ScalarProperty Name="TypeDeTache" ColumnName="TypeDeTache" />
+          <ScalarProperty Name="DateDuJour" ColumnName="DateDuJour" />
+          <ScalarProperty Name="HeureCourante" ColumnName="HeureCourante" />
+          <ScalarProperty Name="IdAdresseConcernee" ColumnName="IdAdresseConcernee" />
+          <ScalarProperty Name="IdModePasseConcerne" ColumnName="IdModePasseConcerne" />
+          <ScalarProperty Name="IdRibIbanConcerne" ColumnName="IdRibIbanConcerne" />
+          <ScalarProperty Name="FicheConcernee" ColumnName="FicheConcernee" />
+          <ScalarProperty Name="NomDuDevice" ColumnName="NomDuDevice" />
+          <ScalarProperty Name="AdresseMac" ColumnName="AdresseMac" />
+          <ScalarProperty Name="AdresseIP" ColumnName="AdresseIP" />
+          <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+          <ScalarProperty Name="HistoriserON" ColumnName="HistoriserON" />
+          <ScalarProperty Name="IdSpedinaute" ColumnName="IdSpedinaute" />
+          <ScalarProperty Name="IntegreDansBachON" ColumnName="IntegreDansBachON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeAdresses">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.TypeAdresses)">
+        <MappingFragment StoreEntitySet="TypeAdresses">
+          <ScalarProperty Name="TypeAdresse" ColumnName="TypeAdresse" />
+          <ScalarProperty Name="LibelleAdresse" ColumnName="LibelleAdresse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeDeVoies">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.TypeDeVoies)">
+        <MappingFragment StoreEntitySet="TypeDeVoies">
+          <ScalarProperty Name="TypeDeVoie" ColumnName="TypeDeVoie" />
+          <ScalarProperty Name="LbelleVoie" ColumnName="LbelleVoie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeclarationFiscales">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.DeclarationFiscale)">
+        <MappingFragment StoreEntitySet="DeclarationFiscales">
+          <ScalarProperty Name="IdDeclarationFiscale" ColumnName="IdDeclarationFiscale" />
+          <ScalarProperty Name="Annee" ColumnName="Annee" />
+          <ScalarProperty Name="NomDuFichier" ColumnName="NomDuFichier" />
+          <ScalarProperty Name="NumeroIdAyant" ColumnName="NumeroIdAyant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetailsDeRepartions">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.DetailsDeRepartion)">
+        <MappingFragment StoreEntitySet="DetailsDeRepartions">
+          <ScalarProperty Name="IdDetailsDeRepartion" ColumnName="IdDetailsDeRepartion" />
+          <ScalarProperty Name="FichierDetail" ColumnName="FichierDetail" />
+          <ScalarProperty Name="IdRepartition" ColumnName="IdRepartition" />
+          <ScalarProperty Name="IdSpedinaute" ColumnName="IdSpedinaute" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Assemblees">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.Assemblee)">
+        <MappingFragment StoreEntitySet="Assemblees">
+          <ScalarProperty Name="IdAssemblee" ColumnName="IdAssemblee" />
+          <ScalarProperty Name="Exercice" ColumnName="Exercice" />
+          <ScalarProperty Name="DateDuJour" ColumnName="DateDuJour" />
+          <ScalarProperty Name="Horaire" ColumnName="Horaire" />
+          <ScalarProperty Name="Lieu" ColumnName="Lieu" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="OrdreDuJourFichier" ColumnName="OrdreDuJourFichier" />
+          <ScalarProperty Name="LeJourEnTexte" ColumnName="LeJourEnTexte" />
+          <ScalarProperty Name="Actuelle" ColumnName="Actuelle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentDisponibles">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.DocumentDisponible)">
+        <MappingFragment StoreEntitySet="DocumentDisponibles">
+          <ScalarProperty Name="IdDocumentDisponible" ColumnName="IdDocumentDisponible" />
+          <ScalarProperty Name="IdAssemblee" ColumnName="IdAssemblee" />
+          <ScalarProperty Name="NumeroDOrdre" ColumnName="NumeroDOrdre" />
+          <ScalarProperty Name="TitreDuSujet" ColumnName="TitreDuSujet" />
+          <ScalarProperty Name="EmplacementDuFichier" ColumnName="EmplacementDuFichier" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Feuilles">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.Feuille)">
+        <MappingFragment StoreEntitySet="Feuilles">
+          <ScalarProperty Name="IdFeuille" ColumnName="IdFeuille" />
+          <ScalarProperty Name="NumeroDeFeuille" ColumnName="NumeroDeFeuille" />
+          <ScalarProperty Name="IntituleGeneral" ColumnName="IntituleGeneral" />
+          <ScalarProperty Name="IdDetailsDeRepartion" ColumnName="IdDetailsDeRepartion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Informations">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.Information)">
+        <MappingFragment StoreEntitySet="Informations">
+          <ScalarProperty Name="IdInformation" ColumnName="IdInformation" />
+          <ScalarProperty Name="DateEnregistrement" ColumnName="DateEnregistrement" />
+          <ScalarProperty Name="TitreOeuvre" ColumnName="TitreOeuvre" />
+          <ScalarProperty Name="ArtistePrincipalOuGroupe" ColumnName="ArtistePrincipalOuGroupe" />
+          <ScalarProperty Name="Compositeur" ColumnName="Compositeur" />
+          <ScalarProperty Name="Destinations" ColumnName="Destinations" />
+          <ScalarProperty Name="IdFeuille" ColumnName="IdFeuille" />
+          <ScalarProperty Name="NumeroDeFeuille" ColumnName="NumeroDeFeuille" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mandataires">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.Mandataire)">
+        <MappingFragment StoreEntitySet="Mandataires">
+          <ScalarProperty Name="IdMandataire" ColumnName="IdMandataire" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="AdresseEmail" ColumnName="AdresseEmail" />
+          <ScalarProperty Name="PasseMot" ColumnName="PasseMot" />
+          <ScalarProperty Name="Enligne" ColumnName="Enligne" />
+          <ScalarProperty Name="DernierDateDeConnexion" ColumnName="DernierDateDeConnexion" />
+          <ScalarProperty Name="MotDePasseOublie" ColumnName="MotDePasseOublie" />
+          <ScalarProperty Name="IntegreDansBachON" ColumnName="IntegreDansBachON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mandats">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.Mandat)">
+        <MappingFragment StoreEntitySet="Mandats">
+          <ScalarProperty Name="IdMandat" ColumnName="IdMandat" />
+          <ScalarProperty Name="IdTypeDeMandat" ColumnName="IdTypeDeMandat" />
+          <ScalarProperty Name="DateDeDebut" ColumnName="DateDeDebut" />
+          <ScalarProperty Name="DateDeFin" ColumnName="DateDeFin" />
+          <ScalarProperty Name="IdMandataire" ColumnName="IdMandataire" />
+          <ScalarProperty Name="IdSpedinaute" ColumnName="IdSpedinaute" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeDeMandats">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.TypeDeMandat)">
+        <MappingFragment StoreEntitySet="TypeDeMandats">
+          <ScalarProperty Name="IdTypeDeMandat" ColumnName="IdTypeDeMandat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeclarationFiscaleFinales">
+      <EntityTypeMapping TypeName="IsTypeOf(FacilDB.DeclarationFiscaleFinale)">
+        <MappingFragment StoreEntitySet="DeclarationFiscaleFinales">
+          <ScalarProperty Name="IdDeclarationFiscale" ColumnName="IdDeclarationFiscale" />
+          <ScalarProperty Name="Annee" ColumnName="Annee" />
+          <ScalarProperty Name="NomDuFichier" ColumnName="NomDuFichier" />
+          <ScalarProperty Name="MontantNet" ColumnName="MontantNet" />
+          <ScalarProperty Name="DroitsBruts" ColumnName="DroitsBruts" />
+          <ScalarProperty Name="PrelevementSocial" ColumnName="PrelevementSocial" />
+          <ScalarProperty Name="CSGDeductible" ColumnName="CSGDeductible" />
+          <ScalarProperty Name="NetImposable" ColumnName="NetImposable" />
+          <ScalarProperty Name="NumeroIdAyant" ColumnName="NumeroIdAyant" />
+          <ScalarProperty Name="IdSpedinaute" ColumnName="IdSpedinaute" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="InstrumentsJoues" TypeName="FacilDB.InstrumentsJoues" StoreEntitySet="InstrumentsJoues">
+      <EndProperty Name="Spedinaute">
+        <ScalarProperty Name="IdSpedinaute" ColumnName="Spedinaute_IdSpedinaute" />
+      </EndProperty>
+      <EndProperty Name="Instrument">
+        <ScalarProperty Name="id_instr" ColumnName="Instrument_id_instr" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

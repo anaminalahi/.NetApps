@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d9a988ad39c24b6a9c5f6f64d3ae2b52" Name="Diagram1" ZoomLevel="101" >
+        <EntityTypeShape EntityType="FacilDB.Instrument" Width="1.5" PointX="3.375" PointY="6.5" FillColor="Red" />
+        <EntityTypeShape EntityType="FacilDB.MotDePasse" Width="1.75" PointX="3.375" PointY="0.5" />
+        <EntityTypeShape EntityType="FacilDB.Pays" Width="1.75" PointX="7.875" PointY="0.5" FillColor="Red" />
+        <EntityTypeShape EntityType="FacilDB.RepartitionGenerale" Width="2" PointX="10.125" PointY="0.5" />
+        <EntityTypeShape EntityType="FacilDB.RibIban" Width="1.875" PointX="5.5" PointY="0.5" />
+        <EntityTypeShape EntityType="FacilDB.SpedAdresse" Width="1.875" PointX="5.5" PointY="5.375" />
+        <EntityTypeShape EntityType="FacilDB.Spedinaute" Width="2.125" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="FacilDB.TacheEffectuee" Width="2" PointX="0.5" PointY="10" FillColor="Yellow" />
+        <EntityTypeShape EntityType="FacilDB.TypeAdresses" Width="1.75" PointX="4.625" PointY="10" FillColor="Red" />
+        <EntityTypeShape EntityType="FacilDB.TypeDeVoies" Width="1.75" PointX="6.625" PointY="10.375" FillColor="Red" />
+        <AssociationConnector Association="FacilDB.FK_SpedinauteMotDePasse" />
+        <AssociationConnector Association="FacilDB.FK_SpedinauteTacheEffectuee" />
+        <AssociationConnector Association="FacilDB.SpedinauteRibIban" />
+        <AssociationConnector Association="FacilDB.SpedinauteSpedAdresse" />
+        <AssociationConnector Association="FacilDB.TypeAdressesSpedAdresse" />
+        <EntityTypeShape EntityType="FacilDB.DeclarationFiscale" Width="2" PointX="9.25" PointY="8.25" />
+        <EntityTypeShape EntityType="FacilDB.DetailsDeRepartion" Width="2" PointX="9.25" PointY="5.25" />
+        <EntityTypeShape EntityType="FacilDB.Assemblee" Width="2" PointX="12.5" PointY="8.25" FillColor="255, 128, 255" />
+        <EntityTypeShape EntityType="FacilDB.DocumentDisponible" Width="2" PointX="12.5" PointY="12" FillColor="255, 128, 255" />
+        <AssociationConnector Association="FacilDB.AssembleeDocumentDisponible" />
+        <EntityTypeShape EntityType="FacilDB.Feuille" Width="2" PointX="12.5" PointY="4.25" />
+        <EntityTypeShape EntityType="FacilDB.Information" Width="2" PointX="12.5" PointY="0.5" />
+        <AssociationConnector Association="FacilDB.RepartitionConcerneDetailsDeRepartion" />
+        <AssociationConnector Association="FacilDB.SpedinauteDetailsDeRepartion" />
+        <AssociationConnector Association="FacilDB.DetailsDeRepartionFeuille" />
+        <AssociationConnector Association="FacilDB.FeuilleInformation" />
+        <EntityTypeShape EntityType="FacilDB.Mandataire" Width="2" PointX="6.5" PointY="12" />
+        <EntityTypeShape EntityType="FacilDB.Mandat" Width="1.625" PointX="3.75" PointY="12" />
+        <AssociationConnector Association="FacilDB.MandataireAvoirMandat" />
+        <AssociationConnector Association="FacilDB.SpedinauteMandat" />
+        <EntityTypeShape EntityType="FacilDB.TypeDeMandat" Width="1.75" PointX="0.5" PointY="14.5" />
+        <AssociationConnector Association="FacilDB.TypeDeMandatEtMandat" />
+        <AssociationConnector Association="FacilDB.InstrumentsJoues" />
+        <AssociationConnector Association="FacilDB.FK_PaysRibIban" />
+        <EntityTypeShape EntityType="FacilDB.DeclarationFiscaleFinale" Width="2.125" PointX="15.25" PointY="7.125" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

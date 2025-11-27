@@ -1,5 +1,4 @@
-﻿using NigthlyService;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,12 +7,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+
 using MongoDB.Bson;
 using MongoDB.Driver;
 
 
 
-namespace BLOBSqlToJpeg
+namespace NigthlyService
 {
     public partial class FormService : Form
     {
@@ -22,12 +22,6 @@ namespace BLOBSqlToJpeg
 
         private DBPictureDBEntities DBCnx;
 
-        private List<FILTEREDPICTURES> PictureList;
-        private FILTEREDPICTURES SelectedPersonne;
-        private string SaveFolderImages;
-
-
-        private byte[] byteBLOBData;
         private DateTime LastRunDate = DateTime.MinValue;
         private string LogFilePath = Path.Combine(Application.StartupPath, "NightlyUpload.log");
 
@@ -40,8 +34,8 @@ namespace BLOBSqlToJpeg
         private IMongoCollection<BsonDocument> mycollection;
         private List<MongoDbRowEnreg> MongoDbList;
 
-
         private int NumberOfTransactions = 0;
+        private string ServiceName;
 
         #endregion
 
@@ -50,13 +44,17 @@ namespace BLOBSqlToJpeg
         {
             InitializeComponent();
 
-            SaveFolderImages = "c:\\BLOBSqlToJpeg\\SavePicturesFolder\\";
-
             DBCnx = new DBPictureDBEntities();
 
             myclient = new MongoClient(ConnectionString);
             mydatabase = myclient.GetDatabase(DatabaseName);
             mycollection = mydatabase.GetCollection<BsonDocument>(CollectionName);
+
+            //NightlyTimer = new System.Windows.Forms.Timer();
+            NightlyTimer.Interval = 60000; // Check every minute
+            NightlyTimer.Tick += NightlyTimer_Tick;
+
+            ServiceName = "NightlyTimer";
         }
 
 
@@ -86,6 +84,7 @@ namespace BLOBSqlToJpeg
         private void BtnExit_Click(object sender, EventArgs e)
         {
             NightlyTimer?.Stop();
+            NightlyTimer.Dispose();
             Application.Exit();
         }
 
@@ -251,6 +250,7 @@ namespace BLOBSqlToJpeg
                     // Upload to MongoDB
                     foreach (var mongoEntry in MongoDbList)
                     {
+                        //  Si recherche EmmId est fausse 
                         UploadToMongoDB(mongoEntry.EmpID, mongoEntry.FullName, mongoEntry.BlobData, mongoEntry.FormatImage, mongoEntry.DeactivationDate);
                     }
 

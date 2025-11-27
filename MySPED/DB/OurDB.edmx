@@ -1,0 +1,655 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OurDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="OurDBModelStoreContainer">
+    <EntitySet Name="Adresses" EntityType="OurDBModel.Store.Adresses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AyantDro" EntityType="OurDBModel.Store.AyantDro" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Benefici" EntityType="OurDBModel.Store.Benefici" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RibIbanArchives" EntityType="OurDBModel.Store.RibIbanArchives" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TacheHistorisees" EntityType="OurDBModel.Store.TacheHistorisees" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Benefici_AyantDroit" Association="OurDBModel.Store.FK_Benefici_AyantDroit">
+      <End Role="AyantDro" EntitySet="AyantDro" />
+      <End Role="Benefici" EntitySet="Benefici" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AyantDroTacheHistorise" Association="OurDBModel.Store.FK_AyantDroTacheHistorise">
+      <End Role="AyantDro" EntitySet="AyantDro" />
+      <End Role="TacheHistorisees" EntitySet="TacheHistorisees" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Adresses">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_adres" Type="char" Nullable="true" MaxLength="16" />
+    <Property Name="id_entit" Type="char" Nullable="true" MaxLength="5" />
+    <Property Name="id_type" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="no_voie" Type="varchar" Nullable="true" MaxLength="5" />
+    <Property Name="id_typvo" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="lb_voie" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="adr2" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="codposta" Type="varchar" Nullable="true" MaxLength="10" />
+    <Property Name="ville" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="bureau" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="id_pays" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="etat" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="dt_fin" Type="datetime" Nullable="true" />
+    <Property Name="id_ayant" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="no_benef" Type="char" Nullable="true" MaxLength="2" />
+    <Property Name="IntegreDansBachON" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="AyantDro">
+    <Key>
+      <PropertyRef Name="id_ayant" />
+    </Key>
+    <Property Name="id_ayant" Type="char" Nullable="false" MaxLength="6" />
+    <Property Name="no_adher" Type="char" Nullable="true" MaxLength="8" />
+    <Property Name="no_nonAd" Type="char" Nullable="true" MaxLength="8" />
+    <Property Name="id_civil" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="nom" Type="varchar" Nullable="false" MaxLength="32" />
+    <Property Name="prenom" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="prenom2" Type="varchar" Nullable="true" MaxLength="64" />
+    <Property Name="nomJF" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="pseudo1" Type="varchar" Nullable="true" MaxLength="64" />
+    <Property Name="pseudo2" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="pseudo3" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="dt_naiss" Type="datetime" Nullable="true" />
+    <Property Name="lieuNaiss" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="id_pays" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="id_secu" Type="char" Nullable="true" MaxLength="10" />
+    <Property Name="no_conge" Type="char" Nullable="true" MaxLength="10" />
+    <Property Name="lb_profe" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="id1Instr" Type="char" Nullable="true" MaxLength="5" />
+    <Property Name="id2Instr" Type="char" Nullable="true" MaxLength="5" />
+    <Property Name="id3Instr" Type="char" Nullable="true" MaxLength="5" />
+    <Property Name="groupe" Type="varchar" Nullable="true" MaxLength="64" />
+    <Property Name="lstOrgan" Type="varchar" Nullable="true" MaxLength="34" />
+    <Property Name="dt_adhes" Type="datetime" Nullable="true" />
+    <Property Name="mt_ParSo" Type="decimal" Nullable="true" Precision="5" Scale="2" />
+    <Property Name="dt_sorti" Type="datetime" Nullable="true" />
+    <Property Name="lb_sorti" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="typSorti" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="co_deces" Type="char" Nullable="true" MaxLength="1" />
+    <Property Name="dt_deces" Type="datetime" Nullable="true" />
+    <Property Name="dtDAppDG" Type="datetime" Nullable="true" />
+    <Property Name="dtFAppDG" Type="datetime" Nullable="true" />
+    <Property Name="no_dossi" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="id_doubl" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="no_ipd" Type="char" Nullable="true" MaxLength="8" />
+    <Property Name="dt_creat" Type="datetime" Nullable="true" />
+    <Property Name="dt_maj" Type="datetime" Nullable="true" />
+    <Property Name="id_etat" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="notes" Type="varchar(max)" Nullable="true" />
+    <Property Name="idCUtili" Type="char" Nullable="true" MaxLength="5" />
+    <Property Name="idMUtili" Type="char" Nullable="true" MaxLength="5" />
+    <Property Name="no_sai" Type="char" Nullable="true" MaxLength="8" />
+    <Property Name="no_adami" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="noCAdami" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="noCSpedi" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="NaAd" Type="char" Nullable="false" MaxLength="2" />
+    <Property Name="password" Type="char" Nullable="true" MaxLength="10" />
+    <Property Name="dt_pwEnvoi" Type="datetime" Nullable="true" />
+    <Property Name="ipd_PC" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="ipd_BR" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="ipd_CP" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="ipd_MA" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="ipd_LE" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="ipd_PP" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="ipd_RE" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="ipd_RP" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="ipd_RR" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="ipd_dup" Type="bit" Nullable="true" />
+    <Property Name="ipd_verif" Type="bit" Nullable="true" />
+    <Property Name="ipd_dtVer" Type="datetime" Nullable="true" />
+    <Property Name="IntegreDansBachON" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Benefici">
+    <Key>
+      <PropertyRef Name="id_benef" />
+    </Key>
+    <Property Name="id_benef" Type="char" Nullable="false" MaxLength="8" />
+    <Property Name="id_ayant" Type="char" Nullable="false" MaxLength="6" />
+    <Property Name="no_benef" Type="char" Nullable="false" MaxLength="2" />
+    <Property Name="QuaBenef" Type="char" Nullable="true" MaxLength="2" />
+    <Property Name="id_civil" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="nom" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="prenom" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="prenom2" Type="varchar" Nullable="true" MaxLength="64" />
+    <Property Name="nomjf" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="no_telfi" Type="varchar" Nullable="true" MaxLength="17" />
+    <Property Name="no_telpo" Type="varchar" Nullable="true" MaxLength="17" />
+    <Property Name="no_telec" Type="varchar" Nullable="true" MaxLength="17" />
+    <Property Name="mele" Type="varchar" Nullable="true" MaxLength="64" />
+    <Property Name="dt_naiss" Type="datetime" Nullable="true" />
+    <Property Name="lieunaiss" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="id_pays" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="dt_sorti" Type="datetime" Nullable="true" />
+    <Property Name="lb_sorti" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="typsorti" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="co_deces" Type="char" Nullable="true" MaxLength="1" />
+    <Property Name="dt_deces" Type="datetime" Nullable="true" />
+    <Property Name="tx_quoti" Type="decimal" Nullable="true" Precision="6" Scale="2" />
+    <Property Name="txrdroit" Type="decimal" Nullable="true" Precision="6" Scale="2" />
+    <Property Name="txrvmp" Type="decimal" Nullable="true" Precision="6" Scale="2" />
+    <Property Name="txrdat" Type="decimal" Nullable="true" Precision="6" Scale="2" />
+    <Property Name="id_modpa" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="nombanqu" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="co_banqu" Type="char" Nullable="true" MaxLength="5" />
+    <Property Name="co_guich" Type="char" Nullable="true" MaxLength="5" />
+    <Property Name="co_compt" Type="char" Nullable="true" MaxLength="30" />
+    <Property Name="clerib" Type="char" Nullable="true" MaxLength="2" />
+    <Property Name="bic" Type="char" Nullable="true" MaxLength="11" />
+    <Property Name="aba" Type="char" Nullable="true" MaxLength="9" />
+    <Property Name="iban" Type="varchar" Nullable="true" MaxLength="34" />
+    <Property Name="lb_domic" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="ad1banqu" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="ad2banqu" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="cp_banqu" Type="varchar" Nullable="true" MaxLength="8" />
+    <Property Name="vilbanq" Type="varchar" Nullable="true" MaxLength="32" />
+    <Property Name="paybanqu" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="id2benef" Type="char" Nullable="true" MaxLength="8" />
+    <Property Name="notes" Type="varchar(max)" Nullable="true" />
+    <Property Name="id_etat" Type="char" Nullable="true" MaxLength="3" />
+    <Property Name="ribvalab" Type="bit" Nullable="true" />
+    <Property Name="instit_can" Type="char" Nullable="true" MaxLength="6" />
+    <Property Name="branch_can" Type="char" Nullable="true" MaxLength="7" />
+    <Property Name="IntegreDansBachON" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="RibIbanArchives">
+    <Key>
+      <PropertyRef Name="IdRibIban" />
+    </Key>
+    <Property Name="IdRibIban" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titulaire" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="BicSwift" Type="nvarchar" Nullable="true" MaxLength="11" />
+    <Property Name="NumeroIBAN" Type="nvarchar" Nullable="true" MaxLength="34" />
+    <Property Name="Domiciliation" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="CodeBanque" Type="nvarchar" Nullable="true" MaxLength="5" />
+    <Property Name="Guichet" Type="nvarchar" Nullable="true" MaxLength="5" />
+    <Property Name="NumeroCompte" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="CleRIB" Type="nvarchar" Nullable="true" MaxLength="3" />
+    <Property Name="Pays" Type="nvarchar" Nullable="true" MaxLength="3" />
+    <Property Name="DateDeSaisie" Type="datetime" Nullable="true" />
+    <Property Name="Actuel" Type="bit" Nullable="false" />
+    <Property Name="IntegreDansBachON" Type="bit" Nullable="false" />
+    <Property Name="IdSpedinaute" Type="int" Nullable="false" />
+    <Property Name="id_ayant" Type="char" Nullable="false" MaxLength="6" />
+  </EntityType>
+  <EntityType Name="TacheHistorisees">
+    <Key>
+      <PropertyRef Name="IdTacheHistorisee" />
+    </Key>
+    <Property Name="IdTacheHistorisee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeDeTache" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="DateDuJour" Type="datetime" Nullable="false" />
+    <Property Name="HeureCourante" Type="time" Nullable="false" Precision="7" />
+    <Property Name="IdAdresseConcernee" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="IdModePasseConcerne" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="IdRibIbanConcerne" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="FicheConcernee" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="Commentaire" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HistoriserON" Type="bit" Nullable="false" />
+    <Property Name="IdSpedinaute" Type="int" Nullable="false" />
+    <Property Name="Id_ayant" Type="char" Nullable="false" MaxLength="6" />
+  </EntityType>
+  <Association Name="FK_Benefici_AyantDroit">
+    <End Role="AyantDro" Type="OurDBModel.Store.AyantDro" Multiplicity="1" />
+    <End Role="Benefici" Type="OurDBModel.Store.Benefici" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AyantDro">
+        <PropertyRef Name="id_ayant" />
+      </Principal>
+      <Dependent Role="Benefici">
+        <PropertyRef Name="id_ayant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AyantDroTacheHistorise">
+    <End Role="AyantDro" Type="OurDBModel.Store.AyantDro" Multiplicity="1" />
+    <End Role="TacheHistorisees" Type="OurDBModel.Store.TacheHistorisees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AyantDro">
+        <PropertyRef Name="id_ayant" />
+      </Principal>
+      <Dependent Role="TacheHistorisees">
+        <PropertyRef Name="Id_ayant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OurDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adresse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_adres" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="id_entit" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="id_type" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="no_voie" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="id_typvo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="lb_voie" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="adr2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="codposta" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ville" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="bureau" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="id_pays" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="etat" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="dt_fin" Type="DateTime" Precision="3" />
+          <Property Name="id_ayant" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="no_benef" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="IntegreDansBachON" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="AyantDro">
+          <Key>
+            <PropertyRef Name="id_ayant" />
+          </Key>
+          <Property Name="id_ayant" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="no_adher" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="no_nonAd" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="id_civil" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="nom" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prenom" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="prenom2" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="nomJF" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="pseudo1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="pseudo2" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="pseudo3" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="dt_naiss" Type="DateTime" Precision="3" />
+          <Property Name="lieuNaiss" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="id_pays" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="id_secu" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="no_conge" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="lb_profe" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="id1Instr" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="id2Instr" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="id3Instr" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="groupe" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="lstOrgan" Type="String" MaxLength="34" FixedLength="false" Unicode="false" />
+          <Property Name="dt_adhes" Type="DateTime" Precision="3" />
+          <Property Name="mt_ParSo" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="dt_sorti" Type="DateTime" Precision="3" />
+          <Property Name="lb_sorti" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="typSorti" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="co_deces" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="dt_deces" Type="DateTime" Precision="3" />
+          <Property Name="dtDAppDG" Type="DateTime" Precision="3" />
+          <Property Name="dtFAppDG" Type="DateTime" Precision="3" />
+          <Property Name="no_dossi" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="id_doubl" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="no_ipd" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="dt_creat" Type="DateTime" Precision="3" />
+          <Property Name="dt_maj" Type="DateTime" Precision="3" />
+          <Property Name="id_etat" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idCUtili" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="idMUtili" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="no_sai" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="no_adami" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="noCAdami" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="noCSpedi" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="NaAd" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="dt_pwEnvoi" Type="DateTime" Precision="3" />
+          <Property Name="ipd_PC" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ipd_BR" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ipd_CP" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ipd_MA" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ipd_LE" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ipd_PP" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ipd_RE" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ipd_RP" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ipd_RR" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="ipd_dup" Type="Boolean" />
+          <Property Name="ipd_verif" Type="Boolean" />
+          <Property Name="ipd_dtVer" Type="DateTime" Precision="3" />
+          <Property Name="IntegreDansBachON" Type="Boolean" />
+          <NavigationProperty Name="Benefici" Relationship="Self.FK_Benefici_AyantDroit" FromRole="AyantDro" ToRole="Benefici" />
+          <NavigationProperty Name="TacheHistorisees" Relationship="OurDBModel.FK_AyantDroTacheHistorise" FromRole="AyantDro" ToRole="TacheHistorisees" />
+        </EntityType>
+        <EntityType Name="Benefici">
+          <Key>
+            <PropertyRef Name="id_benef" />
+          </Key>
+          <Property Name="id_benef" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="id_ayant" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="no_benef" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="QuaBenef" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="id_civil" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="nom" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="prenom" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="prenom2" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="nomjf" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="no_telfi" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="no_telpo" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="no_telec" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="mele" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="dt_naiss" Type="DateTime" Precision="3" />
+          <Property Name="lieunaiss" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="id_pays" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="dt_sorti" Type="DateTime" Precision="3" />
+          <Property Name="lb_sorti" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="typsorti" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="co_deces" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="dt_deces" Type="DateTime" Precision="3" />
+          <Property Name="tx_quoti" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="txrdroit" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="txrvmp" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="txrdat" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="id_modpa" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="nombanqu" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="co_banqu" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="co_guich" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="co_compt" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="clerib" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="bic" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="aba" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="iban" Type="String" MaxLength="34" FixedLength="false" Unicode="false" />
+          <Property Name="lb_domic" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="ad1banqu" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="ad2banqu" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="cp_banqu" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="vilbanq" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="paybanqu" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="id2benef" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_etat" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="ribvalab" Type="Boolean" />
+          <Property Name="instit_can" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="branch_can" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="IntegreDansBachON" Type="Boolean" />
+          <NavigationProperty Name="AyantDro" Relationship="Self.FK_Benefici_AyantDroit" FromRole="Benefici" ToRole="AyantDro" />
+        </EntityType>
+        <EntityType Name="RibIbanArchive">
+          <Key>
+            <PropertyRef Name="IdRibIban" />
+          </Key>
+          <Property Name="IdRibIban" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulaire" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BicSwift" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroIBAN" Type="String" MaxLength="34" FixedLength="false" Unicode="true" />
+          <Property Name="Domiciliation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CodeBanque" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Guichet" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroCompte" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CleRIB" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Pays" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="DateDeSaisie" Type="DateTime" Precision="3" />
+          <Property Name="Actuel" Type="Boolean" Nullable="false" />
+          <Property Name="IntegreDansBachON" Type="Boolean" Nullable="false" />
+          <Property Name="IdSpedinaute" Type="Int32" Nullable="false" />
+          <Property Name="id_ayant" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Benefici_AyantDroit">
+          <End Role="AyantDro" Type="Self.AyantDro" Multiplicity="1" />
+          <End Role="Benefici" Type="Self.Benefici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AyantDro">
+              <PropertyRef Name="id_ayant" />
+            </Principal>
+            <Dependent Role="Benefici">
+              <PropertyRef Name="id_ayant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OurDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adresses" EntityType="OurDBModel.Adresse" />
+          <EntitySet Name="AyantDro" EntityType="Self.AyantDro" />
+          <EntitySet Name="Benefici" EntityType="Self.Benefici" />
+          <EntitySet Name="RibIbanArchives" EntityType="OurDBModel.RibIbanArchive" />
+          <AssociationSet Name="FK_Benefici_AyantDroit" Association="Self.FK_Benefici_AyantDroit">
+            <End Role="AyantDro" EntitySet="AyantDro" />
+            <End Role="Benefici" EntitySet="Benefici" />
+          </AssociationSet>
+          <EntitySet Name="TacheHistorisees" EntityType="OurDBModel.TacheHistorisee" />
+          <AssociationSet Name="FK_AyantDroTacheHistorise" Association="OurDBModel.FK_AyantDroTacheHistorise">
+            <End Role="AyantDro" EntitySet="AyantDro" />
+            <End Role="TacheHistorisees" EntitySet="TacheHistorisees" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TacheHistorisee">
+          <Key>
+            <PropertyRef Name="IdTacheHistorisee" />
+          </Key>
+          <Property Name="IdTacheHistorisee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeDeTache" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="DateDuJour" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HeureCourante" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="IdAdresseConcernee" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IdModePasseConcerne" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IdRibIbanConcerne" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="FicheConcernee" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Commentaire" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HistoriserON" Type="Boolean" Nullable="false" />
+          <Property Name="IdSpedinaute" Type="Int32" Nullable="false" />
+          <Property Name="Id_ayant" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="AyantDro" Relationship="OurDBModel.FK_AyantDroTacheHistorise" FromRole="TacheHistorisees" ToRole="AyantDro" />
+        </EntityType>
+        <Association Name="FK_AyantDroTacheHistorise">
+          <End Type="OurDBModel.AyantDro" Role="AyantDro" Multiplicity="1" />
+          <End Type="OurDBModel.TacheHistorisee" Role="TacheHistorisees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AyantDro">
+              <PropertyRef Name="id_ayant" />
+            </Principal>
+            <Dependent Role="TacheHistorisees">
+              <PropertyRef Name="Id_ayant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OurDBModelStoreContainer" CdmEntityContainer="OurDBEntities">
+    <EntitySetMapping Name="Adresses">
+      <EntityTypeMapping TypeName="IsTypeOf(OurDBModel.Adresse)">
+        <MappingFragment StoreEntitySet="Adresses">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_adres" ColumnName="id_adres" />
+          <ScalarProperty Name="id_entit" ColumnName="id_entit" />
+          <ScalarProperty Name="id_type" ColumnName="id_type" />
+          <ScalarProperty Name="no_voie" ColumnName="no_voie" />
+          <ScalarProperty Name="id_typvo" ColumnName="id_typvo" />
+          <ScalarProperty Name="lb_voie" ColumnName="lb_voie" />
+          <ScalarProperty Name="adr2" ColumnName="adr2" />
+          <ScalarProperty Name="codposta" ColumnName="codposta" />
+          <ScalarProperty Name="ville" ColumnName="ville" />
+          <ScalarProperty Name="bureau" ColumnName="bureau" />
+          <ScalarProperty Name="id_pays" ColumnName="id_pays" />
+          <ScalarProperty Name="etat" ColumnName="etat" />
+          <ScalarProperty Name="dt_fin" ColumnName="dt_fin" />
+          <ScalarProperty Name="id_ayant" ColumnName="id_ayant" />
+          <ScalarProperty Name="no_benef" ColumnName="no_benef" />
+          <ScalarProperty Name="IntegreDansBachON" ColumnName="IntegreDansBachON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AyantDro">
+      <EntityTypeMapping TypeName="IsTypeOf(OurDBModel.AyantDro)">
+        <MappingFragment StoreEntitySet="AyantDro">
+          <ScalarProperty Name="id_ayant" ColumnName="id_ayant" />
+          <ScalarProperty Name="no_adher" ColumnName="no_adher" />
+          <ScalarProperty Name="no_nonAd" ColumnName="no_nonAd" />
+          <ScalarProperty Name="id_civil" ColumnName="id_civil" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="prenom2" ColumnName="prenom2" />
+          <ScalarProperty Name="nomJF" ColumnName="nomJF" />
+          <ScalarProperty Name="pseudo1" ColumnName="pseudo1" />
+          <ScalarProperty Name="pseudo2" ColumnName="pseudo2" />
+          <ScalarProperty Name="pseudo3" ColumnName="pseudo3" />
+          <ScalarProperty Name="dt_naiss" ColumnName="dt_naiss" />
+          <ScalarProperty Name="lieuNaiss" ColumnName="lieuNaiss" />
+          <ScalarProperty Name="id_pays" ColumnName="id_pays" />
+          <ScalarProperty Name="id_secu" ColumnName="id_secu" />
+          <ScalarProperty Name="no_conge" ColumnName="no_conge" />
+          <ScalarProperty Name="lb_profe" ColumnName="lb_profe" />
+          <ScalarProperty Name="id1Instr" ColumnName="id1Instr" />
+          <ScalarProperty Name="id2Instr" ColumnName="id2Instr" />
+          <ScalarProperty Name="id3Instr" ColumnName="id3Instr" />
+          <ScalarProperty Name="groupe" ColumnName="groupe" />
+          <ScalarProperty Name="lstOrgan" ColumnName="lstOrgan" />
+          <ScalarProperty Name="dt_adhes" ColumnName="dt_adhes" />
+          <ScalarProperty Name="mt_ParSo" ColumnName="mt_ParSo" />
+          <ScalarProperty Name="dt_sorti" ColumnName="dt_sorti" />
+          <ScalarProperty Name="lb_sorti" ColumnName="lb_sorti" />
+          <ScalarProperty Name="typSorti" ColumnName="typSorti" />
+          <ScalarProperty Name="co_deces" ColumnName="co_deces" />
+          <ScalarProperty Name="dt_deces" ColumnName="dt_deces" />
+          <ScalarProperty Name="dtDAppDG" ColumnName="dtDAppDG" />
+          <ScalarProperty Name="dtFAppDG" ColumnName="dtFAppDG" />
+          <ScalarProperty Name="no_dossi" ColumnName="no_dossi" />
+          <ScalarProperty Name="id_doubl" ColumnName="id_doubl" />
+          <ScalarProperty Name="no_ipd" ColumnName="no_ipd" />
+          <ScalarProperty Name="dt_creat" ColumnName="dt_creat" />
+          <ScalarProperty Name="dt_maj" ColumnName="dt_maj" />
+          <ScalarProperty Name="id_etat" ColumnName="id_etat" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="idCUtili" ColumnName="idCUtili" />
+          <ScalarProperty Name="idMUtili" ColumnName="idMUtili" />
+          <ScalarProperty Name="no_sai" ColumnName="no_sai" />
+          <ScalarProperty Name="no_adami" ColumnName="no_adami" />
+          <ScalarProperty Name="noCAdami" ColumnName="noCAdami" />
+          <ScalarProperty Name="noCSpedi" ColumnName="noCSpedi" />
+          <ScalarProperty Name="NaAd" ColumnName="NaAd" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="dt_pwEnvoi" ColumnName="dt_pwEnvoi" />
+          <ScalarProperty Name="ipd_PC" ColumnName="ipd_PC" />
+          <ScalarProperty Name="ipd_BR" ColumnName="ipd_BR" />
+          <ScalarProperty Name="ipd_CP" ColumnName="ipd_CP" />
+          <ScalarProperty Name="ipd_MA" ColumnName="ipd_MA" />
+          <ScalarProperty Name="ipd_LE" ColumnName="ipd_LE" />
+          <ScalarProperty Name="ipd_PP" ColumnName="ipd_PP" />
+          <ScalarProperty Name="ipd_RE" ColumnName="ipd_RE" />
+          <ScalarProperty Name="ipd_RP" ColumnName="ipd_RP" />
+          <ScalarProperty Name="ipd_RR" ColumnName="ipd_RR" />
+          <ScalarProperty Name="ipd_dup" ColumnName="ipd_dup" />
+          <ScalarProperty Name="ipd_verif" ColumnName="ipd_verif" />
+          <ScalarProperty Name="ipd_dtVer" ColumnName="ipd_dtVer" />
+          <ScalarProperty Name="IntegreDansBachON" ColumnName="IntegreDansBachON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Benefici">
+      <EntityTypeMapping TypeName="IsTypeOf(OurDBModel.Benefici)">
+        <MappingFragment StoreEntitySet="Benefici">
+          <ScalarProperty Name="id_benef" ColumnName="id_benef" />
+          <ScalarProperty Name="id_ayant" ColumnName="id_ayant" />
+          <ScalarProperty Name="no_benef" ColumnName="no_benef" />
+          <ScalarProperty Name="QuaBenef" ColumnName="QuaBenef" />
+          <ScalarProperty Name="id_civil" ColumnName="id_civil" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="prenom2" ColumnName="prenom2" />
+          <ScalarProperty Name="nomjf" ColumnName="nomjf" />
+          <ScalarProperty Name="no_telfi" ColumnName="no_telfi" />
+          <ScalarProperty Name="no_telpo" ColumnName="no_telpo" />
+          <ScalarProperty Name="no_telec" ColumnName="no_telec" />
+          <ScalarProperty Name="mele" ColumnName="mele" />
+          <ScalarProperty Name="dt_naiss" ColumnName="dt_naiss" />
+          <ScalarProperty Name="lieunaiss" ColumnName="lieunaiss" />
+          <ScalarProperty Name="id_pays" ColumnName="id_pays" />
+          <ScalarProperty Name="dt_sorti" ColumnName="dt_sorti" />
+          <ScalarProperty Name="lb_sorti" ColumnName="lb_sorti" />
+          <ScalarProperty Name="typsorti" ColumnName="typsorti" />
+          <ScalarProperty Name="co_deces" ColumnName="co_deces" />
+          <ScalarProperty Name="dt_deces" ColumnName="dt_deces" />
+          <ScalarProperty Name="tx_quoti" ColumnName="tx_quoti" />
+          <ScalarProperty Name="txrdroit" ColumnName="txrdroit" />
+          <ScalarProperty Name="txrvmp" ColumnName="txrvmp" />
+          <ScalarProperty Name="txrdat" ColumnName="txrdat" />
+          <ScalarProperty Name="id_modpa" ColumnName="id_modpa" />
+          <ScalarProperty Name="nombanqu" ColumnName="nombanqu" />
+          <ScalarProperty Name="co_banqu" ColumnName="co_banqu" />
+          <ScalarProperty Name="co_guich" ColumnName="co_guich" />
+          <ScalarProperty Name="co_compt" ColumnName="co_compt" />
+          <ScalarProperty Name="clerib" ColumnName="clerib" />
+          <ScalarProperty Name="bic" ColumnName="bic" />
+          <ScalarProperty Name="aba" ColumnName="aba" />
+          <ScalarProperty Name="iban" ColumnName="iban" />
+          <ScalarProperty Name="lb_domic" ColumnName="lb_domic" />
+          <ScalarProperty Name="ad1banqu" ColumnName="ad1banqu" />
+          <ScalarProperty Name="ad2banqu" ColumnName="ad2banqu" />
+          <ScalarProperty Name="cp_banqu" ColumnName="cp_banqu" />
+          <ScalarProperty Name="vilbanq" ColumnName="vilbanq" />
+          <ScalarProperty Name="paybanqu" ColumnName="paybanqu" />
+          <ScalarProperty Name="id2benef" ColumnName="id2benef" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="id_etat" ColumnName="id_etat" />
+          <ScalarProperty Name="ribvalab" ColumnName="ribvalab" />
+          <ScalarProperty Name="instit_can" ColumnName="instit_can" />
+          <ScalarProperty Name="branch_can" ColumnName="branch_can" />
+          <ScalarProperty Name="IntegreDansBachON" ColumnName="IntegreDansBachON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RibIbanArchives">
+      <EntityTypeMapping TypeName="IsTypeOf(OurDBModel.RibIbanArchive)">
+        <MappingFragment StoreEntitySet="RibIbanArchives">
+          <ScalarProperty Name="IdRibIban" ColumnName="IdRibIban" />
+          <ScalarProperty Name="Titulaire" ColumnName="Titulaire" />
+          <ScalarProperty Name="BicSwift" ColumnName="BicSwift" />
+          <ScalarProperty Name="NumeroIBAN" ColumnName="NumeroIBAN" />
+          <ScalarProperty Name="Domiciliation" ColumnName="Domiciliation" />
+          <ScalarProperty Name="CodeBanque" ColumnName="CodeBanque" />
+          <ScalarProperty Name="Guichet" ColumnName="Guichet" />
+          <ScalarProperty Name="NumeroCompte" ColumnName="NumeroCompte" />
+          <ScalarProperty Name="CleRIB" ColumnName="CleRIB" />
+          <ScalarProperty Name="Pays" ColumnName="Pays" />
+          <ScalarProperty Name="DateDeSaisie" ColumnName="DateDeSaisie" />
+          <ScalarProperty Name="Actuel" ColumnName="Actuel" />
+          <ScalarProperty Name="IntegreDansBachON" ColumnName="IntegreDansBachON" />
+          <ScalarProperty Name="IdSpedinaute" ColumnName="IdSpedinaute" />
+          <ScalarProperty Name="id_ayant" ColumnName="id_ayant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TacheHistorisees">
+      <EntityTypeMapping TypeName="IsTypeOf(OurDBModel.TacheHistorisee)">
+        <MappingFragment StoreEntitySet="TacheHistorisees">
+          <ScalarProperty Name="IdTacheHistorisee" ColumnName="IdTacheHistorisee" />
+          <ScalarProperty Name="TypeDeTache" ColumnName="TypeDeTache" />
+          <ScalarProperty Name="DateDuJour" ColumnName="DateDuJour" />
+          <ScalarProperty Name="HeureCourante" ColumnName="HeureCourante" />
+          <ScalarProperty Name="IdAdresseConcernee" ColumnName="IdAdresseConcernee" />
+          <ScalarProperty Name="IdModePasseConcerne" ColumnName="IdModePasseConcerne" />
+          <ScalarProperty Name="IdRibIbanConcerne" ColumnName="IdRibIbanConcerne" />
+          <ScalarProperty Name="FicheConcernee" ColumnName="FicheConcernee" />
+          <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+          <ScalarProperty Name="HistoriserON" ColumnName="HistoriserON" />
+          <ScalarProperty Name="IdSpedinaute" ColumnName="IdSpedinaute" />
+          <ScalarProperty Name="Id_ayant" ColumnName="Id_ayant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
