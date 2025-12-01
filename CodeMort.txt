@@ -1,0 +1,21 @@
+        //private MongoUploader mongoUploader;
+        //public string DatabaseName = "BlobImagesDb";
+        //public string ConnectionString = "mongodb://localhost:27017";
+        //public string CollectionName = "employees";
+        //mongoUploader = new MongoUploader(ConnectionString, DatabaseName, CollectionName);
+
+//MessageBox.Show("Manual upload triggered—check NightlyUpload.log for progress.");
+
+//InvokeOnUIThread(() => MessageBox.Show(successMsg));
+//InvokeOnUIThread(() => MessageBox.Show(errorMsg));
+        //private void InvokeOnUIThread(Action action)
+        //{
+        //    if (InvokeRequired)
+        //    {
+        //        Invoke(action);
+        //    }
+        //    else
+        //    {
+        //        action();
+        //    }
+        //}

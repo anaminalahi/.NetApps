@@ -1,0 +1,23 @@
+Initialization of the backup folder
+Connection to the Bdd SQLServer
+Initialization of the Timer at 02 Hours
+The timer will every minute read the time and test with the backup start time
+the request queries the personal and filteredpictures tables
+( rqList = (from p in DBCnx.PERSONNEL
+                              join f in DBCnx.FILTEREDPICTURES
+                                  on p.EMPID equals f.EMPID
+                              where f.LNL_BLOB != null (we ignore the lines if it’s null)
+                              orderby p.EMPID
+                              select new
+                              {
+                                  p.EMPID,
+                                  p.FULLNAME,
+                                  DeactivationDate = f.LASTCHANGED,
+                                  BlobData = f.LNL_BLOB,
+                                  f.FORMAT_IMAGE
+                              }). ToList();  )
+the result is rqlist. Count
+If it is greater than zero, we scan the data to build the csv 
+we test if the image the format of the image is unknown, we ignore the recording
+otherwise we create a corresponding line in the csv flow
+We save the CSV file.
