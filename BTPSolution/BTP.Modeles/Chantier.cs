@@ -9,10 +9,10 @@ namespace BTP.Modeles
     public class Chantier
     {
         public int IdChantier { get; set; }
-        public string LibelleChantier { get; set; }
+        public required string LibelleChantier { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
-        public string Statut { get; set; }
+        public required string Statut { get; set; }
 
         public int IdProjet { get; set; }
     }
