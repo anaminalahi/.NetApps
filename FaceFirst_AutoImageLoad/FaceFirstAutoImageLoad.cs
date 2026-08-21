@@ -43,7 +43,8 @@ namespace FaceFirst_AutoImageLoad
 
         protected override void OnStart(string[] args)
         {
-            LogDirectory = @"\\sg-ff-dev\D$\FF-Autoenrollment-Tool\Logs";
+            //LogDirectory = @"\\sg-ff-dev\D$\FF-Autoenrollment-Tool\Logs";
+            LogDirectory = @"C:\FF-Autoenrollment-Tool\Logs";
             LogFilePath = Path.Combine(LogDirectory, "FaceFirstAutoImageUpload.log");
 
             MyTimer = new Timer(60000);
@@ -115,7 +116,8 @@ namespace FaceFirst_AutoImageLoad
             try
             {
 
-                string outputDirff = @"sg-ff-dev\\D$";
+                //string outputDirff = @"sg-ff-dev\\D$";
+                string outputDirff = @"C:\";
 
                 string imageDir = Path.Combine(outputDirff, "SavePicturesFolder");
                 string exeDir = Path.Combine(outputDirff, "FF-Autoenrollment-Tool");

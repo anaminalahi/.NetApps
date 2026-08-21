@@ -1,0 +1,2 @@
+sc stop FaceFirst_AutoImageLoad
+sc delete FaceFirst_AutoImageLoad
