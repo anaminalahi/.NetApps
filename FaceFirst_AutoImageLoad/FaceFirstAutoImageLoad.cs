@@ -128,6 +128,7 @@ namespace FaceFirst_AutoImageLoad
 
                 LogToFile("FaceFirstAutoImage upload started");
 
+                //Ancienne requête SQL pour récupérer les données de la base de données
                 //string query = @"
                 //SELECT 
                 //    p.EMPID, 
