@@ -128,15 +128,34 @@ namespace FaceFirst_AutoImageLoad
 
                 LogToFile("FaceFirstAutoImage upload started");
 
+                //string query = @"
+                //SELECT 
+                //    p.EMPID, 
+                //    p.FullName, 
+                //    f.LASTCHANGED AS DeactivationDate, 
+                //    f.LNL_BLOB AS BlobData, 
+                //    f.FORMAT_IMAGE 
+                //FROM dbo.PERSONNEL p 
+                //INNER JOIN dbo.FILTEREDPICTURES f ON CAST(p.EMPID AS INT) = f.EMPID 
+                //ORDER BY p.EMPID";
+
+
                 string query = @"
                 SELECT 
                     p.EMPID, 
-                    p.FullName, 
-                    f.LASTCHANGED AS DeactivationDate, 
-                    f.LNL_BLOB AS BlobData, 
-                    f.FORMAT_IMAGE 
-                FROM dbo.PERSONNEL p 
-                INNER JOIN dbo.FILTEREDPICTURES f ON CAST(p.EMPID AS INT) = f.EMPID 
+                    p.FIRSTNAME,
+                    p.LASTNAME,
+                    p.FULLNAME AS FullName,
+                    p.LNL_BLOB AS BlobData,
+                    p.CARD_SERIAL_NUMBER,
+                    p.BADGEID,
+                    p.STATUS,
+                    p.ACTIVATION,
+                    P.DEACTIVATION AS DeactivationDate,
+                    p.LASTCHANGED,
+                    f.FORMAT_IMAGE
+                FROM lnn.PERSONNEL p 
+                INNER JOIN lnn.FILTEREDPICTURES f ON CAST(p.EMPID AS INT) = f.EMPID 
                 ORDER BY p.EMPID";
 
                 var csvBuilder = new StringBuilder();
