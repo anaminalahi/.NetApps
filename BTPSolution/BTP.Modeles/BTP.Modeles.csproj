@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Chantier.cs" />
+    <Compile Remove="Devis.cs" />
+    <Compile Remove="Employe.cs" />
+    <Compile Remove="Projet.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.16" />
   </ItemGroup>
 
